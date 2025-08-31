@@ -13,6 +13,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
+    "unfold",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -30,7 +31,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
@@ -99,3 +100,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 INTERNAL_IPS = ['127.0.0.1']
+
+
+# настройки админ панели
+UNFOLD = {
+    # Последний пункт, необязателен. Будут доступны все темы для админ-панели
+    "SITE_TITLE": "BUL.K.A-PLAY",  # Заголовок в браузере
+    "SITE_HEADER": "Админ-панель BUL.K.A-PLAY",           # Заголовок в шапке
+    "SITE_ICON": "/media/admin_logo/admin_logo.jpg",         # Путь к логотипу (SVG/PNG)
+    "THEME": "dark",  # "light", "dark" или "auto" (автоопределение)
+}

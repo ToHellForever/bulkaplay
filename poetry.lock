@@ -53,6 +53,36 @@ django = ">=4.2.9"
 sqlparse = ">=0.2"
 
 [[package]]
+name = "django-material"
+version = "1.12.0"
+description = "Material design for django forms and admin"
+optional = false
+python-versions = "*"
+groups = ["main"]
+files = [
+    {file = "django-material-1.12.0.tar.gz", hash = "sha256:5e3b9b6c67bd7013d08c879d1a18729015d826109d498c8079cb220e3d96de8e"},
+    {file = "django_material-1.12.0-py2.py3-none-any.whl", hash = "sha256:0914ff60dbff375624c4e9434a6a92fb51f022e957e0b3b1974f88a9287a5946"},
+]
+
+[package.dependencies]
+six = "*"
+
+[[package]]
+name = "django-unfold"
+version = "0.65.0"
+description = "Modern Django admin theme for seamless interface development"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "django_unfold-0.65.0-py3-none-any.whl", hash = "sha256:1282dfaee3d7ac5a70ba63b3974667c6453efa1eda29dcafc5470b77241e4709"},
+    {file = "django_unfold-0.65.0.tar.gz", hash = "sha256:7960b2f6e18cb883920b6bc03e255bcf8ca94c18c4f6caa770ff65eeb64d8724"},
+]
+
+[package.dependencies]
+django = ">=4.2"
+
+[[package]]
 name = "python-dotenv"
 version = "1.1.1"
 description = "Read key-value pairs from a .env file and set them as environment variables"
@@ -66,6 +96,18 @@ files = [
 
 [package.extras]
 cli = ["click (>=5.0)"]
+
+[[package]]
+name = "six"
+version = "1.17.0"
+description = "Python 2 and 3 compatibility utilities"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+groups = ["main"]
+files = [
+    {file = "six-1.17.0-py2.py3-none-any.whl", hash = "sha256:4721f391ed90541fddacab5acf947aa0d3dc7d27b2e1e8eda2be8970586c3274"},
+    {file = "six-1.17.0.tar.gz", hash = "sha256:ff70335d468e7eb6ec65b95b99d3a2836546063f63acc5171de367e834932a81"},
+]
 
 [[package]]
 name = "sqlparse"
@@ -99,4 +141,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "7a285a89e5eedce0ccf3c6a3fa26a448bebae0de779252bf57637d0c1c17ee29"
+content-hash = "f957fd7634a25713946a9d4e92820a3f581b49ae664b185f3b181defb8f3b26f"

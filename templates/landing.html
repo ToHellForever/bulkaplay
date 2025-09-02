@@ -6,14 +6,38 @@
 <h1>НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА</span></h1>
 
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <img src="media/photo/photo1.jpg" alt="photo1" class="photo1" >
-            <img src="media/photo/photo2.svg" alt="photo1" class="photo2">
+  <div class="row">
+    <div class="col-sm-4" style="position: relative;">
+        <img src="media/photo/photo1.jpg" alt="фон" class='background-image'>
+        <div style="position: absolute;">
+            <img src="media/svg_files/arend.svg" alt="аренда" class="arend-image">
         </div>
     </div>
+    <div class="col-sm-8">
+        <img src="media/photo/photo2.svg" alt="фон" class='background-image-2'>
+    </div>
+  </div>
+  <div class="row" style="margin-left: 500px;">
+    <a href="{% url 'landing' %}" id="submit"><div><p1>ОСТАВИТЬ ЗАЯВКУ</p1></div></a>
+    <a href="{% url 'landing' %}" id="about"><div><p2>О НАС</p2></div></a>
+    <a href="{% url 'landing' %}" id="delivery"><div><p1>ДОСТАВКА</p1></div></a>
+  </div>
 </div>
 
-
-
+<div class="container">
+  <div class="row" id="icons">
+    <div class="col-sm-3">
+      <img src="media/svg_files/bones.svg" alt="фон" class='background-image-3'>
+    </div>
+  <div class="col-sm-3">
+      <img src="media/svg_files/star.svg" alt="фон" class='background-image-4'>
+  </div>
+    <div class="col-sm-3">
+      <img src="media/svg_files/hammer.svg" alt="фон" class='background-image-5'>
+    </div>
+  <div class="col-sm-3">
+      <img src="media/svg_files/truck.svg" alt="фон" class='background-image-6'>
+  </div>
+</div>
+</div>
 {% endblock content %}

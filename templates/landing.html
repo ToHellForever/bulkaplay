@@ -5,6 +5,7 @@
 
 <h1>НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА</span></h1>
 
+{% comment %} Первый блок с 2 фото и 3 блоками {% endcomment %}
 <div class="container">
   <div class="row">
     <div class="col-sm-4" style="position: relative;">
@@ -24,20 +25,147 @@
   </div>
 </div>
 
+{% comment %} 4 иконки {% endcomment %}
 <div class="container">
-  <div class="row" id="icons">
+  <div class="row" id="icons" style="gap: 30px; flex-wrap: nowrap;">
     <div class="col-sm-3">
       <img src="media/svg_files/bones.svg" alt="фон" class='background-image-3'>
+      <p><span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ</span><br><span class="games-text">ИГРЫ</span></p>
+      <p3>в нашей коолекции есть игры,<br>анлогов которых нет на рынке</p3>
     </div>
   <div class="col-sm-3">
       <img src="media/svg_files/star.svg" alt="фон" class='background-image-4'>
+      <p><span class="exclusive-text">БРЕНДИРОВАНИЕ</span></p>
+      <p3>возможно нанесение индивидуальной<br>гравировки</p3>
   </div>
     <div class="col-sm-3">
       <img src="media/svg_files/hammer.svg" alt="фон" class='background-image-5'>
+      <p><span class="exclusive-text">РУЧНАЯ РАБОТА</span></p>
+      <p3>Собственное производтсво в<br>г. Красноярске</p3>
     </div>
   <div class="col-sm-3">
       <img src="media/svg_files/truck.svg" alt="фон" class='background-image-6'>
+      <p><span class="exclusive-text">ДОСТАВКА</span></p>
+      <p3>Отправляем по всей<br>России</p3>
   </div>
 </div>
 </div>
-{% endblock content %}
+
+{% comment %} Карусель c карточками товаров {% endcomment %}
+<div class="full-width-container">
+  <h2>КАТАЛОГ ИГР</h2>
+
+<!-- Карусель с товарными карточками -->
+<div id="productCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for product in products %}
+      {% if forloop.first %}
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+      {% else %}
+        {% if forloop.counter0|divisibleby:3 %}
+          </div></div><div class="carousel-item"><div class="row justify-content-center">
+        {% endif %}
+      {% endif %}
+
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 product-card">
+          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="price">{{ product.price }} руб.</p>
+          </div>
+        </div>
+      </div>
+
+      {% if forloop.last %}
+        </div></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Элементы управления каруселью -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
+</div>
+
+
+<div class="full-width-container">
+  <h3>ВЫЕЗДНАЯ АРЕНДА</h3>
+  <p4>
+     Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость<br>входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется<br>количеством игр и обговаривается при оформлении заказа.</p4>
+</div>
+<div id="productCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for product in products %}
+      {% if forloop.first %}
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+      {% else %}
+        {% if forloop.counter0|divisibleby:3 %}
+          </div></div><div class="carousel-item"><div class="row justify-content-center">
+        {% endif %}
+      {% endif %}
+
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 product-card">
+          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="price">{{ product.price }} руб.</p>
+          </div>
+        </div>
+      </div>
+
+      {% if forloop.last %}
+        </div></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Элементы управления каруселью -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
+</div>
+
+
+<h3>ОФОРМИТЬ ЗАКАЗ</h3>
+<div class="full-width-container">
+    <div class='row'>
+      <div class='col'>
+        <form action="" method="post" class="form">
+          {% csrf_token %}
+          <div class="mb-3">
+            <input type="text" class="form-control" id="name" name="name" placeholder="Имя" required>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Номер телефона" required>
+            <label for="" >Что вас заинтересовало</label>
+            <select class="form-select" aria-label="По умолчанию" name="interest" required id="interest">
+            <option selected><b>Аренда 6 игр</b></option>
+            <option value="1"><b>Один</b></option>
+            <option value="2"><b>Два</b></option>
+            <option value="3"><b>Три</b></option>
+          </select>
+            <input type="text" class="form-control" id="comment" name="comment" placeholder="Комментарий" required>
+            <button>Отправить</button>
+          </div>
+        </form>
+      </div>
+      <div class='col'>
+      </div>
+    </div>
+</div>
+
+{% endblock %}
+

@@ -14,8 +14,13 @@
             <img src="media/svg_files/arend.svg" alt="аренда" class="arend-image">
         </div>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8" style="position: relative;">
         <img src="media/photo/photo2.svg" alt="фон" class='background-image-2'>
+        <div style="position: absolute;">
+          <a href="{% url 'landing' %}">
+            <img src="media/svg_files/catalog.svg" alt="каталог" class="catalog-image">
+          </a>
+        </div>
     </div>
   </div>
   <div class="row" style="margin-left: 500px;">
@@ -150,7 +155,7 @@
           <div class="mb-3">
             <input type="text" class="form-control" id="name" name="name" placeholder="Имя" required>
             <input type="text" class="form-control" id="phone" name="phone" placeholder="Номер телефона" required>
-            <label for="" >Что вас заинтересовало</label>
+            <label for="" id="interesting"><b>Что вас заинтересовало</b></label>
             <select class="form-select" aria-label="По умолчанию" name="interest" required id="interest">
             <option selected><b>Аренда 6 игр</b></option>
             <option value="1"><b>Один</b></option>
@@ -158,13 +163,47 @@
             <option value="3"><b>Три</b></option>
           </select>
             <input type="text" class="form-control" id="comment" name="comment" placeholder="Комментарий" required>
-            <button>Отправить</button>
+            <button id='form-button'>Оформить заказ</button>
           </div>
         </form>
       </div>
       <div class='col'>
-      </div>
+    <div class="container" id="container-contacts">
+        <div class='col' id='col-1'></div>
+        <h4>Контакты</h4>
+        <!-- Новый контейнер -->
+        <div class="contact-wrapper">
+            <div class="left-column">
+                <div class="p5">
+                    <img src="media/svg_files/whatsapp.svg" alt="whatsapp">
+                    <a href="#" id="text-contacts">+7 (999) 999-99-99</a>
+                </div>
+                <div class="p5">
+                    <img src="media/svg_files/email.svg" alt="email">
+                    <a href="#" id="contacts">bul.k.a.play@mail.com</a>
+                </div>
+                <div class="p5">
+                    <img src="media/svg_files/tg.svg" alt="tg">
+                    <a href="#" id="contacts">@BULKAPLAY_124</a>
+                </div>
+            </div>
+            <div class="right-column">
+                <div class="p5">
+                    <img src="media/svg_files/vk.svg" alt="email">
+                    <a href="#" id="contacts">bul.k.a.play</a>
+                </div>
+                <div class="p5">
+                    <img src="media/svg_files/inst.svg" alt="tg">
+                    <a href="#" id="text-contacts">bul.k.a_play</a>
+                </div>
+                <div class="p5">
+                    <img src="media/svg_files/tg.svg" alt="some-link">
+                    <a href="#" id="contacts">@BULKAPLAY124</a>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 </div>
 
 {% endblock %}

@@ -83,6 +83,37 @@
 body {
     background: black;
 }
+        form {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        input[type="search"] {
+            border-radius: 6px;
+            padding: 10px 40px 10px 10px;
+            outline: none;
+            border: none;
+            background-color: transparent;
+            transition: all 0.3s ease-in-out;
+            color: #e9dede;
+            font-size: 16px;
+            width: 250px;
+        }
+        button.search-button {
+            cursor: pointer;
+            border: none;
+            background-color: transparent;
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            padding: 10px;
+        }
+        button.search-button svg {
+            width: 25px;
+            height: auto;
+            fill: currentColor;
+        }
 
 /* Стиль для логотипа */
 .logo {
@@ -103,7 +134,7 @@ body {
   display: flex;
   align-items: center;
   margin: 0 10px;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 300;
 }
 
@@ -178,8 +209,15 @@ h1 {
     height: 500px;
     margin-left: 50px;  
     margin-top: -40px;
-    position: relative; /* Добавляем для надежности */
-    z-index: 1; /* Убедимся, что изображение будет поверх других элементов */
+}
+.catalog-image{
+    margin-left: 520px;
+    margin-top: -895px;
+    width: 35%;
+}
+.catalog-image:hover {
+    transition: transform 0.2s ease;
+    transform: translateY(2px);
 }
 
 .arend-image {
@@ -243,8 +281,8 @@ a#delivery {
 p1 {
     color: white;
     font-family: 'Unbounded', sans-serif;
-    font-size: 20px;
-    font-weight: 300;
+    font-size: 25px;
+    font-weight: 400;
     text-align: center;
     position: relative;
     top: 30px;
@@ -322,84 +360,84 @@ h2 {
 }
 
 .full-width-container {
-  width: 100%;  /* Ширина контейнера (можно изменить на нужное значение) */
-  max-width: 1400px;  /* Максимальная ширина */
-  margin: 0 auto;  /* Центрирование */
-  padding: 20px 0;  /* Вертикальные отступы */
+  width: 100%;  
+  max-width: 1400px;  
+  margin: 0 auto;
+  padding: 20px 0;  
 }
 
 /* Основной контейнер карусели */
 #productCarousel {
-    max-width: 100%;          /* Максимальная ширина */
-  margin-top: 50px;       /* Отступ сверху */
-  margin-bottom: 50px;    /* Отступ снизу */
-  padding: 20px;          /* Внутренние отступы */
-  background-color: black;/* Черный фон */
-  border-radius: 31px;    /* Скругленные углы */
+    max-width: 100%;          
+  margin-top: 50px;     
+  margin-bottom: 50px;   
+  padding: 20px;      
+  background-color: black;
+  border-radius: 31px;   
 }
 
 /* Стили для карточки товара */
 .product-card {
-  background-color: black;  /* Черный фон карточки */
-  border-radius: 10px;      /* Скругленные углы */
-  overflow: hidden;         /* Скрывает содержимое, выходящее за границы */
-  transition: all 0.3s ease;/* Плавные анимации при наведении */
-  height: 1000px;            /* Полная высота */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для эффекта объема */
+  background-color: black;  
+  border-radius: 10px;   
+  overflow: hidden;       
+  transition: all 0.3s ease;
+  height: 1000px;          
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Эффект при наведении на карточку */
 .product-card:hover {
-  transform: translateY(-5px); /* Поднимает карточку вверх */
+  transform: translateY(-5px); 
 }
 
 /* Стили для изображения товара */
 .product-card .card-img-top {
-  height: 350px;          /* Фиксированная высота */
-  object-fit: cover;      /* Масштабирование изображения с сохранением пропорций */
+  height: 350px;        
+  object-fit: cover;      
   border-radius: 31px;
 }
 
 /* Стили для тела карточки */
 .product-card .card-body {
-  padding: 15px;          /* Внутренние отступы */
+  padding: 15px;         
 }
 
 /* Стили для заголовка товара */
 .product-card .card-title {
-  color: white;                   /* Белый цвет текста */
-  font-family: 'Unbounded', sans-serif; /* Шрифт */
-  font-size: 25px;                /* Размер шрифта */
-  font-weight: 600;               /* Толщина шрифта */
-  margin-bottom: 10px;            /* Отступ снизу */
+  color: white;                   
+  font-family: 'Unbounded', sans-serif; 
+  font-size: 25px;           
+  font-weight: 600;          
+  margin-bottom: 10px;     
   margin-top: 30px;
 }
 
 /* Стили для цены товара */
 .product-card .price {
-  color: white;                 /* Оранжевый цвет (акцентный цвет сайта) */
+  color: white;               
   font-family: 'Unbounded', sans-serif;
-  font-size: 20px;                /* Размер шрифта */
-  font-weight: 400;               /* Толщина шрифта */
-  margin-bottom: 15px;            /* Отступ снизу */
+  font-size: 20px;         
+  font-weight: 400;        
+  margin-bottom: 15px;     
 }
 
 /* Стили для кнопок управления каруселью */
 #productCarousel .carousel-control-prev,
 #productCarousel .carousel-control-next {
-  width: 70px;  /* Фиксированная ширина области клика */
-  height: 40px; /* Фиксированная высота области клика */
-  opacity: 1; /* Полная видимость */
-    top: 30%; /* Опускаем стрелки пониже */
+  width: 70px;  
+  height: 40px; 
+  opacity: 1; 
+    top: 30%;
 }
 
 
 #productCarousel .carousel-control-prev {
-  left: -80px !important;  /* Отодвигаем левую стрелку влево */
+  left: -80px !important; 
 }
 
 #productCarousel .carousel-control-next {
-  right: -80px !important;  /* Отодвигаем правую стрелку вправо */
+  right: -80px !important;  
 }
 
 h3 {
@@ -420,29 +458,28 @@ p4 {
 
 #rentalCarousel .carousel-control-prev-2,
 #rentalCarousel .carousel-control-next-2 {
-  width: 70px;  /* Фиксированная ширина области клика */
-  height: 40px; /* Фиксированная высота области клика */
-  opacity: 1; /* Полная видимость */
-    top: 30%; /* Опускаем стрелки пониже */
+  width: 70px; 
+  height: 40px; 
+  opacity: 1;
+    top: 30%; 
 }
 
 
 #rentalCarousel .carousel-control-prev-2 {
-  left: -80px !important;  /* Отодвигаем левую стрелку влево */
+  left: -80px !important; 
 }
 
 #rentalCarousel .carousel-control-next-2 {
-  right: -80px !important;  /* Отодвигаем правую стрелку вправо */
+  right: -80px !important;  
 }
 
 
-
+/* Форма для оставления заявки */
 form {
     color: white;
     font-family: 'Unbounded', sans-serif;
     font-size: 13px;
     font-weight: 100;
-    /* прозрачность текста */
     opacity: 1.2;
     margin-top: -25px;
 }
@@ -454,9 +491,101 @@ form {
     color: black;
 }
 
+#interesting{
+    color: #F88005;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    font-weight: 200;
+    opacity: 1.2;
+    margin-top: 15px;
+}
 #interest {
     margin-top: 10px;
     border-radius: 15px;
     height: 45px;
     color: black;
 }
+
+#form-button {
+    width: 200px; 
+    height: 40px; 
+    margin-top: 30px;
+    background: #F88005;
+    border-radius: 31px;
+    border: none;
+    color: black;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+
+/* Контакты рядом с формой */
+#container-contacts {
+    background: #F88005;
+    height: 76%;
+    width: 650px;
+    margin-left: 50px;
+    border-radius: 31px;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    padding-top: 35px;
+    padding-left: 40px;
+}
+h4 {
+    color: black;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 35px;
+    font-weight: 400;
+}
+
+.contact-wrapper {
+    display: flex;
+    justify-content: space-between; /* Пространство между элементами */
+}
+
+.left-column,
+.right-column {
+    flex-basis: 50%;
+}
+
+.p5 {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+#text-contacts {
+    margin-left: 10px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+    display: inline-block;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+#text-contacts::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: white;
+}
+
+#contacts {
+    margin-left: 10px;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 200;
+    display: inline-block;
+    text-decoration: none;
+}
+
+
+

@@ -108,7 +108,7 @@
 </div>
 <div id="productCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
   <div class="carousel-inner">
-    {% for product in products %}
+    {% for arend in arenda %}
       {% if forloop.first %}
         <div class="carousel-item active">
           <div class="row justify-content-center">
@@ -120,14 +120,9 @@
 
       <div class="col-md-4 mb-4">
         <div class="card h-100 product-card">
-          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="price">{{ product.price }} руб.</p>
-          </div>
+          <img src="{{ arend.image.url }}" class="card-img-top">
         </div>
       </div>
-
       {% if forloop.last %}
         </div></div>
       {% endif %}
@@ -145,66 +140,31 @@
   </button>
 </div>
 
-
-<h3>ОФОРМИТЬ ЗАКАЗ</h3>
+{% comment %} блок с контактами {% endcomment %}
+<h3>КОНТАКТЫ</h3>
 <div class="full-width-container">
     <div class='row'>
-      <div class='col'>
-        <form action="" method="post" class="form">
-          {% csrf_token %}
-          <div class="mb-3">
-            <input type="text" class="form-control" id="name" name="name" placeholder="Имя" required>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="Номер телефона" required>
-            <label for="" id="interesting"><b>Что вас заинтересовало</b></label>
-            <select class="form-select" aria-label="По умолчанию" name="interest" required id="interest">
-            <option selected><b>Аренда 6 игр</b></option>
-            <option value="1"><b>Один</b></option>
-            <option value="2"><b>Два</b></option>
-            <option value="3"><b>Три</b></option>
-          </select>
-            <input type="text" class="form-control" id="comment" name="comment" placeholder="Комментарий" required>
-            <button id='form-button'>Оформить заказ</button>
-          </div>
-        </form>
+      <div class='col-md-8' id='left-col'>
+        <h6>Связаться с нами</h6>
+         <p4>Мы всегда рады ответить на любые вопросы</p4>
+          <p><a href="{% url 'landing' %}">
+            <img src="media/svg_files/whatsapp.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/email.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
       </div>
-      <div class='col'>
-    <div class="container" id="container-contacts">
-        <div class='col' id='col-1'></div>
-        <h4>Контакты</h4>
-        <!-- Новый контейнер -->
-        <div class="contact-wrapper">
-            <div class="left-column">
-                <div class="p5">
-                    <img src="media/svg_files/whatsapp.svg" alt="whatsapp">
-                    <a href="#" id="text-contacts">+7 (999) 999-99-99</a>
-                </div>
-                <div class="p5">
-                    <img src="media/svg_files/email.svg" alt="email">
-                    <a href="#" id="contacts">bul.k.a.play@mail.com</a>
-                </div>
-                <div class="p5">
-                    <img src="media/svg_files/tg.svg" alt="tg">
-                    <a href="#" id="contacts">@BULKAPLAY_124</a>
-                </div>
-            </div>
-            <div class="right-column">
-                <div class="p5">
-                    <img src="media/svg_files/vk.svg" alt="email">
-                    <a href="#" id="contacts">bul.k.a.play</a>
-                </div>
-                <div class="p5">
-                    <img src="media/svg_files/inst.svg" alt="tg">
-                    <a href="#" id="text-contacts">bul.k.a_play</a>
-                </div>
-                <div class="p5">
-                    <img src="media/svg_files/tg.svg" alt="some-link">
-                    <a href="#" id="contacts">@BULKAPLAY124</a>
-                </div>
-            </div>
-        </div>
-    </div>
+      <div class='col-md-8' id='right-col'>
+        <h6>Присоединяйтесь к нам</h6>
+         <p4>Подписывайся, чтобы быть в курсе новостей и акций</p4>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/vk.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/inst.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+      </div>
 </div>
 </div>
 
+{% comment %} кнопка для оформления заказа {% endcomment %}
+<div class='container' id='button'>
+
+</div>
 {% endblock %}
 

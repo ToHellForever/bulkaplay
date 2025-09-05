@@ -24,7 +24,7 @@
     </div>
   </div>
   <div class="row" style="margin-left: 500px;">
-    <a href="{% url 'landing' %}" id="submit"><div><p1>ОСТАВИТЬ ЗАЯВКУ</p1></div></a>
+    <a href="{% url 'landing' %}" id="submit"><div><p1>ОФОРМИТЬ ЗАКАЗ</p1></div></a>
     <a href="{% url 'landing' %}" id="about"><div><p2>О НАС</p2></div></a>
     <a href="{% url 'landing' %}" id="delivery"><div><p1>ДОСТАВКА</p1></div></a>
   </div>
@@ -147,8 +147,7 @@
       <div class='col-md-8' id='left-col'>
         <h6>Связаться с нами</h6>
          <p4>Мы всегда рады ответить на любые вопросы</p4>
-          <p><a href="{% url 'landing' %}">
-            <img src="media/svg_files/whatsapp.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/whatsapp.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
           <p><a href="{% url 'landing' %}"><img src="media/svg_files/email.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
           <p><a href="{% url 'landing' %}"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
       </div>
@@ -162,9 +161,40 @@
 </div>
 </div>
 
-{% comment %} кнопка для оформления заказа {% endcomment %}
-<div class='container' id='button'>
+<div class='container' style="text-align: center; background: #F88005; width: 50%; border-radius: 31px; height: 250px; padding: 30px;">
+<h8>ОСТАЛИСЬ ВОПРОСЫ?</h8><br>
+<p8>Оставь заявку, мы свяжемся с тобой в ближайшее время</p8>
+<h8><button onclick="showModal();" style='background: white; color: black; border-radius: 11px; margin-top: 20px; font-family: "Unbounded", sans-serif; font-weight: 600;'>ЗАПОЛНИТЬ ЗАЯВКУ</button></h8>
+</div>  
+{% comment %} 
+кнопка для оформления заказа
+{% endcomment %}
 
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="hideModal()">×</span>
+    <h7>ОФОРМЛЕНИЕ ЗАКАЗА</h7><br>
+    <form action="#" method="post">
+      <label for="fullName">ФИО</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Иван Иванов" required>
+
+      <select class="form-select" aria-label="Что вас заинтересовало?">
+        <option selected>Заказать аренду</option>
+        <option value="2">Купить игру</option>
+
+      </select>
+
+      <label for="phoneNumber">Номер телефона</label>
+      <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+7 (XXX) XXX XX XX" pattern="^\+?[1-9]\d{1,14}$" required>
+
+      <label for="message">Комментарий к заказу</label>
+      <textarea id="message" name="message" rows="4" placeholder="Опишите ваш запрос..."></textarea>
+
+      <button type="submit">ОФОРМИТЬ</button>
+    </form>
+  </div>
 </div>
+
+<!-- Кнопка, при нажатии которой открывается форма -->
 {% endblock %}
 

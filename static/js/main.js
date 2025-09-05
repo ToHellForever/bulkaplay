@@ -25,3 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+
+// Открытие формы
+function showModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "block";
+  document.body.classList.add('no-scroll'); // Блокируем прокрутку
+}
+
+// Закрываем модальное окно и восстанавливаем прокрутку
+function hideModal() {
+  var modal = document.getElementById("myModal");
+  modal.style.display = "none";
+  document.body.classList.remove('no-scroll'); // Восстанавливаем прокрутку
+}

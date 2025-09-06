@@ -1,0 +1,201 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Главная{% endblock title %}
+{% block content %}
+
+<h1>НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА</span></h1>
+
+{% comment %} Первый блок с 2 фото и 3 блоками {% endcomment %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4" style="position: relative;">
+        <img src="media/photo/photo1.jpg" alt="фон" class='background-image'>
+        <div style="position: absolute;">
+            <img src="media/svg_files/arend.svg" alt="аренда" class="arend-image">
+        </div>
+    </div>
+    <div class="col-sm-8" style="position: relative;">
+        <img src="media/photo/photo2.svg" alt="фон" class='background-image-2'>
+        <div style="position: absolute;">
+          <a href="{% url 'landing' %}">
+            <img src="media/svg_files/catalog.svg" alt="каталог" class="catalog-image">
+          </a>
+        </div>
+    </div>
+  </div>
+  <div class="row" style="margin-left: 500px;">
+    <a href="{% url 'landing' %}" id="submit"><div><p1>ОФОРМИТЬ ЗАКАЗ</p1></div></a>
+    <a href="{% url 'landing' %}" id="about"><div><p2>О НАС</p2></div></a>
+    <a href="{% url 'landing' %}" id="delivery"><div><p1>ДОСТАВКА</p1></div></a>
+  </div>
+</div>
+
+{% comment %} 4 иконки {% endcomment %}
+<div class="container">
+  <div class="row" id="icons" style="gap: 30px; flex-wrap: nowrap;">
+    <div class="col-sm-3">
+      <img src="media/svg_files/bones.svg" alt="фон" class='background-image-3'>
+      <p><span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ</span><br><span class="games-text">ИГРЫ</span></p>
+      <p3>в нашей коолекции есть игры,<br>анлогов которых нет на рынке</p3>
+    </div>
+  <div class="col-sm-3">
+      <img src="media/svg_files/star.svg" alt="фон" class='background-image-4'>
+      <p><span class="exclusive-text">БРЕНДИРОВАНИЕ</span></p>
+      <p3>возможно нанесение индивидуальной<br>гравировки</p3>
+  </div>
+    <div class="col-sm-3">
+      <img src="media/svg_files/hammer.svg" alt="фон" class='background-image-5'>
+      <p><span class="exclusive-text">РУЧНАЯ РАБОТА</span></p>
+      <p3>Собственное производтсво в<br>г. Красноярске</p3>
+    </div>
+  <div class="col-sm-3">
+      <img src="media/svg_files/truck.svg" alt="фон" class='background-image-6'>
+      <p><span class="exclusive-text">ДОСТАВКА</span></p>
+      <p3>Отправляем по всей<br>России</p3>
+  </div>
+</div>
+</div>
+
+{% comment %} Карусель c карточками товаров {% endcomment %}
+<div class="full-width-container">
+  <h2>КАТАЛОГ ИГР</h2>
+
+<!-- Карусель с товарными карточками -->
+<div id="productCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for product in products %}
+      {% if forloop.first %}
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+      {% else %}
+        {% if forloop.counter0|divisibleby:3 %}
+          </div></div><div class="carousel-item"><div class="row justify-content-center">
+        {% endif %}
+      {% endif %}
+
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 product-card">
+          <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ product.name }}</h5>
+            <p class="price">{{ product.price }} руб.</p>
+          </div>
+        </div>
+      </div>
+
+      {% if forloop.last %}
+        </div></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Элементы управления каруселью -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
+</div>
+
+
+<div class="full-width-container">
+  <h3>ВЫЕЗДНАЯ АРЕНДА</h3>
+  <p4>
+     Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость<br>входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется<br>количеством игр и обговаривается при оформлении заказа.</p4>
+</div>
+<div id="productCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    {% for arend in arenda %}
+      {% if forloop.first %}
+        <div class="carousel-item active">
+          <div class="row justify-content-center">
+      {% else %}
+        {% if forloop.counter0|divisibleby:3 %}
+          </div></div><div class="carousel-item"><div class="row justify-content-center">
+        {% endif %}
+      {% endif %}
+
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 product-card">
+          <img src="{{ arend.image.url }}" class="card-img-top">
+        </div>
+      </div>
+      {% if forloop.last %}
+        </div></div>
+      {% endif %}
+    {% endfor %}
+  </div>
+
+  <!-- Элементы управления каруселью -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Предыдущий</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Следующий</span>
+  </button>
+</div>
+
+{% comment %} блок с контактами {% endcomment %}
+<h3>КОНТАКТЫ</h3>
+<div class="full-width-container">
+    <div class='row'>
+      <div class='col-md-8' id='left-col'>
+        <h6>Связаться с нами</h6>
+         <p4>Мы всегда рады ответить на любые вопросы</p4>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/whatsapp.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/email.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+      </div>
+      <div class='col-md-8' id='right-col'>
+        <h6>Присоединяйтесь к нам</h6>
+         <p4>Подписывайся, чтобы быть в курсе новостей и акций</p4>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/vk.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/inst.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p><a href="{% url 'landing' %}"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+      </div>
+</div>
+</div>
+
+<div class='container' style="text-align: center; background: #F88005; width: 50%; border-radius: 31px; height: 250px; padding: 30px;">
+<h8>ОСТАЛИСЬ ВОПРОСЫ?</h8><br>
+<p8>Оставь заявку, мы свяжемся с тобой в ближайшее время</p8>
+<h8><button onclick="showModal();" style='background: white; color: black; border-radius: 11px; margin-top: 20px; font-family: "Unbounded", sans-serif; font-weight: 600;'>ЗАПОЛНИТЬ ЗАЯВКУ</button></h8>
+</div>  
+{% comment %} 
+кнопка для оформления заказа
+{% endcomment %}
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="hideModal()">×</span>
+    <h7>ОФОРМЛЕНИЕ ЗАКАЗА</h7><br>
+    <form action="#" method="post">
+      <label for="fullName">ФИО</label>
+      <input type="text" id="fullName" name="fullName" placeholder="Иван Иванов" required>
+
+
+      <label for="phoneNumber" style="color: #F88005;">Что вас заинтересовало?</label>
+      <select class="form-select" aria-label="Что вас заинтересовало?">
+        <option selected>Заказать аренду</option>
+        <option value="2">Купить игру</option>
+      </select>
+
+      <label for="phoneNumber">Номер телефона</label>
+      <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+7 (XXX) XXX XX XX" pattern="^\+?[1-9]\d{1,14}$" required>
+
+      <label for="message">Комментарий к заказу</label>
+      <textarea id="message" name="message" rows="4" placeholder="Мы обязательно учтём ваши пожелания к заказу"></textarea>
+
+      <button type="submit">ОФОРМИТЬ</button>
+    </form>
+  </div>
+</div>
+
+<!-- Кнопка, при нажатии которой открывается форма -->
+{% endblock %}
+

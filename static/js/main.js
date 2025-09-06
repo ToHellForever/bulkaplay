@@ -40,3 +40,16 @@ function hideModal() {
   modal.style.display = "none";
   document.body.classList.remove('no-scroll'); // Восстанавливаем прокрутку
 }
+
+// Бургер-меню
+document.addEventListener('DOMContentLoaded', function() {
+    const burgerIcon = document.getElementById('burgerIcon');
+    const menuContainer = document.getElementById('menuContainer');
+
+    if (burgerIcon && menuContainer) {
+        burgerIcon.addEventListener('click', function() {
+            burgerIcon.classList.toggle('active');
+            menuContainer.classList.toggle('active');
+        });
+    }
+});

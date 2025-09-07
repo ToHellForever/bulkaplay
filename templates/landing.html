@@ -4,34 +4,38 @@
 {% block content %}
 
 <h1>НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА</span></h1>
-<div class="container-fluid fixed-container">
-    <div class="row justify-content-center g-3">
-        <div class="col-md-5 " style="position: relative; justify-content: center; margin-right: -250px;">
-            <img src="media/photo/photo1.jpg" alt="фон" class="background-image img-fluid" style="border-radius: 31px; height: 65%;">
-        </div>
-        <div class="col-md-6" style="position: relative; justify-content: center;">
-            <img src="media/photo/photo2.svg" alt="фон" class="background-image-2 img-fluid" style="width: 100%;">
-            <div class="row justify-content-center" id='icons'>
-            <div id="submit">
-                <a href="{% url 'landing' %}">
-                    <div><p1>ОФОРМИТЬ ЗАКАЗ</p1></div>
-                </a>
-            </div>
-            <div  id="about">
-                <a href="{% url 'landing' %}">
-                    <div><p2>О НАС</p2></div>
-                </a>
-            </div>
-            <div  id="delivery">
-                <a href="{% url 'landing' %}">
-                    <div><p1>ДОСТАВКА</p1></div>
-                </a>
-            </div>
-        </div>
-        </div>
-        </div>
+<div class="main-container">
+  <!-- Правое фото наверху -->
+  <div class="right-element">
+    <img src="media/photo/photo2.svg" alt="" style="width: 100%; height: 100%; object-fit: cover;">
+  </div>
+
+  <!-- Контейнер для левого элемента и иконок -->
+  <div class="left-and-icons-container">
+    <!-- Левое фото -->
+    <div class="left-element">
+      <img src="media/photo/photo1.jpg" alt="" style="width: 100%; height: auto; border-radius: 31px;">
     </div>
+
+    <!-- Три иконки справа -->
+<div class="bottom-container">
+    <a href="{% url 'landing' %}">
+        <div class="bottom-element">
+            <p1>ОФОРМИТЬ ЗАКАЗ</p1>
+        </div>
+    </a>
+    <a href="{% url 'landing' %}">
+        <div class="bottom-element">
+            <p2>О НАС</p2>
+        </div>
+    </a>
+    <a href="{% url 'landing' %}">
+        <div class="bottom-element">
+            <p1>ДОСТАВКА</p1>
+        </div>
+    </a>
 </div>
+
 
 
 

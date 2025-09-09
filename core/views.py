@@ -6,4 +6,4 @@ def landing(request):
     # Получаем все активные товары для карусели
     products = Product.objects.filter(is_active=True).order_by('-created_at')
     arenda = Arenda.objects.filter(is_active=True).order_by('-created_at')
-    return render(request, 'landing.html', {'products': products, 'arenda': arenda})
+    return render(request, 'landing_2.html', {'products': products, 'arenda': arenda})

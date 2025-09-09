@@ -637,9 +637,8 @@ h6 {
       background-color: #F88005;
       color: white;
       border: none;
-      border-radius: 5px;
-      cursor: pointer;
-
+      border-radius: 45px;
+      cursor: pointer
     }
     .no-scroll {
       overflow-y: hidden;

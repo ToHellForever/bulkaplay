@@ -4,54 +4,99 @@
 {% block content %}
 
 <h1>НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА<span></h1>
-<div class="container">
-  <div class="row no-gutters"> <!-- Добавлен отрицательный отступ -->
-    <div class="col-5 d-flex justify-content-start">
-        <img src="media/photo/photo1.jpg" alt="" class='img-fluid' id="photo1" style="position: relative; height: 90%; border-radius: 31px; width: 100%;"> <!-- Убраны фиксированные ширина и высота -->
+<div class="container my-4">
+  <div class="row">
+    <div class="col-12 col-md-4 order-3 order-md-1 d-none d-md-block">
+      <img src="media/photo/photo1.jpg" class="img-fluid w-100 object-fit-cover" alt="Left Photo" style="border-radius: 31px;  max-height: 700px; height: 800px;">
     </div>
-    <div class="col-7" style="position: relative;">
-      <img src="media/photo/photo2.svg" alt="" class='img-fluid' id="photo2" style="position: relative; width: 100%; height: 60%; margin-top: -30px;">
-      <a href="{% url 'landing' %}">
-        <img src="media/svg_files/catalog.svg" alt="" style="position: absolute; top: -120px; right: 15px; width: 290px; height: 300px;">
-      </a>
-      <div class='row'>
-    <div class="col-4">
-    <a href="{% url 'landing' %}" id="submit"><div id="submit"><p1>ОФОРМИТЬ ЗАКАЗ</p1></div></a>
-      </div>
-      <div class="col-4">
-    <a href="{% url 'landing' %}" id="about"><div id="about"> <p1>О НАС</p1></div></a>
-        </div>
-      <div class="col-4">
-    <a href="{% url 'landing' %}" id="delivery"><div id="delivery"><p1>ДОСТАВКА</p1></div></a>
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
-<div>
 
-<div class="container">
-  <div class="row" id="icons" style="gap: 30px; flex-wrap: nowrap;">
-    <div class="col-sm-3">
-      <img src="media/svg_files/bones.svg" alt="фон" class='background-image-3'>
-      <p><span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ ИГРЫ</span></p>
-      <p3>в нашей коолекции есть игры,<br>анлогов которых нет на рынке</p3>
+    <div class="col-12 col-md-8 order-1 order-md-2 d-flex flex-column">
+      <div class="mb-3">
+        <img src="media/photo/photo2.svg" class="img-fluid w-100" alt="Right Top Photo">
+      </div>
+
+      <div class="row g-2 d-md-none">
+        <div class="col-6">
+          <img src="media/photo/photo1.jpg" class="img-fluid w-100 h-100 object-fit-cover d-md-none" alt="Left Photo Mobile" style="border-radius: 31px;">
+        </div>
+        <div class="col-6 d-flex flex-column gap-2 ">
+          <a href="{% url 'landing' %}" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
+          <a href="{% url 'landing' %}" id="order-button">О НАС</a>
+          <a href="{% url 'landing' %}" id="order-button">ДОСТАВКА</a>
+        </div>
+      </div>
+      <div class="row g-2 d-none d-md-flex mt-auto ">
+        <div class="col-4">
+          <a href="{% url 'landing' %}" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
+        </div>
+        <div class="col-4">
+          <a href="{% url 'landing' %}" id="order-button">О НАС</a>
+        </div>
+        <div class="col-4">
+          <a href="{% url 'landing' %}" id="order-button">ДОСТАВКА</a>
+        </div>
+      </div>
     </div>
-  <div class="col-sm-3">
-      <img src="media/svg_files/star.svg" alt="фон" class='background-image-4'>
-      <p><span class="exclusive-text">БРЕНДИРОВАНИЕ</span></p>
-      <p3>возможно нанесение индивидуальной<br>гравировки</p3>
-  </div>
-    <div class="col-sm-3">
-      <img src="media/svg_files/hammer.svg" alt="фон" class='background-image-5'>
-      <p><span class="exclusive-text">РУЧНАЯ РАБОТА</span></p>
-      <p3>Собственное производтсво в<br>г. Красноярске</p3>
-    </div>
-  <div class="col-sm-3">
-      <img src="media/svg_files/truck.svg" alt="фон" class='background-image-6'>
-      <p><span class="exclusive-text">ДОСТАВКА</span></p>
-      <p3>Отправляем по всей<br>России</p3>
   </div>
 </div>
+
+<div class="container my-4">
+    <div class="row">
+        <!-- Первый элемент -->
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="media/svg_files/bones.svg" alt="фон" class="card-img-top background-image-3">
+                <div class="card-body text-center">
+                    <p class="card-text">
+                        <span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ</span><br>
+                        <span class="games-text">ИГРЫ</span>
+                    </p>
+                    <p class="description-text">в нашей коолекции есть игры,<br>анлогов которых нет на рынке</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Второй элемент -->
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="media/svg_files/bones.svg" alt="фон" class="card-img-top background-image-3">
+                <div class="card-body text-center">
+                    <p class="card-text">
+                        <span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ</span><br>
+                        <span class="games-text">ИГРЫ</span>
+                    </p>
+                    <p class="description-text">в нашей коолекции есть игры,<br>анлогов которых нет на рынке</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Третий элемент -->
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="media/svg_files/bones.svg" alt="фон" class="card-img-top background-image-3">
+                <div class="card-body text-center">
+                    <p class="card-text">
+                        <span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ</span><br>
+                        <span class="games-text">ИГРЫ</span>
+                    </p>
+                    <p class="description-text">в нашей коолекции есть игры,<br>анлогов которых нет на рынке</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Четвертый элемент -->
+        <div class="col-6 col-md-3 mb-4">
+            <div class="card h-100">
+                <img src="media/svg_files/bones.svg" alt="фон" class="card-img-top background-image-3">
+                <div class="card-body text-center">
+                    <p class="card-text">
+                        <span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ</span><br>
+                        <span class="games-text">ИГРЫ</span>
+                    </p>
+                    <p class="description-text">в нашей коолекции есть игры,<br>анлогов которых нет на рынке</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

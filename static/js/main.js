@@ -53,3 +53,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+
+document.getElementById('interestSelect').addEventListener('change', function() {
+    const commentSection = document.getElementById('commentSection');
+    if (this.value) {
+      commentSection.style.display = 'block';
+    } else {
+      commentSection.style.display = 'none';
+    }
+  });

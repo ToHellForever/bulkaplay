@@ -178,24 +178,52 @@
       <label for="fullName">ФИО</label>
       <input type="text" id="fullName" name="fullName" placeholder="Иван Иванов" required>
 
-
-      <label for="phoneNumber" style="color: #F88005;">Что вас заинтересовало?</label>
-      <select class="form-select" aria-label="Что вас заинтересовало?">
-        <option selected>Заказать аренду</option>
-        <option value="2">Купить игру</option>
-      </select>
-
       <label for="phoneNumber">Номер телефона</label>
       <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+7 (XXX) XXX XX XX" pattern="^\+?[1-9]\d{1,14}$" required>
 
-      <label for="message">Комментарий к заказу</label>
-      <textarea id="message" name="message" rows="4" placeholder="Мы обязательно учтём ваши пожелания к заказу"></textarea>
+      <label for="phoneNumber" style="color: #F88005;">Что вас заинтересовало?</label>
+      <select class="form-select" aria-label="Что вас заинтересовало?" id="interestSelect">
+        <option value="" selected disabled>Выберите вариант</option>
+        <option value="1">Заказать аренду</option>
+        <option value="2">Купить игру</option>
+      </select>
+
+      <div id="commentSection" style="display: none;">
+        <label for="message">Комментарий к заказу</label>
+        <textarea id="message" name="message" rows="4" placeholder="Мы обязательно учтём ваши пожелания к заказу"></textarea>
+      </div>
 
       <button type="submit">ОФОРМИТЬ</button>
     </form>
   </div>
 </div>
 
-<!-- Кнопка, при нажатии которой открывается форма -->
+<script>
+  document.getElementById('interestSelect').addEventListener('change', function() {
+    const commentSection = document.getElementById('commentSection');
+    const productCardsContainer = document.getElementById('productCardsContainer');
+    const arendaCardsSection = document.getElementById('arendaCardsSection');
+    const productCardsSection = document.getElementById('productCardsSection');
+
+    if (this.value) {
+      commentSection.style.display = 'block';
+      productCardsContainer.style.display = 'block';
+
+      // Скрываем обе секции сначала
+      arendaCardsSection.style.display = 'none';
+      productCardsSection.style.display = 'none';
+
+      // Показываем нужную секцию в зависимости от выбора
+      if (this.value === '1') {
+        arendaCardsSection.style.display = 'block';
+      } else if (this.value === '2') {
+        productCardsSection.style.display = 'block';
+      }
+    } else {
+      commentSection.style.display = 'none';
+      productCardsContainer.style.display = 'none';
+    }
+  });
+</script>
 {% endblock %}
 

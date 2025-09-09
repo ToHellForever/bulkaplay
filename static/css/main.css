@@ -230,83 +230,35 @@ h1 {
   color: #F88005; 
 }
 
-#submit {
-    width: 240px !important;
-    height: 270px;
-    background-color: rgb(26, 26, 26);
-    border-radius: 31px;
-    margin-right: 15px;
-    transition: transform 0.3s ease;    
-}
 
-#submit:hover {
-    transform: translateY(5px);
-}
-
-a#submit {
+#order-button {
     text-decoration: none;
-}
-
-#about {
-    width: 240px !important;
-    height: 270px;
-    background-color: #F88005;
-    border-radius: 31px;
-    margin-right: 15px;
-    transition: transform 0.3s ease;
-}
-#about:hover {
-    transform: translateY(5px);
-}
-a#about {
-    text-decoration: none;
-}
-
-#delivery {
-    width: 240px !important;
-    height: 270px;
-    background-color: rgb(26, 26, 26);
-    border-radius: 31px;
-    transition: transform 0.3s ease;
-}
-
-#delivery:hover {
-    transform: translateY(5px);
-}
-a#delivery {
-    text-decoration: none;
-}
-
-
-.background-image-3,
-.background-image-4,
-.background-image-5,
-.background-image-6 {
-    display: block;
-    width: 100%;
-    height: 100px;
-    margin-left: -100px;
-    text-align: center;
-}
-
-.exclusive-text {
-    display: block;
-    margin-top: 20px;
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 25px;
-    font-weight: 300;
-}
-.games-text {
-    display: block;
-    margin-top: -40px;
-}
-p3 {
     color: white;
     font-family: 'Mont', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    margin-top: -10px;
-    width: 320px;
-    display: block;
+    font-weight: 600;
+    font-size: 25px;
+    margin-top: -5px;
+    margin-bottom: 30px;
+    display: inline-block; /* Добавляем, чтобы ссылки вели себя как блочные элементы */
+    width: 100%; /* Для мобильной версии, чтобы ссылки занимали всю ширину */
+    background: #1A1A1A;
+    height: 200px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px; /* Добавлен отступ по бокам для текста */
+    box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+}
+
+
+@media (max-width: 1500px) {
+    h1 {
+        font-size: 30px !important;
+    }
+    #order-button {
+        width: auto;
+        height: 100px;
+        font-size: 15px;
+    }
 }

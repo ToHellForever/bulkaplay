@@ -189,7 +189,7 @@ body {
 }
 
 /* Псевдоэлемент для подчёркивания */
-.nav-link::after {
+.nav-link:not(:has(img))::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -232,8 +232,8 @@ h1 {
 #order-button {
     text-decoration: none;
     color: white;
-    font-family: 'Mont', sans-serif;
-    font-weight: 600;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
     font-size: 25px;
     margin-top: -5px;
     margin-bottom: 30px;
@@ -243,11 +243,23 @@ h1 {
     height: 200px;
     border-radius: 30px;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: start;
+    justify-content: start;
     padding: 0 20px; /* Добавлен отступ по бокам для текста */
     box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
 }
+
+#order-button:hover {
+    /* кнопка немного опускается вниз */
+    transform: translateY(5px);
+    transition: transform 0.3s ease;
+}
+
+.col-4:nth-child(2) a#order-button {
+    background: #F88005;
+    color: #1A1A1A;
+}
+
 
 .item {
     margin-top: 20px;
@@ -270,7 +282,6 @@ h1 {
     height: auto;
     margin-bottom: 10px; /* Отступ между иконкой и текстом */
 }
-
 /* Стили для заголовков */
 .exclusive-text {
     display: block;
@@ -294,6 +305,24 @@ p3 {
     line-height: 1.4; /* Увеличиваем межстрочный интервал для удобочитаемости */
 }
 
+/* блок с каруселью */
+h2 {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+}
+.product-card {
+    height: 700px; /* или любое другое значение, которое вам подходит */
+    display: flex;
+    flex-direction: column;
+}
+.card-title {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
 
 @media (max-width: 768px) {
     h1 {
@@ -301,8 +330,26 @@ p3 {
     }
     #order-button {
         width: auto;
-        height: 100px;
+        height: 120px;
         font-size: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+    .item {
+        margin-left: 0px;
+        margin-top: 30px;
+        align-items: center;
+        text-align: center;
+    }
+    .exclusive-text {
+    display: block;
+    color: #F88005;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 14px; /* или другой размер по вашему усмотрению */
+    margin: 0; /* Убираем стандартные отступы */
+    padding: 0;
     }
 }
 

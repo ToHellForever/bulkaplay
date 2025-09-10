@@ -166,9 +166,7 @@ body {
     }
 }
 
-.row {
-    flex-wrap: nowrap;
-  }
+
 .nav-item {
   display: flex;
   align-items: center;
@@ -251,8 +249,53 @@ h1 {
     box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
 }
 
+.item {
+    margin-top: 20px;
+    margin-left: 70px;
+    text-align: left; /* Выравнивание текста по левому краю */
+    display: flex; /* Используем flexbox для выравнивания */
+    flex-direction: column; /* Элементы в колонку */
+    align-items: flex-start; /* Выравнивание по левому краю */
+    max-width: 300px; /* Ограничиваем ширину блока */
+    
+}
 
-@media (max-width: 1500px) {
+.item:first-child p3 {
+    margin-top: -5px; /* Поднимаем текст на 5 пикселей вверх */
+}
+
+/* Стили для изображений иконок */
+.item img {
+    width: 100px; /* или другой размер по вашему усмотрению */
+    height: auto;
+    margin-bottom: 10px; /* Отступ между иконкой и текстом */
+}
+
+/* Стили для заголовков */
+.exclusive-text {
+    display: block;
+    color: #F88005;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 700;
+    font-size: 20px; /* или другой размер по вашему усмотрению */
+    margin: 0; /* Убираем стандартные отступы */
+    padding: 0;
+}
+
+/* Стили для описания */
+p3 {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 10px;
+    width: auto;
+    max-width: 250px; /* Устанавливаем максимальную ширину */
+    line-height: 1.4; /* Увеличиваем межстрочный интервал для удобочитаемости */
+}
+
+
+@media (max-width: 768px) {
     h1 {
         font-size: 30px !important;
     }
@@ -262,3 +305,6 @@ h1 {
         font-size: 15px;
     }
 }
+
+
+

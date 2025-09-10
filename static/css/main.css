@@ -315,7 +315,6 @@ h2 {
 .product-card {
     height: 700px; /* или любое другое значение, которое вам подходит */
     display: flex;
-    flex-direction: column;
 }
 .card-title {
     color: white;
@@ -323,6 +322,7 @@ h2 {
     font-size: 20px;
     font-weight: 400;
 }
+
 
 @media (max-width: 768px) {
     h1 {
@@ -352,6 +352,7 @@ h2 {
     padding: 0;
     }
 }
+
 
 
 

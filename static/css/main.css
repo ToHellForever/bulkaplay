@@ -311,7 +311,7 @@ h2 {
     font-family: 'Unbounded', sans-serif;
     font-size: 30px;
     font-weight: 400;
-    margin: 30px;
+    margin-bottom: 20px;
 }
 .product-card {
     height: 700px; /* или любое другое значение, которое вам подходит */
@@ -335,6 +335,15 @@ p2 {
     font-size: 20px;
     font-weight: 400;
 }
+.carousel-control-prev, .carousel-control-next {
+    margin-bottom: 50px;
+}
+.carousel-control-prev {
+    left: -180px !important;
+}
+.carousel-control-next {
+    right: -180px !important;
+}
 @media (max-width: 768px) {
     h1 {
         font-size: 30px !important;
@@ -352,15 +361,36 @@ p2 {
         margin-top: 30px;
         align-items: center;
         text-align: center;
-    }
+    } 
     .exclusive-text {
     display: block;
     color: #F88005;
     font-family: 'Unbounded', sans-serif;
     font-weight: 700;
-    font-size: 14px; /* или другой размер по вашему усмотрению */
-    margin: 0; /* Убираем стандартные отступы */
+    font-size: 14px;
+    margin: 0; 
     padding: 0;
+    }
+    .carousel-control-prev, .carousel-control-next {
+    margin-bottom: 30px;
+    }
+    .carousel-control-prev {
+        left: -20px !important;
+    }
+    .carousel-control-next {
+        right: -20px !important;
+    }  
+    p2 {
+        font-size: 10px;
+    }
+    .card-title {
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: visible;
+
+    }
+    .price {
+        font-size: 10px;
     }
 }
 

@@ -74,6 +74,7 @@
   </div>
 
 <div class='container' style="max-width: 1500px; margin-top: 100px;">
+  <h2>КАТАЛОГ ИГР</h2>
   <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       {% for product in products %}
@@ -114,4 +115,48 @@
   </div>
 </div>  
 
+
+<div class='container' style="max-width: 1500px; margin-top: 100px;">
+  <h2>ВЫЕЗДНАЯ АРЕНДА</h2>
+    <p2>
+     Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p2>
+  <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for product in products %}
+        {% if forloop.first %}
+          <div class="carousel-item active">
+            <div class="row justify-content-between mx-0 px-0"> 
+        {% else %}
+          {% if forloop.counter0|divisibleby:3 %}
+            </div></div><div class="carousel-item"><div class="row justify-content mx-0 px-0"> <!-- Добавлены классы mx-0 px-0 -->
+          {% endif %}
+        {% endif %}
+
+        <div class="col-md-4 col-6 mb-4 px-4">
+          <div class="card h-100 product-card" style="background: #000;">
+            <img style="width: 100%; height: auto; border-radius: 20px;" src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="price">{{ product.price }} руб.</p>
+            </div>
+          </div>
+        </div>
+
+        {% if forloop.last %}
+          </div></div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Элементы управления каруселью -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Предыдущий</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Следующий</span>
+    </button>
+  </div>
+</div>  
 {% endblock %}

@@ -344,8 +344,53 @@ p2 {
 .carousel-control-next {
     right: -180px !important;
 }
-#contact {
-    background: #883535 !important;
+
+/* блок с 3 секциями */
+.contact-block {
+    background: #1A1A1A;
+    border-radius: 31px;
+    height: 300px;
+    padding: 50px;
+}
+
+h6{
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+}
+
+p4 {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+p5 {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    /* в колонку */
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+a {
+    text-decoration: none;
+}
+#icons {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    /* в колонку */
+    display: flex;
+}
+
+.contacts {
+    flex-wrap: nowrap
 }
 @media (max-width: 768px) {
     h1 {
@@ -364,25 +409,25 @@ p2 {
         margin-top: 30px;
         align-items: center;
         text-align: center;
-    } 
+    }
     .exclusive-text {
     display: block;
     color: #F88005;
     font-family: 'Unbounded', sans-serif;
     font-weight: 700;
     font-size: 14px;
-    margin: 0; 
+    margin: 0;
     padding: 0;
     }
     .carousel-control-prev, .carousel-control-next {
-    margin-bottom: 30px;
+    margin-bottom: 60px;
     }
     .carousel-control-prev {
         left: -20px !important;
     }
     .carousel-control-next {
         right: -20px !important;
-    }  
+    }
     p2 {
         font-size: 10px;
     }
@@ -395,8 +440,40 @@ p2 {
     .price {
         font-size: 10px;
     }
+
+    h6 {
+        font-size: 20px;
+    }
+    .contact-block {
+        width: 90%;
+        height: 300px;
+        margin-top: 20px;
+        margin-left: 22px !important;
+    }
+    /* 2 стиль для 2 конки  */
+    .contact-block:nth-child(2) {
+        height: 340px;
+    }
+    /* Стили для блока "Оформить заказ" на мобильных устройствах */
+    .container.button {
+        margin-top: 20px !important;
+        margin-left: 22px;
+        width: 90% !important;
+        height: auto !important;
+        padding: 20px !important;
+    }
+    .container.button h2 {
+        font-size: 25px !important;
+    }
+    .container.button p {
+        font-size: 14px !important;
+    }
+    .container.button .btn {
+        font-size: 18px !important;
+        padding: 10px 20px !important;
+    }
+    .contacts {
+        flex-wrap: wrap !important;
+    }
 }
-
-
-
 

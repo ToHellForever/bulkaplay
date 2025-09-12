@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', function() {
     wrap: true
   });
 
-  // Улучшенная обработка для зацикливания
   carouselElement.addEventListener('slid.bs.carousel', function(event) {
     if (carouselElement.children.length > 1 && event.to === carouselElement.children.length - 1) {
       setTimeout(function() {
@@ -25,21 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
-
-
-// Открытие формы
-function showModal() {
-  var modal = document.getElementById("myModal");
-  modal.style.display = "block";
-  document.body.classList.add('no-scroll'); // Блокируем прокрутку
-}
-
-// Закрываем модальное окно и восстанавливаем прокрутку
-function hideModal() {
-  var modal = document.getElementById("myModal");
-  modal.style.display = "none";
-  document.body.classList.remove('no-scroll'); // Восстанавливаем прокрутку
-}
 
 // Бургер-меню
 document.addEventListener('DOMContentLoaded', function() {
@@ -53,13 +37,3 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
-
-document.getElementById('interestSelect').addEventListener('change', function() {
-    const commentSection = document.getElementById('commentSection');
-    if (this.value) {
-      commentSection.style.display = 'block';
-    } else {
-      commentSection.style.display = 'none';
-    }
-  });

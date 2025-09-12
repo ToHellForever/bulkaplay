@@ -10,7 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
     
 @admin.register(Arenda)
 class ArendaAdmin(admin.ModelAdmin):    
-    list_display = ('name', 'price', 'is_active', 'created_at')
+    list_display = ('name', 'price', 'is_active', 'created_at', 'game_count')
     list_editable = ('is_active',)
     list_filter = ('is_active', 'created_at')
     search_fields = ('name', 'description')

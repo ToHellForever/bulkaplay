@@ -198,32 +198,6 @@
   </div>
 </div>
 
-<script>
-  document.getElementById('interestSelect').addEventListener('change', function() {
-    const commentSection = document.getElementById('commentSection');
-    const productCardsContainer = document.getElementById('productCardsContainer');
-    const arendaCardsSection = document.getElementById('arendaCardsSection');
-    const productCardsSection = document.getElementById('productCardsSection');
 
-    if (this.value) {
-      commentSection.style.display = 'block';
-      productCardsContainer.style.display = 'block';
-
-      // Скрываем обе секции сначала
-      arendaCardsSection.style.display = 'none';
-      productCardsSection.style.display = 'none';
-
-      // Показываем нужную секцию в зависимости от выбора
-      if (this.value === '1') {
-        arendaCardsSection.style.display = 'block';
-      } else if (this.value === '2') {
-        productCardsSection.style.display = 'block';
-      }
-    } else {
-      commentSection.style.display = 'none';
-      productCardsContainer.style.display = 'none';
-    }
-  });
-</script>
 {% endblock %}
 

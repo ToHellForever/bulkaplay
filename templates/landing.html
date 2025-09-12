@@ -5,9 +5,9 @@
 
 <h1>НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА<span></h1>
 <div class='container' style="max-width: 1600px; margin-top: 50px;">
-  <div class="row">
+    <div class="row">
     <div class="col-12 col-md-4 order-3 order-md-1 d-none d-md-block">
-      <img src="media/photo/photo1.jpg" class="img-fluid w-100 object-fit-cover" alt="Left Photo" style="border-radius: 31px;  max-height: 900px; height: 80  0px;">
+      <img src="media/photo/photo1.jpg" class="img-fluid w-100 object-fit-cover" alt="Left Photo" style="border-radius: 31px;  max-height: 900px; height: 800px;">
     </div>
 
     <div class="col-12 col-md-8 order-1 order-md-2 d-flex flex-column">
@@ -83,7 +83,7 @@
             <div class="row">
         {% else %}
           {% if forloop.counter0|divisibleby:3 %}
-            </div></div><!-- Закрываем предыдущую строку каждые 3 элемента -->
+            </div></div>
             <div class="carousel-item">
               <div class="row">
           {% endif %}
@@ -100,8 +100,8 @@
         </div>
 
         {% if forloop.last %}
-            </div><!-- Закрываем последнюю строку -->
-            </div> <!-- Закрываем карусельный элемент -->
+            </div>
+            </div>
         {% endif %}
       {% endfor %}
     </div>
@@ -128,14 +128,16 @@
       {% for arend in arenda %}
         {% if forloop.first %}
           <div class="carousel-item active">
-            <div class="row justify-content mx-0 px-0"> 
+            <div class="row">
         {% else %}
           {% if forloop.counter0|divisibleby:3 %}
-            </div></div><div class="carousel-item"><div class="row justify-content mx-0 px-0"> <!-- Добавлены классы mx-0 px-0 -->
+            </div></div>
+            <div class="carousel-item">
+              <div class="row">
           {% endif %}
         {% endif %}
 
-        <div class="col-md-4 col-6 mb-4 px-4">
+        <div class="col-md-4 col-4 mb-4 px-4">
           <div class="card h-100 product-card" style="background: #000;">
             <img style="width: 100%; height: auto;" src="{{ arend.image.url }}" class="card-img-top" alt="{{ product.name }}">
           </div>
@@ -160,30 +162,31 @@
 </div>  
 
 
-<div class="container">
-  <div class="row">
-    <div class="col" id='contact'>
+<div class="container" style="max-width: 1550px; margin-top: 40px;">
+  <div class="row contacts" >
+    <div class="col-12 col-md-6 contact-block" style="margin-left: -25px;">
           <h6>Связаться с нами</h6>
          <p4>Мы всегда рады ответить на любые вопросы</p4>
-          <p><a href="{% url 'landing' %}"><img src="media/svg_files/whatsapp.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
-          <p><a href="{% url 'landing' %}"><img src="media/svg_files/email.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
-          <p><a href="{% url 'landing' %}"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/whatsapp.svg" alt="" style="margin-right: 20px;">89960521646</a></p5>
+          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/email.svg" alt="" style="margin-right: 20px;">bul.k.a.play@mail.ru</a></p5>
+          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">@BULKAPLAY_124</a></p5>
     </div>
-    <div class="col" id='contact'>
+    <div class="col-12 col-md-6 contact-block" style="margin-left: 50px;">
           <h6>Присоединяйтесь к нам</h6>
          <p4>Подписывайся, чтобы быть в курсе новостей и акций</p4>
-          <p><a href="{% url 'landing' %}"><img src="media/svg_files/vk.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
-          <p><a href="{% url 'landing' %}"><img src="media/svg_files/inst.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
-          <p><a href="{% url 'landing' %}"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">89960521646</a></p>
+          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/vk.svg" alt="" style="margin-right: 20px;">bul.k.a.play</a></p5>
+          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/inst.svg" alt="" style="margin-right: 20px;">bul.k.a_play</a></p5>
+          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">BULKAPLAY124</a></p5>
     </div>
   </div>
 </div>
 {% comment %} и плашка с кнопкой оформить заказ по центру внизу {% endcomment %}
 <div>
-   <div class='container' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px;">
-    <h2>Оформить заказ</h2>
-    <p>Заказать игру на нашем сайте можно в любой момент, мы не ограничиваемся временем. Вы можете оформить заказ в любое удобное для вас время, и мы с радостью выполним его в кратчайшие сроки.</p> 
-    <a href="{% url 'landing' %}">Оформить заказ</a>
+   <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;">
+    <h2 style='color: black; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600;'>Оформить заказ</h2>
+    <p style='color: black; font-family: "Mont", sans-serif; font-size: 20px;'>Заказать игру на нашем сайте можно в любой момент. Вы можете оформить заказ в любое удобное для вас время, и мы с радостью выполним его в кратчайшие сроки.</p> 
+    <a {% url 'create_order' %} class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
   </div>
 </div>
+
 {% endblock %}

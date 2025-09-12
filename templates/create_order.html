@@ -5,41 +5,75 @@
     <meta charset="UTF-8">
     <title>Оформление заказа</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
         body {
-            background: #1A1A1A;
+            background-image: url('/media/photo/bg_form_2.jpg'); /* путь к вашей фотографии */
+            background-repeat: no-repeat;                          /* повторять фон или нет */
+            background-position: center center;                     /* позиционирование изображения */
+            background-size: cover;                                 /* растянуть фото на всю страницу */
         }
         .custom-shadow {
             box-shadow: 0 10px 10px black; /* X смещение | Y смещение | Радиус размытия | Цвет и прозрачность */
         }
-        h1 {
-            text-align: center;
+        p {
             color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
+            text-align: start;
+        }
+        p1 {
+            color: white;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            text-align: start;
+        }
+        h1 {
+            color: white;
+            font-family: 'Mont', sans-serif;
+            font-size: 40px;
+            font-weight: 300;
         }
         label {
             font-weight: bold;
+            margin-bottom: 10px;
         }
         input[type=text], select, textarea {
+            background: white;
             width: 100%;
             border-radius: 10px;
             padding: 10px;
             margin-bottom: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,.1);
+            font-family: 'Unbounded', sans-serif;
+            font-size: 15px;
+            font-weight: 400;
         }
         button {
+            width: 50%;
+            height: 60px;
             background: #F88005;
             color: black;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 20px;
+            font-weight: 400;
             border: none;
+            border-radius: 15px;
             padding: 10px 20px;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
+            {% comment %} центрирую кнопку {% endcomment %}
+            display: block;
+            margin: 0 auto;
         }
         button:hover {
             transform: scale(1.05);
+            color: white;
         }
         .product-grid {
             display: flex;
-            justify-content: space-between;
             gap: 20px;
             flex-wrap: wrap;
         }
@@ -48,9 +82,8 @@
             flex-basis: calc(33% - 20px);
             text-align: center;
             margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,.1);
             padding: 10px;
-            border-radius: 5px;
+            border-radius: 15px;
         }
         .product-item img {
             object-fit: cover;
@@ -60,11 +93,14 @@
         .product-item p {
             margin: 5px 0;
         }
-        .product-item input[type="checkbox"] {
-            width: 20px;                     
+        .product-item input[type="checkbox"] {                 
             position: absolute;            
-            top: 15px;                    
-            left: 15px;                    
+            top: 20px;                    
+            left: 20px;                    
+        }
+        input[type="checkbox"] {
+            transform: scale(1.5); /* Масштабируем чекбокс в 1.5 раза */
+            transform-origin: left top; /* Определяем точку масштабирования слева сверху */
         }
         .hidden {
             display: none;
@@ -93,18 +129,19 @@
             box-shadow: 0 2px 5px rgba(0,0,0,.1);
             font-size: 16px;
         }
+        
     </style>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="col-md-10 col-lg-8 bg-black custom-shadow rounded py-4 px-5 ">
-        <h1 class="mb-4" style='color: white'>Оформление заказа</h1>
+    <div class="col-md-10 col-lg-8 custom-shadow  py-4 px-5 " style="background: #1A1A1A; height: 150%;">
+        <h1 class="mb-4" style='color: white'>ОФОРМИТЬ ЗАКАЗ</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.name }}<br>
+            {{ form.name }}<br><br>
             
-            {{ form.phone }}<br>
+            {{ form.phone }}<br><br>
             
             <label for="id_order_type" style='color: #F88005'>Что вас заинтересовало:</label><br>
             {{ form.order_type }}<br><br>
@@ -117,7 +154,8 @@
                         <div class="product-item col-sm-4">
                             <input type="checkbox" name="selected_products" value="{{ product.id }}"> <!-- Переносим чекбокс сюда -->
                             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-2">
-                            <p>{{ product.name }} - {{ product.price }} руб.</p>
+                            <p>{{ product.name }}</p>
+                            <p>{{ product.price|floatformat }} руб.</p>
                         </div>
                     {% endfor %}
                 </div>
@@ -125,7 +163,7 @@
 
             <!-- Блок выбора аренды -->
             <div id="arenda-list" class="hidden">
-                <h3>Количество игр</h3>
+                <label for="id_order_type" style='color: #F88005'>Количество игр:</label><br>
                 <select id="rental-type" class="form-select">
                     <option value=""></option>
                     {% for rental in arenda %}
@@ -141,15 +179,15 @@
                             <div class="game-item col-sm-4">
                                 <input type="checkbox" class="game-checkbox" name="selected_games" value="{{ product.id }}"> <!-- Чекбокс перенесён сюда -->
                                 <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-2">
-                                <p>{{ product.name }}</p>
+                                <p1>{{ product.name }}</p1>
                             </div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
             {{ form.comment }}<br><br>
-            
-            <button type="submit" >Отправить заказ</button>
+            {% comment %} кнопка по центру {% endcomment %}
+            <button type="submit">Отправить заказ</button>
         </form>
     </div>
 </div>
@@ -245,6 +283,13 @@ $(document).ready(function () {
             event.preventDefault();
             showNotification('Пожалуйста, выберите хотя бы один продукт или услугу.');
         }
+    });
+    $('.product-item img').click(function() {
+    // Получаем ближайший чекбокс к данному изображению
+    const checkbox = $(this).closest('.product-item').find('input[type="checkbox"]');
+    
+    // Переключаем состояние чекбокса
+    checkbox.prop('checked', !checkbox.prop('checked'));
     });
 });
 </script>

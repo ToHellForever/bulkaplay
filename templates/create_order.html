@@ -1,78 +1,167 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Оформление заказа</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-    .hidden {
-        display: none !important;
-    }
+        body {
+            background: #1A1A1A;
+        }
+        .custom-shadow {
+            box-shadow: 0 10px 10px black; /* X смещение | Y смещение | Радиус размытия | Цвет и прозрачность */
+        }
+        h1 {
+            text-align: center;
+            color: white;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type=text], select, textarea {
+            width: 100%;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,.1);
+        }
+        button {
+            background: #F88005;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        .product-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .product-item {
+            position: relative;
+            flex-basis: calc(33% - 20px);
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,.1);
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .product-item img {
+            object-fit: cover;
+            height: auto;
+            max-width: 100%;
+        }
+        .product-item p {
+            margin: 5px 0;
+        }
+        .product-item input[type="checkbox"] {
+            width: 20px;                     
+            position: absolute;            
+            top: 15px;                    
+            left: 15px;                    
+        }
+        .hidden {
+            display: none;
+        }
+        h3 {
+            color: #F88005;
+        }
+
+        /* Новый стиль для всплывающих уведомлений */
+        .notification-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .notification-container.show {
+            opacity: 1;
+        }
+        .notification-message {
+            background-color: #F88005;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,.1);
+            font-size: 16px;
+        }
     </style>
-    <!-- Подключаем jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<div class="container">
-    <h1>Оформление заказа</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.name.label_tag }} {{ form.name }}<br><br>
-        {{ form.phone.label_tag }} {{ form.phone }}<br><br>
-        {{ form.order_type.label_tag }} {{ form.order_type }}<br><br>
-        
-        <!-- Блок выбора товаров -->
-        <div id="product-list" class="hidden">
-            <h3>Выберите товары:</h3>
-            <div class="product-grid">
-                {% for product in products %}
-                    <div class="product-item">
-                        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100">
-                        <p>{{ product.name }} - {{ product.price }} руб.</p>
-                        <input type="checkbox" name="selected_products" value="{{ product.id }}">
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
-        <!-- Блок выбора аренды -->
-        <div id="arenda-list" class="hidden">
-            <h3>Выберите тип аренды:</h3>
-            <select id="rental-type">
-                <option value="">-- Выберите --</option>
-                {% for rental in arenda %}
-                    <option value="{{ rental.id }}">{{ rental.name }} ({{ rental.game_count }} игр)</option>
-                {% endfor %}
-            </select>
-
-            <div id="rental-games" class="hidden">
-                <h3>Выберите игры для аренды:</h3>
-                <p id="game-count-info">Выбрано игр: <span id="selected-games-count">0</span> из <span id="max-games-count">0</span></p>
-                <div class="game-grid">
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="col-md-10 col-lg-8 bg-black custom-shadow rounded py-4 px-5 ">
+        <h1 class="mb-4" style='color: white'>Оформление заказа</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.name }}<br>
+            
+            {{ form.phone }}<br>
+            
+            <label for="id_order_type" style='color: #F88005'>Что вас заинтересовало:</label><br>
+            {{ form.order_type }}<br><br>
+            
+            <!-- Блок выбора товаров -->
+            <div id="product-list" class="hidden">
+                <h3>Выберите игру:</h3>
+                <div class="product-grid row g-3">
                     {% for product in products %}
-                        <div class="game-item">
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100">
-                            <p>{{ product.name }}</p>
-                            <input type="checkbox" class="game-checkbox" name="selected_games" value="{{ product.id }}">
+                        <div class="product-item col-sm-4">
+                            <input type="checkbox" name="selected_products" value="{{ product.id }}"> <!-- Переносим чекбокс сюда -->
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-2">
+                            <p>{{ product.name }} - {{ product.price }} руб.</p>
                         </div>
                     {% endfor %}
                 </div>
             </div>
-        </div>
-        
-        {{ form.comment.label_tag }} {{ form.comment }}<br><br>
-        <input type="submit" value="Отправить заказ"/>
-    </form>
+
+            <!-- Блок выбора аренды -->
+            <div id="arenda-list" class="hidden">
+                <h3>Количество игр</h3>
+                <select id="rental-type" class="form-select">
+                    <option value=""></option>
+                    {% for rental in arenda %}
+                        <option value="{{ rental.id }}">{{ rental.name }}</option>
+                    {% endfor %}
+                </select>
+                
+                <div id="rental-games" class="hidden mt-3">
+                    <h3>Выберите игры для аренды:</h3>
+                    <p id="game-count-info">Выбрано игр: <span id="selected-games-count">0</span> из <span id="max-games-count">0</span></p>
+                    <div class="game-grid row g-3">
+                        {% for product in products %}
+                            <div class="game-item col-sm-4">
+                                <input type="checkbox" class="game-checkbox" name="selected_games" value="{{ product.id }}"> <!-- Чекбокс перенесён сюда -->
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-2">
+                                <p>{{ product.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {{ form.comment }}<br><br>
+            
+            <button type="submit" >Отправить заказ</button>
+        </form>
+    </div>
+</div>
+
+<!-- Новое всплывающее уведомление -->
+<div id="notification-container" class="notification-container hidden">
+    <div class="notification-message"></div>
 </div>
 
 <script>
 $(document).ready(function () {
-    // Скрываем все блоки при начальной загрузке
-    $('#product-list').addClass('hidden');
-    $('#arenda-list').addClass('hidden');
-    $('#rental-games').addClass('hidden');
-
-    // Обрабатываем изменение выбора заказа
-    // Обрабатываем изменение выбора заказа
+    // Обработка изменения выбора заказа
     $('#id_order_type').on('change', function () {
         var selectedValue = $(this).val();
         if (selectedValue === 'buy') {
@@ -82,9 +171,9 @@ $(document).ready(function () {
             $('#arenda-list').removeClass('hidden');      // Показываем аренду
             $('#product-list').addClass('hidden');     // Скрываем товары
         }
-    }).trigger('change');
+    });
 
-    // Обрабатываем изменение выбора типа аренды
+    // Обработка изменения выбора типа аренды
     $('#rental-type').on('change', function () {
         var rentalId = $(this).val();
         if (rentalId) {
@@ -98,7 +187,6 @@ $(document).ready(function () {
         }
     });
 
-
     // Обработчик для чекбоксов игр
     $(document).on('change', '.game-checkbox', function() {
         var checkedCount = $('.game-checkbox:checked').length;
@@ -107,9 +195,55 @@ $(document).ready(function () {
         $('#selected-games-count').text(checkedCount);
 
         if (checkedCount >= maxGames && maxGames > 0) {
-            $('.game-checkbox:not(:checked)').prop('disabled', true);
+            $('.game-checkbox:not(:checked)').prop('disabled', true); // Заблокируем остальные чекбоксы
         } else {
-            $('.game-checkbox').prop('disabled', false);
+            $('.game-checkbox').prop('disabled', false);               // Разблокируем все чекбоксы
+        }
+    });
+
+    // Всплывающее уведомление
+    function showNotification(message) {
+        const container = document.querySelector('.notification-container');
+        const messageEl = document.querySelector('.notification-message');
+
+        messageEl.innerText = message;
+        container.classList.remove('hidden');
+        container.classList.add('show');
+
+        setTimeout(() => {
+            container.classList.remove('show');
+            setTimeout(() => {
+                container.classList.add('hidden');
+            }, 300); // Ждём завершение перехода
+        }, 3000); // Длительность отображения
+    }
+
+    // Проверка формы перед отправкой
+    $('form').on('submit', function(event) {
+        let hasSelectedItems = false;
+        const orderType = $('#id_order_type').val();
+
+        // Проверяем, что выбран тип заказа
+        if (!orderType || orderType === 'choice') {
+            event.preventDefault();
+            showNotification('Выберите тип заказа.');
+            return;
+        }
+
+        // Проверяем выбранные элементы в зависимости от типа заказа
+        switch(orderType) {
+            case 'buy':
+                hasSelectedItems = $('input[name="selected_products"]:checked').length > 0;
+                break;
+            case 'rent':
+                hasSelectedItems = $('input[name="selected_games"]:checked').length > 0;
+                break;
+        }
+
+        // Если ничего не выбрано, предотвратим отправку формы
+        if (!hasSelectedItems) {
+            event.preventDefault();
+            showNotification('Пожалуйста, выберите хотя бы один продукт или услугу.');
         }
     });
 });

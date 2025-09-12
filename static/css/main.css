@@ -344,6 +344,9 @@ p2 {
 .carousel-control-next {
     right: -180px !important;
 }
+#contact {
+    background: #883535 !important;
+}
 @media (max-width: 768px) {
     h1 {
         font-size: 30px !important;

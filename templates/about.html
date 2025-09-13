@@ -3,45 +3,131 @@
 {% block title %}О нас{% endblock title %}
 {% block content %}
 <div class="container-fluid">
-  <div class="row flex-wrap:nowrap">
+  <div class="row flex-wrap:nowrap ">
     <div class="col-5">
-      <h1>О <span class="wood-text">НАС<span></h1>
-        <video width="640" height="360" controls style='border-radius: 31px'>
-        <source src="video.mp4" type="video/mp4"> <!-- Укажите путь к вашему файлу -->
+      <h1 style='font-size: 150px'>О <span class="wood-text">НАС<span></h1>
+        <video width="640" height="360" controls style='border-radius: 31px; border: 2px solid white;'>
+        <source src="/media/video_about.mp4" type="video/mp4"> 
         Ваш браузер не поддерживает элемент video.
         </video>
     </div>
     <div class="col-4">
-      <p>
+      <p style='color: white; margin-top: 50px; font-size: 22px; '>
         BUL.K.A-PLAY - производительэксклюзивныхпроизводитель настольных игр изтвёрдых пород дерева. Мы объединяем ручную работу, надёжные материалы и оригинальные идеи, создавая игры, которые становятся украшением любого мероприятия или интерьера. Наши изделия востребованы как для семейного отдыха, так И для корпоративных предлагаем:событий.Мы<br>• продажу настольных игр с доставкой по всей России;<br>• аренду и сопровождение игр на мероприятиях любого масштабаот частных праздников до городских фестивалей.Выбирая BUL.K.A-PLAY, вы получаете продукт ВысокогокачестваИнадёжного партнёра для организацииярких событий.
       </p>
     </div>
     <div class="col-3">
-      2 of 2
+        <video width="360" height="550" controls style='border-radius: 31px; border: 2px solid white; margin-top: 50px'>
+        <source src="/media/video_about.mp4" type="video/mp4"> 
+        Ваш браузер не поддерживает элемент video.
+        </video>
     </div>
   </div>
-  <div class="row gap-2">
-    <div class="col">
+  <div class="row flex-wrap: nowrap gap-3" style='margin-top: 10px; margin-left: 40px'>
+    <div class="col-3" id='icon_about'>
         <h2>500 +</h2>
-        <p>проведённых мероприятий</p>
+        <p style='color: white'>проведённых мероприятий</p>
     </div>
-    <div class="col">
-        
+    <div class="col-2" id='icon_about'>
+        <h2>18</h2>
+        <p style='color: white'>уникальных игр</p>
     </div>
-    <div class="col">
-
+    <div class="col-4" id='icon_about'>
+        <h2>1000 +</h2>
+        <p style='color: white'>отправок по России</p>
     </div>
-    <div class="col">
-
+<div class="col-2" id='icon_about'>
+        <h2>3 +</h2>
+        <p style='color: white'>возраст игроков</p>
     </div>
   </div>
 </div>
 
 
+<div class='container' style="max-width: 1600px; margin-top: 50px;">
+  <h2>ПОЧЕМУ НАС ВЫБИРАЮТ?</h2>
+    <div class="row">
+      <div class="col-md-3 col-6">
+        <div class="item">
+                  <img src="/media/svg_files/bones.svg" alt="фон" class='background-image-3'>
+      <p><span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ ИГРЫ</span></p>
+      <p3>в нашей коолекции есть игры,<br>анлогов которых нет на рынке</p3>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="item">
+                  <img src="/media/svg_files/star.svg" alt="фон" class='background-image-4'>
+      <p><span class="exclusive-text">БРЕНДИРОВАНИЕ</span></p>
+      <p3>возможно нанесение индивидуальной<br>гравировки</p3>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="item">
+                  <img src="/media/svg_files/hammer.svg" alt="фон" class='background-image-5'>
+      <p><span class="exclusive-text">РУЧНАЯ РАБОТА</span></p>
+      <p3>Собственное производтсво в<br>г. Красноярске</p3>
+        </div>
+      </div>
+      <div class="col-md-3 col-6">
+        <div class="item">
+                  <img src="/media/svg_files/truck.svg" alt="фон" class='background-image-6'>
+      <p><span class="exclusive-text">ДОСТАВКА</span></p>
+      <p3>Отправляем по всей<br>России</p3>
+        </div>
+      </div>
+    </div>
+  </div>
 
+<div class='container' style="max-width: 1600px; margin-top: 100px;">
+  <h2>МЕРОПРИЯТИЯ С BUL.K.A-PLAY</h2>
+  <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for n in news %}
+        {% if forloop.first %}
+          <div class="carousel-item active">
+            <div class="row">
+        {% else %}
+          {% if forloop.counter0|divisibleby:3 %}
+            </div></div>
+            <div class="carousel-item">
+              <div class="row">
+          {% endif %}
+        {% endif %}
 
+        <div class="col-4 col-md-4 mb-4"> 
+          <div class="card h-100 product-card" style="background: #000;">
+            <img style="width: 100%; height: 70%; border-radius: 20px;" src="{{ n.image.url }}" class="card-img-top" alt="{{ n.name }}">
+            <div class="card-body">
+              <h5 class="card-title">{{ n.name }}</h5>
+            </div>
+          </div>
+        </div>
 
+        {% if forloop.last %}
+            </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+    </div>
 
+    <!-- Элементы управления каруселью -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev" style="margin-bottom: 150px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Предыдущий</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Следующий</span>
+    </button>
+  </div>
+</div>
 
+<div>
+   <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;">
+    <h2 style='color: black; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600;'>ХОЧЕШЬ ТАКЖЕ?</h2>
+    <p style='color: black; font-family: "Mont", sans-serif; font-size: 20px;'>Отправь заявку, мы свяжемся с тобой в ближайшее время</p> 
+    <a href="{% url 'create_order' %}" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
+  </div>
+</div>
 
-{% endblock content %}
+{% endblock %}

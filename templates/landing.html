@@ -27,7 +27,7 @@
       </div>
       <div class="row g-2 d-none d-md-flex mt-auto ">
         <div class="col-4">
-          <a href="{% url 'landing' %}" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
+          <a href="{% url 'create_order' %}" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
         </div>
         <div class="col-4">
           <a href="{% url 'about' %}" id="order-button">О НАС</a>
@@ -188,5 +188,4 @@
     <a href="{% url 'create_order' %}" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
   </div>
 </div>
-
 {% endblock %}

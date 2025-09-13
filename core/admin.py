@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Arenda, Order
+from .models import Product, Arenda, Order, News
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -28,3 +28,11 @@ class OrderAdmin(admin.ModelAdmin):
     def get_games_for_rent(self, obj):
         return ", ".join([g.name for g in obj.games_for_rent.all()])
     get_games_for_rent.short_description = "Игры для аренды"
+
+
+@admin.register(News)
+class NewsAdmin(admin.ModelAdmin):
+    list_display = ('name', 'date_event', 'is_active', 'created_at')
+    list_editable = ('is_active',)
+    list_filter = ('is_active', 'date_event')
+    search_fields = ('name', 'description')

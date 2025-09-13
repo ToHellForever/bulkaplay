@@ -205,7 +205,7 @@
                 <select id="rental-type" class="form-select">
                     <option value=""></option>
                     {% for rental in arenda %}
-                        <option value="{{ rental.id }}">{{ rental.name }}</option>
+                        <option value="{{ rental.id }}" data-game-count="{{ rental.game_count }}">{{ rental.name }}</option>
                     {% endfor %}
                 </select>
                 
@@ -252,6 +252,13 @@ $(document).ready(function () {
     $('#rental-type').on('change', function () {
         var rentalId = $(this).val();
         if (rentalId) {
+            // Находим выбранный тип аренды и получаем количество игр
+            var selectedRental = $(this).find('option:selected');
+            var maxGames = parseInt(selectedRental.data('game-count'));
+
+            // Обновляем max-games-count
+            $('#max-games-count').text(maxGames);
+
             $('#rental-games').addClass('visible');      // Показываем список игр для аренды
         } else {
             $('#rental-games').removeClass('visible');   // Скрываем список игр
@@ -265,13 +272,13 @@ $(document).ready(function () {
 
         $('#selected-games-count').text(checkedCount);
 
-        if (checkedCount >= maxGames && maxGames > 0) {
+        if (maxGames > 0 && checkedCount >= maxGames) {
             $('.game-checkbox:not(:checked)').prop('disabled', true); // Заблокируем остальные чекбоксы
         } else {
             $('.game-checkbox').prop('disabled', false);               // Разблокируем все чекбоксы
         }
     });
-
+ 
     // Всплывающее уведомление
     function showNotification(message) {
         const container = document.querySelector('.notification-container');
@@ -307,7 +314,15 @@ $(document).ready(function () {
                 hasSelectedItems = $('input[name="selected_products"]:checked').length > 0;
                 break;
             case 'rent':
-                hasSelectedItems = $('input[name="selected_games"]:checked').length > 0;
+                const selectedGamesCount = $('input[name="selected_games"]:checked').length;
+                const maxGames = parseInt($('#max-games-count').text());
+
+                if (selectedGamesCount !== maxGames) {
+                    event.preventDefault();
+                    showNotification(`Выберите ровно ${maxGames} игр для аренды.`);
+                    return;
+                }
+                hasSelectedItems = selectedGamesCount > 0;
                 break;
         }
 
@@ -320,12 +335,33 @@ $(document).ready(function () {
     $('.product-item img, .game-item img').click(function() {
         const parentItem = $(this).closest('.product-item, .game-item');
         const checkbox = parentItem.find('input[type="checkbox"]');
-        checkbox.prop('checked', !checkbox.prop('checked'));
+        const isChecked = !checkbox.prop('checked');
 
-        // Если это элемент аренды, обновляем счётчик
+        // Проверяем, можно ли установить флажок
         if (parentItem.hasClass('game-item')) {
             const checkedCount = $('.game-checkbox:checked').length;
-            $('#selected-games-count').text(checkedCount);
+            const maxGames = parseInt($('#max-games-count').text());
+
+            // Если пытаемся выбрать больше игр, чем разрешено, не устанавливаем флажок
+            if (isChecked && checkedCount >= maxGames && maxGames > 0) {
+                return; // Прерываем выполнение, не меняя состояние чекбокса
+            }
+        }
+
+        // Устанавливаем/снимаем флажок
+        checkbox.prop('checked', isChecked);
+
+        // Обновляем счётчик выбранных игр
+        if (parentItem.hasClass('game-item')) {
+            const newCheckedCount = $('.game-checkbox:checked').length;
+            $('#selected-games-count').text(newCheckedCount);
+
+            // Блокируем/разблокируем чекбоксы
+            if (maxGames > 0 && newCheckedCount >= maxGames) {
+                $('.game-checkbox:not(:checked)').prop('disabled', true);
+            } else {
+                $('.game-checkbox').prop('disabled', false);
+            }
         }
     });
 });

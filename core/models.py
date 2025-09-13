@@ -39,6 +39,24 @@ class Arenda(models.Model):
         return f"{self.name} ({self.game_count} игр)"
 
 
+class Order(models.Model):
+    """Модель заказа"""
+    name = models.CharField(max_length=100, verbose_name="Имя")
+    phone = models.CharField(max_length=15, verbose_name="Телефон")
+    order_type = models.CharField(max_length=10, choices=[('buy', 'Купить'), ('rent', 'Аренда')], verbose_name="Тип заказа")
+    products = models.ManyToManyField(Product, blank=True, verbose_name="Выбранные товары", related_name="order_products")
+    arenda = models.ManyToManyField(Arenda, blank=True, verbose_name="Выбранные аренды", related_name="order_arenda")
+    games_for_rent = models.ManyToManyField(Product, blank=True, verbose_name="Игры для аренды", related_name="order_games_for_rent")
+    comment = models.TextField(blank=True, verbose_name="Комментарий")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+
+    class Meta:
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
+
+    def __str__(self):
+        return f"Заказ от {self.name} ({self.created_at})"
+
 class News(models.Model):
     """Модель новости"""
     name = models.CharField(max_length=200, verbose_name="Название мероприятия")

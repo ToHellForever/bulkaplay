@@ -37,3 +37,17 @@ class Arenda(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.game_count} игр)"
+
+
+class News(models.Model):
+    """Модель новости"""
+    name = models.CharField(max_length=200, verbose_name="Название мероприятия")
+    description = models.TextField(verbose_name="Описание")
+    image = models.ImageField(upload_to='news/', verbose_name="Изображение")
+    is_active = models.BooleanField(default=True, verbose_name="Отображать на сайте")
+    date_event = models.DateField(verbose_name="Дата мероприятия")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+    
+    def __str__(self):
+        return self.name

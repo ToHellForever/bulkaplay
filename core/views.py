@@ -29,3 +29,12 @@ def create_order(request):
     arenda = Arenda.objects.filter(is_active=True).order_by('-created_at')
 
     return render(request, 'create_order.html', {'form': form, 'products': products, 'arenda': arenda})
+
+
+class AboutView(TemplateView):
+    template_name = "about.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['news'] = News.objects.filter(is_active=True).order_by('-created_at')
+        return context

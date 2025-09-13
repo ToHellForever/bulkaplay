@@ -8,13 +8,14 @@
 
     <style>
         body {
-            background-image: url('/media/photo/bg_form_2.jpg'); /* путь к вашей фотографии */
-            background-repeat: no-repeat;                          /* повторять фон или нет */
-            background-position: center center;                     /* позиционирование изображения */
-            background-size: cover;                                 /* растянуть фото на всю страницу */
+            background-image: url('/media/photo/bg_form_2.jpg');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+            background-attachment: fixed;
         }
         .custom-shadow {
-            box-shadow: 0 10px 10px black; /* X смещение | Y смещение | Радиус размытия | Цвет и прозрачность */
+            box-shadow: 0 10px 10px black;
         }
         p {
             color: white;
@@ -64,7 +65,6 @@
             padding: 10px 20px;
             cursor: pointer;
             transition: all 0.3s ease-in-out;
-            {% comment %} центрирую кнопку {% endcomment %}
             display: block;
             margin: 0 auto;
         }
@@ -93,23 +93,47 @@
         .product-item p {
             margin: 5px 0;
         }
-        .product-item input[type="checkbox"] {                 
-            position: absolute;            
-            top: 20px;                    
-            left: 20px;                    
+        .product-item input[type="checkbox"] {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .game-item {
+            position: relative;
+            flex-basis: calc(33% - 20px);
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 15px;
+        }
+        .game-item img {
+            position: static;
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .game-item input[type="checkbox"] {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            transform: scale(1.5);
+            transform-origin: left top;
+            z-index: 10;
         }
         input[type="checkbox"] {
-            transform: scale(1.5); /* Масштабируем чекбокс в 1.5 раза */
-            transform-origin: left top; /* Определяем точку масштабирования слева сверху */
+            transform: scale(1.5);
+            transform-origin: left top;
         }
         .hidden {
             display: none;
+            visibility: hidden;
+            height: 0;
+            overflow: hidden;
+            transition: height 0.5s cubic-bezier(.4,0,.2,1), visibility 0.5s linear;
         }
         h3 {
             color: #F88005;
         }
-
-        /* Новый стиль для всплывающих уведомлений */
         .notification-container {
             position: fixed;
             bottom: 20px;
@@ -129,13 +153,27 @@
             box-shadow: 0 2px 5px rgba(0,0,0,.1);
             font-size: 16px;
         }
-        
+        .product-grid,
+        .game-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            transition: height 1.5s cubic-bezier(.4,0,.2,1);
+        }
+        .visible {
+            display: block;
+            visibility: visible;
+            height: auto;
+            overflow: visible;
+        }
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="col-md-10 col-lg-8 custom-shadow  py-4 px-5 " style="background: #1A1A1A; height: 150%;">
+    <div class="col-md-10 col-lg-8 custom-shadow py-4 px-5" style="background: #1A1A1A; height: 150%;">
         <h1 class="mb-4" style='color: white'>ОФОРМИТЬ ЗАКАЗ</h1>
         <form method="post">
             {% csrf_token %}
@@ -152,7 +190,7 @@
                 <div class="product-grid row g-3">
                     {% for product in products %}
                         <div class="product-item col-sm-4">
-                            <input type="checkbox" name="selected_products" value="{{ product.id }}"> <!-- Переносим чекбокс сюда -->
+                            <input type="checkbox" name="selected_products" value="{{ product.id }}">
                             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-2">
                             <p>{{ product.name }}</p>
                             <p>{{ product.price|floatformat }} руб.</p>
@@ -177,7 +215,7 @@
                     <div class="game-grid row g-3">
                         {% for product in products %}
                             <div class="game-item col-sm-4">
-                                <input type="checkbox" class="game-checkbox" name="selected_games" value="{{ product.id }}"> <!-- Чекбокс перенесён сюда -->
+                                <input type="checkbox" class="game-checkbox" name="selected_games" value="{{ product.id }}">
                                 <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid mb-2">
                                 <p1>{{ product.name }}</p1>
                             </div>
@@ -186,7 +224,6 @@
                 </div>
             </div>
             {{ form.comment }}<br><br>
-            {% comment %} кнопка по центру {% endcomment %}
             <button type="submit">Отправить заказ</button>
         </form>
     </div>
@@ -196,18 +233,18 @@
 <div id="notification-container" class="notification-container hidden">
     <div class="notification-message"></div>
 </div>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function () {
     // Обработка изменения выбора заказа
     $('#id_order_type').on('change', function () {
         var selectedValue = $(this).val();
         if (selectedValue === 'buy') {
-            $('#product-list').removeClass('hidden');     // Показываем товары
-            $('#arenda-list').addClass('hidden');      // Скрываем аренду
+            $('#product-list').addClass('visible').removeClass('hidden'); // Показываем товары
+            $('#arenda-list').addClass('hidden').removeClass('visible'); // Скрываем аренду
         } else if (selectedValue === 'rent') {
-            $('#arenda-list').removeClass('hidden');      // Показываем аренду
-            $('#product-list').addClass('hidden');     // Скрываем товары
+            $('#arenda-list').addClass('visible').removeClass('hidden'); // Показываем аренду
+            $('#product-list').addClass('hidden').removeClass('visible'); // Скрываем товары
         }
     });
 
@@ -215,13 +252,9 @@ $(document).ready(function () {
     $('#rental-type').on('change', function () {
         var rentalId = $(this).val();
         if (rentalId) {
-            var selectedRental = $(this).find('option:selected');
-            var maxGames = parseInt(selectedRental.text().match(/\d+/)[0]);
-
-            $('#max-games-count').text(maxGames);
-            $('#rental-games').removeClass('hidden');     // Показываем список игр для аренды
+            $('#rental-games').addClass('visible');      // Показываем список игр для аренды
         } else {
-            $('#rental-games').addClass('hidden');      // Скрываем список игр
+            $('#rental-games').removeClass('visible');   // Скрываем список игр
         }
     });
 
@@ -284,12 +317,16 @@ $(document).ready(function () {
             showNotification('Пожалуйста, выберите хотя бы один продукт или услугу.');
         }
     });
-    $('.product-item img').click(function() {
-    // Получаем ближайший чекбокс к данному изображению
-    const checkbox = $(this).closest('.product-item').find('input[type="checkbox"]');
-    
-    // Переключаем состояние чекбокса
-    checkbox.prop('checked', !checkbox.prop('checked'));
+    $('.product-item img, .game-item img').click(function() {
+        const parentItem = $(this).closest('.product-item, .game-item');
+        const checkbox = parentItem.find('input[type="checkbox"]');
+        checkbox.prop('checked', !checkbox.prop('checked'));
+
+        // Если это элемент аренды, обновляем счётчик
+        if (parentItem.hasClass('game-item')) {
+            const checkedCount = $('.game-checkbox:checked').length;
+            $('#selected-games-count').text(checkedCount);
+        }
     });
 });
 </script>

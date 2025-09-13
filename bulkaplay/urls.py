@@ -6,7 +6,7 @@ from debug_toolbar.toolbar import debug_toolbar_urls
 from core.views import (
     LandingView, 
     create_order,
-    AbouView
+    AboutView
 )
 
 urlpatterns = [

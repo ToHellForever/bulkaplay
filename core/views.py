@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import TemplateView
-from .models import Product, Arenda
+from .models import Product, Arenda, News
 
 
 class LandingView(TemplateView):

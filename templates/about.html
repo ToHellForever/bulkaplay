@@ -6,18 +6,18 @@
   <div class="row flex-wrap:nowrap ">
     <div class="col-5">
       <h1 style='font-size: 150px'>О <span class="wood-text">НАС<span></h1>
-        <video width="750" height="360" controls style='border-radius: 31px; border: 2px solid white;'>
+        <video width="750" height="360" controls style='border-radius: 31px; border: 2px solid #F88005;  object-fit: cover;'>
         <source src="/media/video_about.mp4" type="video/mp4"> 
         Ваш браузер не поддерживает элемент video.
         </video>
     </div>
     <div class="col-4">
-      <p style='color: white; margin-top: 50px; font-size: 22px; '>
-        BUL.K.A-PLAY - производительэксклюзивныхпроизводитель настольных игр изтвёрдых пород дерева. Мы объединяем ручную работу, надёжные материалы и оригинальные идеи, создавая игры, которые становятся украшением любого мероприятия или интерьера. Наши изделия востребованы как для семейного отдыха, так И для корпоративных предлагаем:событий.Мы<br>• продажу настольных игр с доставкой по всей России;<br>• аренду и сопровождение игр на мероприятиях любого масштабаот частных праздников до городских фестивалей.Выбирая BUL.K.A-PLAY, вы получаете продукт ВысокогокачестваИнадёжного партнёра для организацииярких событий.
+      <p style='color: white; margin-top: 50px; font-size: 24px; '>
+        BUL.K.A-PLAY - производительэксклюзивныхпроизводитель настольных игр изтвёрдых пород дерева. Мы объединяем ручную работу, надёжные материалы и оригинальные идеи, создавая игры, которые становятся украшением любого мероприятия или интерьера. Наши изделия востребованы как для семейного отдыха, так И для корпоративных предлагаем:событий.Мы<br>• продажу настольных игр с доставкой по всей России;<br>• аренду и сопровождение игр на мероприятиях<br> любого масштабаот частных праздников до городских фестивалей.Выбирая BUL.K.A-PLAY, вы получаете продукт ВысокогокачестваИнадёжного партнёра для организацииярких событий.
       </p>
     </div>
     <div class="col-3">
-        <video width="450" height="550" controls style='border-radius: 31px; border: 2px solid white; margin-top: 50px; object-fit: cover;'>
+        <video width="450" height="550" controls style='border-radius: 31px; border: 2px solid #F88005; margin-top: 50px; object-fit: cover;'>
         <source src="/media/shorts_1.mp4" type="video/mp4"> 
         Ваш браузер не поддерживает элемент video.
         </video>
@@ -99,12 +99,13 @@
             <img style="width: 100%; height: 70%; border-radius: 20px;" src="{{ n.image.url }}" class="card-img-top" alt="{{ n.name }}">
             <div class="card-body">
               <h5 class="card-title">{{ n.name }}</h5>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}">Подробнее</button>
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px;'>Подробнее</button>
             </div>
           </div>
         </div>
-                <div class="modal fade" id="eventModal{{ n.id }}" tabindex="-1" aria-labelledby="eventModalLabel{{ n.id }}" aria-hidden="true">
-          <div class="modal-dialog">
+
+        <div class="modal fade" id="eventModal{{ n.id }}" tabindex="-1" aria-labelledby="eventModalLabel{{ n.id }}" aria-hidden="true">
+          <div class="modal-dialog custom-modal-size">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="eventModalLabel{{ n.id }}">{{ n.name }}</h5>

@@ -171,7 +171,10 @@
     </style>
 
 </head>
-<body>
+<body>    
+{% block header %}
+    {% include 'includes/include_nav_menu.html' %}
+{% endblock header %}
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
     <div class="col-md-10 col-lg-8 custom-shadow py-4 px-5" style="background: #1A1A1A; height: 150%;">
         <h1 class="mb-4" style='color: white'>ОФОРМИТЬ ЗАКАЗ</h1>

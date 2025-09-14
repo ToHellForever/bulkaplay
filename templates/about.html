@@ -6,7 +6,7 @@
   <div class="row flex-wrap:nowrap ">
     <div class="col-5">
       <h1 style='font-size: 150px'>О <span class="wood-text">НАС<span></h1>
-        <video width="640" height="360" controls style='border-radius: 31px; border: 2px solid white;'>
+        <video width="750" height="360" controls style='border-radius: 31px; border: 2px solid white;'>
         <source src="/media/video_about.mp4" type="video/mp4"> 
         Ваш браузер не поддерживает элемент video.
         </video>
@@ -17,13 +17,13 @@
       </p>
     </div>
     <div class="col-3">
-        <video width="360" height="550" controls style='border-radius: 31px; border: 2px solid white; margin-top: 50px'>
-        <source src="/media/video_about.mp4" type="video/mp4"> 
+        <video width="450" height="550" controls style='border-radius: 31px; border: 2px solid white; margin-top: 50px; object-fit: cover;'>
+        <source src="/media/shorts_1.mp4" type="video/mp4"> 
         Ваш браузер не поддерживает элемент video.
         </video>
     </div>
   </div>
-  <div class="row flex-wrap: nowrap gap-3" style='margin-top: 10px; margin-left: 40px'>
+  <div class="row flex-wrap: nowrap gap-3" style='margin-top: 30px; margin-left: 40px'>
     <div class="col-3" id='icon_about'>
         <h2>500 +</h2>
         <p style='color: white'>проведённых мероприятий</p>
@@ -99,10 +99,27 @@
             <img style="width: 100%; height: 70%; border-radius: 20px;" src="{{ n.image.url }}" class="card-img-top" alt="{{ n.name }}">
             <div class="card-body">
               <h5 class="card-title">{{ n.name }}</h5>
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}">Подробнее</button>
             </div>
           </div>
         </div>
-
+                <div class="modal fade" id="eventModal{{ n.id }}" tabindex="-1" aria-labelledby="eventModalLabel{{ n.id }}" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel{{ n.id }}">{{ n.name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <img src="{{ n.image.url }}" class="img-fluid" alt="{{ n.name }}">
+                <p>{{ n.description }}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+              </div>
+            </div>
+          </div>
+        </div>
         {% if forloop.last %}
             </div>
             </div>

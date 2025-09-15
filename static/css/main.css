@@ -413,9 +413,8 @@ a {
 #icon_about {
     background: #1A1A1A;
     border-radius: 10px;
-    height: 150px;
+    height: 120px;
     padding: 20px 20px;
-    text-align: center;
 }
 /* для 2 элемента стиили */
 #icon_about:nth-child(2) {
@@ -423,14 +422,7 @@ a {
     color: #1A1A1A !important;
 }
 
-/* стили для модального окна */
-.custom-modal-size {
-    min-width: 1000px; /* минимальная ширина */
-    max-height: 70vh; /* максимальная высота, 70% от высоты окна */
-}
-.modal-content {
-    overflow-y: auto; /* для прокрутки, если контент превышает заданную высоту */
-}
+
 @media (max-width: 768px) {
     h1 {
         font-size: 30px !important;

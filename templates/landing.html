@@ -2,8 +2,8 @@
 {% load static %}
 {% block title %}Главная{% endblock title %}
 {% block content %}
-
-<h1>НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА<span></h1>
+{% include 'includes/modal_order.html' %}
+<h1 >НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА<span></h1>
 <div class='container' style="max-width: 1600px; margin-top: 50px;">
     <div class="row">
     <div class="col-12 col-md-4 order-3 order-md-1 d-none d-md-block">
@@ -20,14 +20,14 @@
           <img src="media/photo/photo1.jpg" class="img-fluid w-100 h-100 object-fit-cover d-md-none" alt="Left Photo Mobile" style="border-radius: 31px;">
         </div>
         <div class="col-6 d-flex flex-column gap-2 ">
-          <a href="{% url 'create_order' %}" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
+          <a data-bs-toggle="modal" data-bs-target="#orderModal" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
           <a href="{% url 'about' %}" id="order-button">О НАС</a>
           <a href="{% url 'landing' %}" id="order-button">ДОСТАВКА</a>
         </div>
       </div>
       <div class="row g-2 d-none d-md-flex mt-auto ">
         <div class="col-4">
-          <a href="{% url 'create_order' %}" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
+          <a data-bs-toggle="modal" data-bs-target="#orderModal" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
         </div>
         <div class="col-4">
           <a href="{% url 'about' %}" id="order-button">О НАС</a>
@@ -184,8 +184,8 @@
 <div>
    <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;">
     <h2 style='color: black; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600;'>Оформить заказ</h2>
-    <p style='color: black; font-family: "Mont", sans-serif; font-size: 20px;'>Заказать игру на нашем сайте можно в любой момент. Вы можете оформить заказ в любое удобное для вас время, и мы с радостью выполним его в кратчайшие сроки.</p> 
-    <a  data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
+    <p style='color: black; font-family: "Unbounded", sans-serif; font-size: 15px; font-weight: 400; text-align: center;'>Заказать игру на нашем сайте можно в любой момент. Вы можете оформить заказ в любое удобное для вас время, и мы с радостью выполним его в кратчайшие сроки.</p> 
+    <a data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
   </div>
 </div>
 {% endblock %}

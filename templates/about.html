@@ -2,6 +2,7 @@
 {% load static %}
 {% block title %}О нас{% endblock title %}
 {% block content %}
+{% include 'includes/modal_order.html' %}
 <div class="container-fluid">
   <div class="row flex-wrap:nowrap ">
     <div class="col-5">
@@ -144,7 +145,7 @@
    <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;">
     <h2 style='color: black; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600;'>ХОЧЕШЬ ТАКЖЕ?</h2>
     <p style='color: black; font-family: "Mont", sans-serif; font-size: 20px;'>Отправь заявку, мы свяжемся с тобой в ближайшее время</p> 
-    <a href="{% url 'create_order' %}" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
+    <a  data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
   </div>
 </div>
 

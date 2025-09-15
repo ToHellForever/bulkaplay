@@ -5,14 +5,12 @@ from django.urls import path, include
 from debug_toolbar.toolbar import debug_toolbar_urls
 from core.views import (
     LandingView, 
-    create_order,
     AboutView
 )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LandingView.as_view(), name='landing'),
-    path('create_order/', create_order, name='create_order'),
     path('about/', AboutView.as_view(), name='about')
 ] + debug_toolbar_urls()
 

@@ -83,8 +83,23 @@
 
 body {
     background: black;
-  overflow-x: hidden;
+    overflow-x: hidden;
 }
+
+/* .hidden {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+}
+
+.visible {
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+}
+
+Стили для модального окна */
 
 
 /* Бургер-меню */
@@ -500,4 +515,3 @@ a {
         flex-wrap: wrap !important;
     }
 }
-

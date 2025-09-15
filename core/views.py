@@ -4,6 +4,32 @@ from django.views.generic import TemplateView
 from .models import Product, Arenda, News, Order
 from .forms import OrderForm
 
+def process_order_form(request, form):
+    if form.is_valid():
+        data = form.cleaned_data
+        order = Order.objects.create(
+            name=data['name'],
+            phone=data['phone'],
+            order_type=data['order_type'],
+            comment=data.get('comment', '')
+        )
+
+        # Сохраняем выбранные товары или аренды
+        if data['order_type'] == 'buy':
+            selected_products = request.POST.getlist('selected_products')
+            order.products.set(selected_products)
+        elif data['order_type'] == 'rent':
+            selected_arenda_id = request.POST.get('rental-type')
+            selected_games = request.POST.getlist('selected_games')
+            if selected_arenda_id:
+                order.arenda.set([selected_arenda_id])
+            order.games_for_rent.set(selected_games)
+        messages.success(request, "Заказ успешно сохранён!")
+        return True
+    else:
+        messages.error(request, "Ошибка при отправке формы. Проверьте введённые данные.")
+        return False
+
 class LandingView(TemplateView):
     template_name = "landing.html"
 
@@ -11,39 +37,16 @@ class LandingView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['products'] = Product.objects.filter(is_active=True).order_by('-created_at')
         context['arenda'] = Arenda.objects.filter(is_active=True).order_by('-created_at')
+        context['form'] = OrderForm()
         return context
 
-def create_order(request):
-    if request.method == 'POST':
+    def post(self, request, *args, **kwargs):
         form = OrderForm(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data
-            order = Order.objects.create(
-                name=data['name'],
-                phone=data['phone'],
-                order_type=data['order_type'],
-                comment=data.get('comment', '')
-            )
-
-            # Сохраняем выбранные товары или аренды
-            if data['order_type'] == 'buy':
-                selected_products = request.POST.getlist('selected_products')
-                order.products.set(selected_products)
-            elif data['order_type'] == 'rent':
-                selected_arenda_id = request.POST.get('rental-type')
-                selected_games = request.POST.getlist('selected_games')
-                if selected_arenda_id:
-                    order.arenda.set([selected_arenda_id])
-                order.games_for_rent.set(selected_games)
-            messages.success(request, "Заказ успешно сохранён!")
+        if process_order_form(request, form):
             return redirect('landing')
-    else:
-        form = OrderForm()
+        else:
+            return redirect('landing')
 
-    products = Product.objects.filter(is_active=True).order_by('-created_at')
-    arenda = Arenda.objects.filter(is_active=True).order_by('-created_at')
-
-    return render(request, 'create_order.html', {'form': form, 'products': products, 'arenda': arenda})
 
 
 class AboutView(TemplateView):
@@ -51,5 +54,15 @@ class AboutView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['products'] = Product.objects.filter(is_active=True).order_by('-created_at')
+        context['arenda'] = Arenda.objects.filter(is_active=True).order_by('-created_at')
         context['news'] = News.objects.filter(is_active=True).order_by('-created_at')
+        context['form'] = OrderForm()
         return context
+    
+    def post(self, request, *args, **kwargs):
+        form = OrderForm(request.POST)
+        if process_order_form(request, form):
+            return redirect('landing')
+        else:
+            return redirect('landing')

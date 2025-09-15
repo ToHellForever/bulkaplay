@@ -24,22 +24,22 @@
         </video>
     </div>
   </div>
-  <div class="row flex-wrap: nowrap gap-3 text-center" style='margin-top: 30px; margin-left: 40px'>
+  <div class="row gap-4" style='margin-top: 30px; color:white;'>
     <div class="col-3" id='icon_about'>
-        <h2>500 +</h2>
-        <p style='color: white; text-align: center'>проведённых мероприятий</p>
+        <h4>500 +</h4>
+        <p6>проведённых мероприятий</p6>
     </div>
     <div class="col-2" id='icon_about'>
-        <h2>18</h2>
-        <p style='color: white;  text-align: center'>уникальных игр</p>
+        <h4>18</h4>
+        <p6>уникальных игр</p6>
     </div>
     <div class="col-4" id='icon_about'>
-        <h2>1000 +</h2>
-        <p style='color: white;  text-align: center'>отправок по России</p>
+        <h4>1000 +</h4>
+        <p6>отправок по России</p6>
     </div>
 <div class="col-2" id='icon_about'>
-        <h2>3 +</h2>
-        <p style='color: white;  text-align: center'>возраст игроков</p>
+        <h4>3 +</h4>
+        <p6>возраст игроков</p6>
     </div>
   </div>  
 </div>
@@ -96,11 +96,11 @@
         {% endif %}
 
         <div class="col-4 col-md-4 mb-4"> 
-          <div class="card h-100 product-card" style="background: #000;">
+          <div class="card h-100 product-card" style="background: black;">
             <img style="width: 100%; height: 70%; border-radius: 20px;" src="{{ n.image.url }}" class="card-img-top" alt="{{ n.name }}">
             <div class="card-body">
-              <h5 class="card-title">{{ n.name }}</h5>
-                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px;'>Подробнее</button>
+              <h5 class="card-title" >{{ n.name }}</h5>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px;'>Подробнее</button>
             </div>
           </div>
         </div>
@@ -130,11 +130,11 @@
     </div>
 
     <!-- Элементы управления каруселью -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev" style="margin-bottom: 150px;">
+    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev" style="margin-bottom: 100px;">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Предыдущий</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next " style="margin-bottom: 100px;">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Следующий</span>
     </button>
@@ -145,7 +145,7 @@
    <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;">
     <h2 style='color: black; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600;'>ХОЧЕШЬ ТАКЖЕ?</h2>
     <p style='color: black; font-family: "Mont", sans-serif; font-size: 20px;'>Отправь заявку, мы свяжемся с тобой в ближайшее время</p> 
-    <a  data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</button>
   </div>
 </div>
 

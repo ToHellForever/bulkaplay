@@ -8,6 +8,19 @@
     font-display: swap;
 }
 
+
+@media (max-width: 768px) {
+    .game-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .game-card {
+        flex: 0 0 100%;
+    }
+}
+
 @font-face {
     font-family: 'Mont';
     src: url('fonts/mont/mont_heavydemo.ttf') format('truetype');
@@ -199,7 +212,7 @@ body {
     position: relative;
     display: inline-block;
     font-family: 'Mont', sans-serif;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
@@ -276,6 +289,10 @@ h1 {
     color: #1A1A1A;
 }
 
+#order-button-2 {
+    background: #F88005;
+    color: #1A1A1A;
+}
 
 .item {
     margin-top: 20px;
@@ -416,12 +433,49 @@ a {
     height: 120px;
     padding: 20px 20px;
 }
+
 /* для 2 элемента стиили */
 #icon_about:nth-child(2) {
     background: #F88005;
     color: #1A1A1A !important;
 }
 
+/* каталог игр */
+.games-grid {
+    display: flex;
+    flex-wrap: wrap;;
+}
+
+.game-card {
+    flex: 0 0 calc(33.333%);
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.game-image {
+    width: 90%;
+    height: auto;
+    border-radius: 25px;
+}
+
+.game-card h3 {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 40px;
+    font-weight: 400;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.game-card p {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    line-height: 1.4;
+    margin-left: 20px;
+}
 
 @media (max-width: 768px) {
     h1 {
@@ -505,5 +559,54 @@ a {
     }
     .contacts {
         flex-wrap: wrap !important;
+    }
+}
+
+
+@media (max-width: 1040px) {
+    .burger-icon {
+        display: flex;
+    }
+
+    .menu-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    .menu-container.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu-container .row {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .menu-container .col {
+        margin: 10px 0;
+    }
+
+    .burger-icon.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .burger-icon.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-icon.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
     }
 }

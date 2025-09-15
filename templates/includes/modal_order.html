@@ -292,7 +292,7 @@
         }, 3000);
     }
 
-    $('form').on('submit', function(event) {
+$('#orderForm').on('submit', function(event) {
         let hasSelectedItems = false;
         const orderType = $('#id_order_type').val();
         if (!orderType || orderType === 'choice') {

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Каталог игр{% endblock title %}
+{% block content %}
+{% include 'includes/modal_order.html' %}
+
+<div class="container-fluid" style="margin-top: 50px; max-width: 1800px;">
+  <div class="row">
+<div class="col-6">
+      <h2 style='margin-left: 30px;'>КАТАЛОГ ИГР</h2>
+    </div>
+    <div class="col-3">
+      <form method="get" class="form-inline" style="position: relative;">
+        <input type="text" name="search" class="form-control" placeholder="Поиск..." value="{{ request.GET.search }}" style="padding-right: 15px; background: #3B3737;">
+        <button type="submit" class="btn" style="position: absolute; right: 0; top: 0; height: 100%; width: 35px; background: none; border: none; padding: 0;">
+          <i class="fas fa-search"></i>
+        </button> 
+      </form>
+    </div>
+    <div class="col-3">
+      <form method="get" class="form-inline">
+        <select name="sort" class="form-control" onchange="this.form.submit()">
+          <option value="">Сортировка</option>
+          <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Цена по возрастанию</option>
+          <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Цена по убыванию</option>
+          <option value="name_asc" {% if request.GET.sort == 'name_asc' %}selected{% endif %}>Название (А-Я)</option>
+          <option value="name_desc" {% if request.GET.sort == 'name_desc' %}selected{% endif %}>Название (Я-А)</option>
+        </select>
+      </form>
+    </div>
+  </div>
+<div class="container-fluid" style="max-width: 1800px;">
+    <div class="games-grid">
+        {% for product in products %}
+        <div class="game-card">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="game-image">
+            <h3>{{ product.name }}</h3>
+            <p>{{ product.price|floatformat }} руб.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock content %}

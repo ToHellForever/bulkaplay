@@ -1,15 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}{% if product %}{{ product.name }}{% else %}Игра{% endif %}{% endblock title %}
+{% block stylesheets %}
+    <style>
+        /* Скрываем изначально */
+        .collapse.show {
+            display: none !important;
+        }
+    </style>
+{% endblock %}
+
 {% block content %}
-<div class="container-fluid my-5">
-    <div class="row align-items-stretch g-3"> {# Строки выравниваются по высоте #}
+<div class="container my-5 " style="max-width: 1600px;" >
+    <div class="row align-items-stretch "> {# Строки выравниваются по высоте #}
         {% if product.additional_images.all|length > 0 %}
-            <div class="col-md-4 col-xl-3"> {# Колонка для доп. изображений #}
+            <div class="col-md-2"> {# Колонка для доп. изображений #}
                 <div class="d-flex flex-column gap-3">
                     {% for img in product.additional_images.all %}
-                        <img src="{{ img.image.url }}" alt="Дополнительное изображение {{ img.id }}"
-                             class="rounded img-thumbnail w-100" />
+                        <img src="{{ img.image.url }}" alt="Дополнительное изображение {{ img.id }}" style='border-radius: 21px; width: 150px;'>
                     {% endfor %}
                 </div>
             </div>
@@ -17,14 +25,13 @@
 
         <div class="col-md-8 col-xl-6"> {# Колонка для основного изображения #}
             <img src="{% if product.image %}{{ product.image.url }}{% else %}#{% endif %}"
-                 alt="Основное изображение"
-                 class="w-150 h-150  rounded"/>
+                 alt="Основное изображение" style="border-radius: 31px; width: 100%; margin-left: -80px; height: 750px;">
         </div>
 
-        <div class="col-md-12 col-xl-3"> {# Колонка для описания и информации #}
-            <div class="card border-0 py-3 px-4 rounded">
-                <h5 class="fw-bold">{{ product.name }}</h5>
-                <p class="lead">{{ product.description | safe }}</p>
+        <div class="col-md-12 col-xl-4"> {# Колонка для описания и информации #}
+            <div>
+                <h5 style="color: #F88005; font-family: 'Unbounded', sans-serif; font-weight: 400; font-size: 40px;">{{ product.name }}</h5>
+                <p style="color: white; font-family: 'Unbounded', sans-serif; font-weight: 300; font-size: 15px;">{{ product.description | safe }}</p>
                 
                 <hr class="my-3">
                 
@@ -33,25 +40,46 @@
                 
                 <hr class="my-3">
                 
-                <h6 class="fw-semibold">Правила игры:</h6>
-                <p class="small text-body-secondary">{{ product.game_rules | default:"Нет данных" }}</p>
+                <h6 class="fw-semibold">Количество игроков:</h6>
+                <p class="small text-body-secondary">{{ product.player_counts.all|join:", " }}</p>
                 
                 <hr class="my-3">
                 
-                <h6 class="fw-semibold">Дополнительно:</h6>
-                <p class="small text-body-secondary">{{ product.additional_info | default:"Нет данных" }}</p>
-                
-                <hr class="my-3">
-                
-                <ul class="list-group list-group-flush small text-body-secondary">
-                    <li class="list-group-item"><strong>Цена:</strong> {{ product.price }} руб.</li>
-                    <li class="list-group-item"><strong>Тип игры:</strong> {{ product.game_types.all|join:", " }}</li>
-                    <li class="list-group-item"><strong>Размер упаковки:</strong> {{ product.sizes.all|join:", " }}</li>
-                    <li class="list-group-item"><strong>Количество игроков:</strong> {{ product.player_counts.all|join:", " }}</li>
-                    <li class="list-group-item"><strong>Возраст:</strong> {{ product.player_ages.all|join:", " }}</li>
+                <h6 class="fw-semibold">Материал:</h6>
+                <ul class="list-unstyled ps-0 small text-body-secondary">
+                    <li><span class="me-2">•</span>Натуральное дерево твердых пород.</li>
+                    <li><span class="me-2">•</span>Ручная работа.</li>
+                    <li><span class="me-2">•</span>Гипоаллергенное покрытие (высококачественные масла, воск и пропитки).</li>
                 </ul>
+                
+                <hr class="my-3">
+                
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="fw-semibold">Цена: {{ product.price }}</h6>
+                    <button type="button" class="btn btn-primary">Заказать</button>
+                </div>
+                
+                <p class="fs-5 fw-semibold mt-3">Правила игры и дополнение:</p>
+                <div id="rulesToggle" data-bs-toggle="collapse" href="#rulesCollapse" role="button" aria-expanded="false" aria-controls="rulesCollapse">
+                    Раскрыть ↓
+                </div>
+                <div class="collapse" id="rulesCollapse">
+                    <p class="mt-3 fs-6">{% autoescape off %}{{ product.game_rules }}{% endautoescape %}</p>
+                    <p class="mt-3 fs-6">{% autoescape off %}{{ product.additional_info }}{% endautoescape %}</p>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+{% block javascripts %}
+    <script>
+        // Чтобы раскрывающийся блок скрывался обратно при клике вне зоны
+        document.getElementById('rulesToggle').addEventListener('click', function() {
+            var collapseElement = new bootstrap.Collapse(document.getElementById('rulesCollapse'));
+            collapseElement.toggle();
+        });
+    </script>
+{% endblock %}
+
 {% endblock %}

@@ -1,5 +1,45 @@
 from django.db import models
 
+class Size(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Размер")
+
+    class Meta:
+        verbose_name = "Размер"
+        verbose_name_plural = "Размеры"
+
+    def __str__(self):
+        return self.name
+
+class PlayerCount(models.Model):
+    count = models.PositiveIntegerField(verbose_name="Количество игроков")
+
+    class Meta:
+        verbose_name = "Количество игроков"
+        verbose_name_plural = "Количество игроков"
+
+    def __str__(self):
+        return str(self.count)
+
+class GameType(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Вид игры")
+
+    class Meta:
+        verbose_name = "Вид игры"
+        verbose_name_plural = "Виды игр"
+
+    def __str__(self):
+        return self.name
+
+class PlayerAge(models.Model):
+    age = models.CharField(max_length=50, verbose_name="Возраст игроков")
+
+    class Meta:
+        verbose_name = "Возраст игрока"
+        verbose_name_plural = "Возрасты игроков"
+
+    def __str__(self):
+        return self.age
+
 class Product(models.Model):
     """Модель товара"""
     name = models.CharField(max_length=200, verbose_name="Название")
@@ -10,6 +50,21 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
 
+    # Комплект игры как список строк
+    game_kit = models.TextField(verbose_name="Комплект игры", blank=True, null=True)
+
+    # Правила игры
+    game_rules = models.TextField(verbose_name="Правила игры", blank=True, null=True)
+
+    # Дополнительная информация
+    additional_info = models.TextField(verbose_name="Дополнительно", blank=True, null=True)
+
+    # Связи с атрибутами
+    sizes = models.ManyToManyField(Size, verbose_name="Размеры", blank=True)
+    player_counts = models.ManyToManyField(PlayerCount, verbose_name="Количество игроков", blank=True)
+    game_types = models.ManyToManyField(GameType, verbose_name="Виды игры", blank=True)
+    player_ages = models.ManyToManyField(PlayerAge, verbose_name="Возрасты игроков", blank=True)
+
     class Meta:
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
@@ -18,6 +73,22 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+class ProductImage(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        related_name='additional_images',
+        verbose_name="Товар",
+    )
+    image = models.ImageField(upload_to='product_images/additional/', verbose_name="Дополнительное изображение")
+    is_main = models.BooleanField(default=False, verbose_name="Основное изображение")
+
+    class Meta:
+        verbose_name = "Дополнительное изображение товара"
+        verbose_name_plural = "Дополнительные изображения товаров"
+
+    def __str__(self):
+        return f'Фото {self.product}'
 
 class Arenda(models.Model):
     """Модель аренды"""
@@ -37,7 +108,6 @@ class Arenda(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.game_count} игр)"
-
 
 class Order(models.Model):
     """Модель заказа"""
@@ -66,7 +136,7 @@ class News(models.Model):
     date_event = models.DateField(verbose_name="Дата мероприятия")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
-    
+
     class Meta:
         verbose_name = "Новость"
         verbose_name_plural = "Новости"

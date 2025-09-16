@@ -15,7 +15,7 @@
         <button type="submit" class="btn" style="position: absolute; right: 0; top: 0; height: 100%; width: 35px; background: none; border: none; padding: 0;">
           <i class="fas fa-search"></i>
         </button> 
-      </form>
+      </form> 
     </div>
     <div class="col-3">
       <form method="get" class="form-inline">
@@ -36,6 +36,8 @@
             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="game-image">
             <h3>{{ product.name }}</h3>
             <p>{{ product.price|floatformat }} руб.</p>
+            {% comment %} кнопка с ссылкой на подробнее о товаре {% endcomment %}
+            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Подробнее</a>
         </div>
         {% endfor %}
     </div>

@@ -117,3 +117,20 @@ class GameCatalogView(TemplateView):
             return redirect("landing")
         else:
             return redirect("landing")
+
+
+class ProductDetailView(TemplateView):
+    template_name = "product_detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["product"] = get_object_or_404(Product, pk=kwargs["pk"])
+        context["form"] = OrderForm()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        form = OrderForm(request.POST)
+        if process_order_form(request, form):
+            return redirect("landing")
+        else:
+            return redirect("landing")

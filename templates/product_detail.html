@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{% if product %}{{ product.name }}{% else %}Игра{% endif %}{% endblock title %}
+{% block content %}
+<div class="container-fluid my-5">
+    <div class="row align-items-stretch g-3"> {# Строки выравниваются по высоте #}
+        {% if product.additional_images.all|length > 0 %}
+            <div class="col-md-4 col-xl-3"> {# Колонка для доп. изображений #}
+                <div class="d-flex flex-column gap-3">
+                    {% for img in product.additional_images.all %}
+                        <img src="{{ img.image.url }}" alt="Дополнительное изображение {{ img.id }}"
+                             class="rounded img-thumbnail w-100" />
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+
+        <div class="col-md-8 col-xl-6"> {# Колонка для основного изображения #}
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}#{% endif %}"
+                 alt="Основное изображение"
+                 class="w-150 h-150  rounded"/>
+        </div>
+
+        <div class="col-md-12 col-xl-3"> {# Колонка для описания и информации #}
+            <div class="card border-0 py-3 px-4 rounded">
+                <h5 class="fw-bold">{{ product.name }}</h5>
+                <p class="lead">{{ product.description | safe }}</p>
+                
+                <hr class="my-3">
+                
+                <h6 class="fw-semibold">Комплектация:</h6>
+                <p class="small text-body-secondary">{{ product.game_kit | default:"Нет данных" }}</p>
+                
+                <hr class="my-3">
+                
+                <h6 class="fw-semibold">Правила игры:</h6>
+                <p class="small text-body-secondary">{{ product.game_rules | default:"Нет данных" }}</p>
+                
+                <hr class="my-3">
+                
+                <h6 class="fw-semibold">Дополнительно:</h6>
+                <p class="small text-body-secondary">{{ product.additional_info | default:"Нет данных" }}</p>
+                
+                <hr class="my-3">
+                
+                <ul class="list-group list-group-flush small text-body-secondary">
+                    <li class="list-group-item"><strong>Цена:</strong> {{ product.price }} руб.</li>
+                    <li class="list-group-item"><strong>Тип игры:</strong> {{ product.game_types.all|join:", " }}</li>
+                    <li class="list-group-item"><strong>Размер упаковки:</strong> {{ product.sizes.all|join:", " }}</li>
+                    <li class="list-group-item"><strong>Количество игроков:</strong> {{ product.player_counts.all|join:", " }}</li>
+                    <li class="list-group-item"><strong>Возраст:</strong> {{ product.player_ages.all|join:", " }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

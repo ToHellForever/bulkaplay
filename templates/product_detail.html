@@ -3,9 +3,53 @@
 {% block title %}{% if product %}{{ product.name }}{% else %}Игра{% endif %}{% endblock title %}
 {% block stylesheets %}
     <style>
-        /* Скрываем изначально */
-        .collapse.show {
-            display: none !important;
+        .custom-collapse {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+
+            .custom-collapse.show {
+                max-height: 500px; /* или другое значение, которое подойдет для вашего контента */
+            }
+        p {
+            color: white !important;
+            font-family: 'Unbounded', sans-serif !important;
+            font-size: 16px !important;
+            margin-bottom: 10px !important;
+            margin-top: 10px !important;
+        }
+        li {
+            color: white !important;
+            font-family: 'Unbounded', sans-serif !important;
+            font-size: 16px !important;
+            margin-bottom: 10px !important;
+            margin-top: 10px !important;
+        }
+        hr {
+            color: #F88005 !important;
+            height: 2px !important;
+        }
+        h6 {
+            font-family: 'Unbounded', sans-serif !important;
+            color: white !important;
+            font-size: 30px !important;
+            margin-bottom: 10px !important;
+            margin-top: 10px !important;
+        }
+        p1 {
+            color: white !important;
+            font-family: 'Unbounded', sans-serif !important;
+            font-size: 16px !important;
+            margin-bottom: 10px !important;
+            margin-top: 10px
+        }
+        #pd {
+            color: white !important;
+            font-family: 'Unbounded', sans-serif !important;
+            font-size: 26px !important;
+            margin-bottom: 10px !important;
+            margin-top: 20px
         }
     </style>
 {% endblock %}
@@ -31,55 +75,67 @@
         <div class="col-md-12 col-xl-4"> {# Колонка для описания и информации #}
             <div>
                 <h5 style="color: #F88005; font-family: 'Unbounded', sans-serif; font-weight: 400; font-size: 40px;">{{ product.name }}</h5>
-                <p style="color: white; font-family: 'Unbounded', sans-serif; font-weight: 300; font-size: 15px;">{{ product.description | safe }}</p>
-                
+                <p>{{ product.description | safe }}</p>
+
                 <hr class="my-3">
-                
-                <h6 class="fw-semibold">Комплектация:</h6>
-                <p class="small text-body-secondary">{{ product.game_kit | default:"Нет данных" }}</p>
-                
+
+                <h6>КОМПЛЕКТ</h6>
+                <p>{{ product.game_kit | default:"Нет данных" }}</p>
+
                 <hr class="my-3">
-                
-                <h6 class="fw-semibold">Количество игроков:</h6>
-                <p class="small text-body-secondary">{{ product.player_counts.all|join:", " }}</p>
-                
+
+                <h6>КОЛИЧЕСТВО ИГРОКОВ</h6>
+                <p>{{ product.player_counts.all|join:", " }}</p>
+
                 <hr class="my-3">
-                
-                <h6 class="fw-semibold">Материал:</h6>
+
+                <h6>МАТЕРИАЛ</h6>
                 <ul class="list-unstyled ps-0 small text-body-secondary">
                     <li><span class="me-2">•</span>Натуральное дерево твердых пород.</li>
                     <li><span class="me-2">•</span>Ручная работа.</li>
                     <li><span class="me-2">•</span>Гипоаллергенное покрытие (высококачественные масла, воск и пропитки).</li>
                 </ul>
-                
+
                 <hr class="my-3">
-                
+
                 <div class="d-flex justify-content-between align-items-center">
-                    <h6 class="fw-semibold">Цена: {{ product.price }}</h6>
-                    <button type="button" class="btn btn-primary">Заказать</button>
+                    <h6>ЦЕНА: {{ product.price| floatformat }} руб.</h6>
+                    <button type="button" class="btn" style="background: #F88005; color: black; border-radius: 15px; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px;">Заказать</button>
                 </div>
-                
-                <p class="fs-5 fw-semibold mt-3">Правила игры и дополнение:</p>
-                <div id="rulesToggle" data-bs-toggle="collapse" href="#rulesCollapse" role="button" aria-expanded="false" aria-controls="rulesCollapse">
-                    Раскрыть ↓
-                </div>
-                <div class="collapse" id="rulesCollapse">
-                    <p class="mt-3 fs-6">{% autoescape off %}{{ product.game_rules }}{% endautoescape %}</p>
-                    <p class="mt-3 fs-6">{% autoescape off %}{{ product.additional_info }}{% endautoescape %}</p>
-                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-3">
+    <a href="#gameRulesCollapse" role="button" aria-expanded="false" aria-controls="gameRulesCollapse" onclick="toggleBlock('gameRulesCollapse')" id='pd'>
+        Правила игры 
+    </a>
+    <a href="#additionalInfoCollapse" role="button" aria-expanded="false" aria-controls="additionalInfoCollapse" onclick="toggleBlock('additionalInfoCollapse')" id='pd'>
+        Дополнительно 
+    </a>
+    </div>
+
+<div class="custom-collapse" id="gameRulesCollapse">
+    <p class="mt-3 fs-6">{% autoescape off %}{{ product.game_rules }}{% endautoescape %}</p>
+</div>
+<div class="custom-collapse" id="additionalInfoCollapse">
+    <p class="mt-3 fs-6">{% autoescape off %}{{ product.additional_info }}{% endautoescape %}</p>
+</div>
             </div>
         </div>
     </div>
 </div>
 
-{% block javascripts %}
-    <script>
-        // Чтобы раскрывающийся блок скрывался обратно при клике вне зоны
-        document.getElementById('rulesToggle').addEventListener('click', function() {
-            var collapseElement = new bootstrap.Collapse(document.getElementById('rulesCollapse'));
-            collapseElement.toggle();
-        });
-    </script>
-{% endblock %}
+<script>
+    function toggleBlock(blockId) {
+        const targetBlock = document.getElementById(blockId);
+        const isCurrentlyVisible = targetBlock.classList.contains('show');
 
+        // Закрываем оба блока
+        document.getElementById("gameRulesCollapse").classList.remove('show');
+        document.getElementById("additionalInfoCollapse").classList.remove('show');
+
+        // Если текущий блок не был виден, открываем его
+        if (!isCurrentlyVisible) {
+            targetBlock.classList.add('show');
+        }
+    }
+</script>
 {% endblock %}

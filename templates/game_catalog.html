@@ -37,7 +37,9 @@
             <h3>{{ product.name }}</h3>
             <p>{{ product.price|floatformat }} руб.</p>
             {% comment %} кнопка с ссылкой на подробнее о товаре {% endcomment %}
-            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Подробнее</a>
+            <a href="{% url 'product_detail' product.id %}">
+            <button style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px; margin-left: 18px;'> Подробнее</button>
+            </a>  
         </div>
         {% endfor %}
     </div>

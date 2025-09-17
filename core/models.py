@@ -90,6 +90,25 @@ class ProductImage(models.Model):
     def __str__(self):
         return f'Фото {self.product}'
 
+
+
+class PlayerRange(models.Model):
+    """
+    Диапазоны количества игроков и соответствующее количество игр.
+    """
+    min_players = models.PositiveIntegerField(verbose_name="Минимальное количество игроков")
+    max_players = models.PositiveIntegerField(verbose_name="Максимальное количество игроков")
+    min_game_count = models.PositiveIntegerField(verbose_name="Минимальное количество игр")
+    max_game_count = models.PositiveIntegerField(verbose_name="Максимальное количество игр")
+
+    class Meta:
+        verbose_name = "Диапазон игроков"
+        verbose_name_plural = "Диапазоны игроков"
+
+    def __str__(self):
+        return f'{self.min_players}-{self.max_players}: {self.min_game_count}-{self.max_game_count} игр'
+
+
 class Arenda(models.Model):
     """Модель аренды"""
     name = models.CharField(max_length=200, verbose_name="Название аренды")
@@ -97,6 +116,7 @@ class Arenda(models.Model):
     description = models.TextField(verbose_name="Описание")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
     image = models.ImageField(upload_to='products/', verbose_name="Изображение")
+    ranges = models.ManyToManyField(PlayerRange, verbose_name="Диапазоны игроков и игр", blank=True)
     is_active = models.BooleanField(default=True, verbose_name="Отображать на сайте")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
@@ -107,7 +127,7 @@ class Arenda(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.name} ({self.game_count} игр)"
+        return self.name 
 
 class Order(models.Model):
     """Модель заказа"""
@@ -133,7 +153,7 @@ class News(models.Model):
     description = models.TextField(verbose_name="Описание")
     image = models.ImageField(upload_to='news/', verbose_name="Изображение")
     is_active = models.BooleanField(default=True, verbose_name="Отображать на сайте")
-    date_event = models.DateField(verbose_name="Дата мероприятия")
+    date_event = models.DateTimeField(verbose_name="Дата и время мероприятия")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
 
@@ -143,3 +163,21 @@ class News(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class NewsImage(models.Model):
+    news = models.ForeignKey(
+        News,
+        on_delete=models.CASCADE,
+        related_name='additional_images',
+        verbose_name="Новость",
+    )
+    image = models.ImageField(upload_to='news_images/additional/', verbose_name="Дополнительное изображение")
+    is_main = models.BooleanField(default=False, verbose_name="Основное изображение")
+
+    class Meta:
+        verbose_name = "Дополнительное изображение новости"
+        verbose_name_plural = "Дополнительные изображения новостей"
+
+    def __str__(self):
+        return f'Фото {self.news}'

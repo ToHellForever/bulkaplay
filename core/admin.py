@@ -1,13 +1,18 @@
 from django.contrib import admin
 from .models import (
     Product, Arenda, Order, News, ProductImage,
-    Size, PlayerCount, GameType, PlayerAge
+    Size, PlayerCount, GameType, PlayerAge, NewsImage, PlayerRange
 )
 admin.site.register(ProductImage)
 class ProductImageInline(admin.TabularInline):
     model = ProductImage
     extra = 1  # Количество дополнительных форм для новых изображений
 
+admin.site.register(NewsImage)
+class NewsImageInline(admin.TabularInline):
+    model = NewsImage
+    extra = 1 
+    
 # Основной класс для регистрации модели Product
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -55,12 +60,22 @@ class PlayerAgeAdmin(admin.ModelAdmin):
     search_fields = ('age',)
     
     
+class RangeInline(admin.TabularInline):
+    model = Arenda.ranges.through
+    extra = 1
+
 @admin.register(Arenda)
-class ArendaAdmin(admin.ModelAdmin):    
-    list_display = ('name', 'price', 'is_active', 'created_at', 'game_count')
+class ArendaAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'is_active', 'created_at')
     list_editable = ('is_active',)
     list_filter = ('is_active', 'created_at')
     search_fields = ('name', 'description')
+    inlines = [RangeInline]
+
+@admin.register(PlayerRange)
+class PlayerRangeAdmin(admin.ModelAdmin):
+    list_display = ('min_players', 'max_players', 'min_game_count', 'max_game_count')
+    search_fields = ('min_players', 'max_players')
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
@@ -76,6 +91,7 @@ class OrderAdmin(admin.ModelAdmin):
         return ", ".join([g.name for g in obj.games_for_rent.all()])
     get_games_for_rent.short_description = "Игры для аренды"
 
+    
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
@@ -83,3 +99,16 @@ class NewsAdmin(admin.ModelAdmin):
     list_editable = ('is_active',)
     list_filter = ('is_active', 'date_event')
     search_fields = ('name', 'description')
+    
+    fieldsets = (
+        ("Основные поля", {
+            'fields': ('name', 'description', 'image', 'date_event'),
+        }),
+        ("Атрибуты", {
+            'fields': ('player_counts_arenda',),
+        })
+    )
+    # Указываем созданный inline-класс
+    inlines = [
+        NewsImageInline,
+    ]

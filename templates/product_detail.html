@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% include 'includes/modal_order.html' %}
 {% block title %}{% if product %}{{ product.name }}{% else %}Игра{% endif %}{% endblock title %}
 {% block stylesheets %}
     <style>
@@ -51,17 +52,28 @@
             margin-bottom: 10px !important;
             margin-top: 20px
         }
+        p2 {
+            color: white !important;
+            font-family: 'Mont', sans-serif !important;
+            font-size: 25px !important;
+            font-weight: 500;
+            margin-left: 20px;
+        }
+        #pd-button:hover {
+            color: white !important;
+        }
     </style>
 {% endblock %}
 
 {% block content %}
+{% include 'includes/modal_order.html' %}
 <div class="container my-5 " style="max-width: 1600px;" >
     <div class="row align-items-stretch "> {# Строки выравниваются по высоте #}
         {% if product.additional_images.all|length > 0 %}
             <div class="col-md-2"> {# Колонка для доп. изображений #}
                 <div class="d-flex flex-column gap-3">
                     {% for img in product.additional_images.all %}
-                        <img src="{{ img.image.url }}" alt="Дополнительное изображение {{ img.id }}" style='border-radius: 21px; width: 150px;'>
+                        <img src="{{ img.image.url }}" alt="Дополнительное изображение {{ img.id }}" style='border-radius: 21px; width: 140px; height: 138px; object-fit: cover'>
                     {% endfor %}
                 </div>
             </div>
@@ -85,7 +97,7 @@
                 <hr class="my-3">
 
                 <h6>КОЛИЧЕСТВО ИГРОКОВ</h6>
-                <p>{{ product.player_counts.all|join:", " }}</p>
+                <p>{{ product.player_counts.all|join:" - " }}</p>
 
                 <hr class="my-3">
 
@@ -100,7 +112,7 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                     <h6>ЦЕНА: {{ product.price| floatformat }} руб.</h6>
-                    <button type="button" class="btn" style="background: #F88005; color: black; border-radius: 15px; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px;">Заказать</button>
+                    <button data-bs-toggle="modal" data-bs-target="#orderModal" type="button" id='pd-button' style="background: #F88005; color: black; border-radius: 15px; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px;">Заказать</button>
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
@@ -123,6 +135,26 @@
     </div>
 </div>
 
+<div class="container-fluid" style="max-width: 1800px;">
+    <h2 >СМОТРИТЕ ТАКЖЕ</h2>
+    <hr class="my-3">
+    <div class="games-grid">
+        {% for random_product in random_products %}
+        <div class="game-card">
+            <img src="{{  random_product.image.url }}" alt="{{ random_product.name }}" class="game-image">
+            <h3>{{ random_product.name }}</h3>
+            <p2>{{ random_product.price|floatformat }} руб.</p2>
+            {% comment %} кнопка с ссылкой на подробнее о товаре {% endcomment %}
+            <a href="{% url 'product_detail' random_product.id %}">
+            <button style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px; margin-left: 18px; margin-top:10px;'> Подробнее</button>
+            </a>  
+        </div>
+        {% endfor %}
+    </div>
+</div>  
+
+
+
 <script>
     function toggleBlock(blockId) {
         const targetBlock = document.getElementById(blockId);
@@ -138,4 +170,6 @@
         }
     }
 </script>
+
+
 {% endblock %}

@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% block title %}Аренда{% endblock title%}
+{% block content %}
+{% include 'includes/modal_order.html' %}
+{% block stylesheets %}
+<style>
+    p {
+        color: white !important;
+        font-family: 'Mont', sans-serif !important;
+        font-size: 20px !important;
+        font-weight: 400 !important;
+        margin-bottom: 10px !important;
+        margin-top: 10px !important;
+        text-align: center !important;
+    }
+    h2 {
+        color: white !important;
+        font-family: 'Unbounded', sans-serif !important;
+        font-size: 30px !important;
+        font-weight: 400 !important;
+        margin-bottom: 10px !
+    }
+    h3 {
+        color: #F88005 !important;
+        font-family: 'Unbounded', sans-serif !important;
+        font-size: 30px !important;
+        font-weight: 400 !important;
+        margin-bottom: 10px !important;
+        margin-top: 10px !important;
+    }
+    .container > div > video {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 31px;
+    border: 2px solid #F88005;
+    object-fit: cover;
+    }
+    @media screen and (max-width: 768px) {
+        .container > div > video {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+    input {
+        border-radius: 10px;
+        background: white;
+        height: 50px;
+        text-align: center;
+        color: black;   
+        margin-top: 5px;;
+    }
+    {% comment %} стили для ползунка {% endcomment %}
+.form-range {
+    appearance: none;
+    width: 100%; 
+    height: 10px;
+    background-color: #E0E0E0;
+    border-radius: 5px;
+}
+
+.form-range::-webkit-slider-thumb {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: #F88005;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -7.5px;
+}
+
+.form-range::-webkit-slider-runnable-track {
+    height: 5px;
+    background-color: #E0E0E0;
+    border-radius: 5px;
+}
+
+</style>
+{% endblock stylesheets %}
+<div class='container' style="max-width: 1600px;">
+    <h1>ОРГАНИЗАЦИЯ МЕРОПРИЯТИЙ <span class="wood-text"><br>С НАСТОЛЬНЫМИ ИГРАМИ<span></h1>
+    <p>Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p>
+
+<div class='container' style="max-width: 1600px;">
+    <!-- Контент -->
+    <div>
+        <video controls style="display: block;   width: 100%;  height: auto;  border-radius: 31px;border: 2px solid #F88005; object-fit: cover; ">
+            <source src="/media/rental.mp4" type="video/mp4">
+            Ваш браузер не поддерживает элемент video.
+        </video>
+    </div>
+</div>
+</div>
+
+<div class="container-fluid" style="max-width: 1600px; margin-top: 150px;">
+    <h2>Рассчитать количество игр на празднике</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <h3>Количество гостей</h3>
+        </div>
+        <div class="col-md-6">
+            <form id="myForm" onsubmit="return false;">
+                <input type="number" name="guests" id="guestInput">
+            </form>
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <input type="range" class="form-range" id="guestSlider" min="0" max="25" step="1" value="2"/>
+    </div>
+
+<div class="row mt-5">
+    <div class="col-md-5">
+        <h3>Рекомендуемое количество игр:</h3>
+    </div>
+    <div class="col-md-4 mt-2">
+        <p id="guestMinCount"></p>        <p id="guestMaxCount"></p>
+    </div>
+</div>
+
+<div class="container-fluid" style="max-width: 1800px; margin-top: 50px;">
+    <div class="games-grid">
+        {% for arend in arenda %}
+        <div class="game-card">
+            <img src="{{ arend.image.url }}" alt="{{ arend.name }}" class="game-image">
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+<div class='container' style="max-width: 1600px; margin-top: 150px;">
+  <h2>МЕРОПРИЯТИЯ С BUL.K.A-PLAY</h2>
+  <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      {% for n in news %}
+        {% if forloop.first %}
+          <div class="carousel-item active">
+            <div class="row">
+        {% else %}
+          {% if forloop.counter0|divisibleby:3 %}
+            </div></div>
+            <div class="carousel-item">
+              <div class="row">
+          {% endif %}
+        {% endif %}
+
+        <div class="col-4 col-md-4 mb-4"> 
+          <div class="card h-100 product-card" style="background: black;">
+            <img style="width: 100%; height: 70%; border-radius: 20px;" src="{{ n.image.url }}" class="card-img-top" alt="{{ n.name }}">
+            <div class="card-body">
+              <h5 class="card-title" >{{ n.name }}</h5>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px;'>Подробнее</button>
+            </div>
+          </div>
+        </div>  
+      
+        <div class="modal fade" id="eventModal{{ n.id }}" tabindex="-1" aria-labelledby="eventModalLabel{{ n.id }}" aria-hidden="true">
+          <div class="modal-dialog">
+            {% comment %} делаю окно по центру страницы {% endcomment %}
+            <div class="modal-content" style="background: #1A1A1A; color: white;">
+                <h5 class="modal-title" id="eventModalLabel{{ n.id }}">{{ n.name }}</h5>
+              <div class="modal-body">
+                <img src="{{ n.image.url }}" class="img-fluid" alt="{{ n.name }}"> 
+                <p class="mt-3">{{ n.description }}</p>
+                <p class="mt-3">{{ n.date_event | date:"d.m.Y" }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% if forloop.last %}
+            </div>
+            </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Элементы управления каруселью -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev" style="margin-top: 120px;">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Предыдущий</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next " style="margin-top: 120px;">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Следующий</span>
+    </button>
+  </div>
+</div>
+
+
+<div>
+   <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;" >
+    <h2 style='color: black !important; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600;'>ХОЧЕШЬ ТАКЖЕ?</h2>
+    <p style='color: black  !important; font-family: "Unbounded", sans-serif; font-size: 20px;font-weight: 400 ;text-align: center;'>Отправь заявку, мы свяжемся с тобой в ближайшее время</p> 
+    <button type="button" data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</button>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Скрипт для синхронизации значений input и slider -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const guestInput = document.getElementById("guestInput");
+    const guestSlider = document.getElementById("guestSlider");
+    const guestMinCount = document.getElementById("guestMinCount");
+    const guestMaxCount = document.getElementById("guestMaxCount");
+
+    // Обработчик изменения числа в инпуте
+    guestInput.addEventListener("change", () => {
+        let newValue = parseInt(guestInput.value);
+        if(newValue >= 0 && newValue <= 25){
+            guestSlider.value = newValue;
+            updateRecommendedGames(newValue); // Отправляем запрос и обновляем рекомендацию
+        } else {
+            alert("Значение должно быть от 0 до 25!");
+            guestInput.value = guestSlider.value;
+        }
+    });
+
+    // Обработчик изменения положения слайдера
+    guestSlider.addEventListener("input", () => {
+        guestInput.value = guestSlider.value;
+        updateRecommendedGames(guestSlider.value); // Отправляем запрос и обновляем рекомендацию
+    });
+});
+</script>
+
+{% endblock content %}

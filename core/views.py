@@ -1,8 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.views.generic import TemplateView
-from .models import Product, Arenda, News, Order
+from django.views.generic import TemplateView, View
+from .models import Product, Arenda, News, Order, PlayerRange
 from .forms import OrderForm
+# ИМПОРТ РАНДОМА 
+import random
 
 
 def process_order_form(request, form):
@@ -126,6 +128,27 @@ class ProductDetailView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["product"] = get_object_or_404(Product, pk=kwargs["pk"])
         context["form"] = OrderForm()
+        # Берём 3 случайных товара из базы данных
+        all_products = list(Product.objects.exclude(id=context["product"].id))  # Исключаем текущий продукт
+        random_products = random.sample(all_products, min(len(all_products), 3))
+        context["random_products"] = random_products
+        return context
+    def post(self, request, *args, **kwargs):
+        form = OrderForm(request.POST)
+        if process_order_form(request, form):
+            return redirect("landing")
+        else:
+            return redirect("landing")
+        
+        
+class RentalCatalogView(TemplateView):
+    template_name = "rental_catalog.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["arenda"] = Arenda.objects.filter(is_active=True).order_by("-created_at")
+        context["news"] = News.objects.filter(is_active=True).order_by("-created_at")
+        context["form"] = OrderForm()
         return context
     
     def post(self, request, *args, **kwargs):
@@ -134,3 +157,4 @@ class ProductDetailView(TemplateView):
             return redirect("landing")
         else:
             return redirect("landing")
+        

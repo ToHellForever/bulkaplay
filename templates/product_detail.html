@@ -116,12 +116,12 @@
                 </div>
 
                 <div class="d-flex justify-content-between align-items-center mb-3">
-    <a href="#gameRulesCollapse" role="button" aria-expanded="false" aria-controls="gameRulesCollapse" onclick="toggleBlock('gameRulesCollapse')" id='pd'>
-        Правила игры 
-    </a>
-    <a href="#additionalInfoCollapse" role="button" aria-expanded="false" aria-controls="additionalInfoCollapse" onclick="toggleBlock('additionalInfoCollapse')" id='pd'>
-        Дополнительно 
-    </a>
+<a href="#gameRulesCollapse" role="button" aria-expanded="false" aria-controls="gameRulesCollapse" onclick="toggleBlock('gameRulesCollapse', event)" id='pd'>
+    Правила игры
+</a>
+<a href="#additionalInfoCollapse" role="button" aria-expanded="false" aria-controls="additionalInfoCollapse" onclick="toggleBlock('additionalInfoCollapse', event)" id='pd'>
+    Дополнительно
+</a>
     </div>
 
 <div class="custom-collapse" id="gameRulesCollapse">
@@ -156,19 +156,30 @@
 
 
 <script>
-    function toggleBlock(blockId) {
-        const targetBlock = document.getElementById(blockId);
-        const isCurrentlyVisible = targetBlock.classList.contains('show');
-
-        // Закрываем оба блока
-        document.getElementById("gameRulesCollapse").classList.remove('show');
-        document.getElementById("additionalInfoCollapse").classList.remove('show');
-
-        // Если текущий блок не был виден, открываем его
-        if (!isCurrentlyVisible) {
-            targetBlock.classList.add('show');
-        }
+function toggleBlock(blockId, event) {
+    // Предотвращаем стандартное поведение ссылки
+    if (event) {
+        event.preventDefault();
     }
+
+    const targetBlock = document.getElementById(blockId);
+    const isCurrentlyVisible = targetBlock.classList.contains('show');
+
+    // Сохраняем текущую позицию прокрутки
+    const scrollPosition = window.pageYOffset;
+
+    // Закрываем оба блока
+    document.getElementById("gameRulesCollapse").classList.remove('show');
+    document.getElementById("additionalInfoCollapse").classList.remove('show');
+
+    // Если текущий блок не был виден, открываем его
+    if (!isCurrentlyVisible) {
+        targetBlock.classList.add('show');
+    }
+
+    // Восстанавливаем позицию прокрутки
+    window.scrollTo(0, scrollPosition);
+}
 </script>
 
 

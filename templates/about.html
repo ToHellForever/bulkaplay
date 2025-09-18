@@ -1,30 +1,66 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}О нас{% endblock title %}
+{% block stylesheets %}
+<style>
+  h4{ 
+    font-family: "Unbounded", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+  }
+  p6 {
+    font-family: "Unbounded", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+  #icon_about {
+    background: #1A1A1A;
+    border-radius: 10px;
+    height: 150px;
+    padding: 40px 40px;
+}
+
+/* для 2 элемента стиили */
+#icon_about:nth-child(2) {
+    background: #F88005;
+    color: #1A1A1A !important;
+}
+</style>
+{% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
 <div class="container-fluid">
   <div class="row flex-wrap:nowrap ">
     <div class="col-5">
       <h1 style='font-size: 150px'>О <span class="wood-text">НАС<span></h1>
-        <video width="750" height="360" controls style='border-radius: 31px; border: 2px solid #F88005;  object-fit: cover;'>
-        <source src="/media/video_about.mp4" type="video/mp4"> 
-        Ваш браузер не поддерживает элемент video.
-        </video>
+        <iframe
+            src="https://vkvideo.ru/video_ext.php?oid=-226618368&id=456239026&hd=2&autoplay=1"
+            width="750"
+            height="360"
+            style="border-radius: 31px; border: 2px solid #F88005; background-color: #000;"
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
     </div>
     <div class="col-4">
-      <p style='color: white; margin-top: 55px; font-size: 20px; '>
+      <p style='color: white; margin-top: 100px; font-size: 20px; '>
         BUL.K.A-PLAY - производительэксклюзивныхпроизводитель настольных игр изтвёрдых пород дерева. Мы объединяем ручную работу, надёжные материалы и оригинальные идеи, создавая игры, которые становятся украшением любого мероприятия или интерьера. Наши изделия востребованы как для семейного отдыха, так И для корпоративных предлагаем:событий.Мы<br>• продажу настольных игр с доставкой по всей России;<br>• аренду и сопровождение игр на мероприятиях<br> любого масштабаот частных праздников до городских фестивалей.Выбирая BUL.K.A-PLAY, вы получаете продукт ВысокогокачестваИнадёжного партнёра для организацииярких событий.
       </p>
     </div>
     <div class="col-3">
-        <video width="450" height="550" controls style='border-radius: 31px; border: 2px solid #F88005; margin-top: 50px; object-fit: cover;'>
-        <source src="/media/shorts_1.mp4" type="video/mp4"> 
-        Ваш браузер не поддерживает элемент video.
-        </video>
-    </div>
+            <iframe
+            src="https://vk.com/clip-226618368_456239221"
+            width="450"
+            height="550"
+            style="border-radius: 31px; border: 2px solid #F88005; background-color: #000; margin-top: 50px; object-fit: cover;"
+            allow="autoplay; encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+        </div>
   </div>
-  <div class="row gap-4" style='margin-top: 30px; color:white;'>
+  <div class="row gap-4" style='margin-top: 30px; color:white; margin-left: 60px; text-align: center  '>
     <div class="col-3" id='icon_about'>
         <h4>500 +</h4>
         <p6>проведённых мероприятий</p6>
@@ -45,7 +81,7 @@
 </div>
 
 
-<div class='container' style="max-width: 1600px; margin-top: 50px;">
+<div class='container' style="max-width: 2000px; margin-top: 80px; margin-left: 50px">
   <h2>ПОЧЕМУ НАС ВЫБИРАЮТ?</h2>
     <div class="row">
       <div class="col-md-3 col-6">

@@ -426,19 +426,6 @@ a {
     flex-wrap: nowrap
 }
 
-/* стили для страницы О нас */
-#icon_about {
-    background: #1A1A1A;
-    border-radius: 10px;
-    height: 120px;
-    padding: 20px 20px;
-}
-
-/* для 2 элемента стиили */
-#icon_about:nth-child(2) {
-    background: #F88005;
-    color: #1A1A1A !important;
-}
 
 
 /* каталог игр */

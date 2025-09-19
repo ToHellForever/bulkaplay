@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Главная{% endblock title %}
+{% block stylesheets %}
+<style>
+.hover-effect:hover {
+    transform: scale(1.05); /* Увеличение на 5% */
+    opacity: 0.9;           /* Немного уменьшаем непрозрачность */
+}
+
+/* Переходы плавно меняют свойства */
+.hover-effect {
+    transition: all 0.3s ease; /* Время перехода и тип кривой */
+}
+</style>
+{% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
 <h1 >НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА<span></h1>
@@ -186,9 +199,9 @@
 {% comment %} и плашка с кнопкой оформить заказ по центру внизу {% endcomment %}
 <div>
    <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;">
-    <h2 style='color: black; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600;'>Оформить заказ</h2>
-    <p style='color: black; font-family: "Unbounded", sans-serif; font-size: 15px; font-weight: 400; text-align: center;'>Заказать игру на нашем сайте можно в любой момент. Вы можете оформить заказ в любое удобное для вас время, и мы с радостью выполним его в кратчайшие сроки.</p> 
-    <a data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
+    <h2  style='color: black; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600; transition: all .3s ease;' >ОФОРМИТЬ ЗАКАЗ</h2>
+    <p style='color: black; font-family: "Unbounded", sans-serif; font-size: 15px; font-weight: 400; text-align: center;'>Заказать игру на нашем сайте можно в любой момент. Вы можете оформить заказ в любое удобное для вас время, и мы с радостью выполним его в кратчайшие сроки.</p> 
+    <a data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary hover-effect" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px; transition: all .3s ease;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
   </div>
 </div>
 {% endblock %}

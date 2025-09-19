@@ -20,10 +20,16 @@
     padding: 40px 40px;
 }
 
-/* для 2 элемента стиили */
+{% comment %}  для 2 элемента стиили  {% endcomment %}
 #icon_about:nth-child(2) {
     background: #F88005;
     color: #1A1A1A !important;
+}
+{% comment %} для кнопки оформления заказа {% endcomment %}
+.btn-primary:hover {
+    transform: scale(1.05);     /* Увеличение на 5% */
+    box-shadow: 0 0 10px rgba(0,0,0,0.5); /* Мягкая подсветка вокруг кнопки */
+    outline: none;               /* Удаляем стандартный контур при фокусировке */
 }
 </style>
 {% endblock stylesheets %}
@@ -177,7 +183,7 @@
    <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;">
     <h2 style='color: black; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600;'>ХОЧЕШЬ ТАКЖЕ?</h2>
     <p style='color: black; font-family: "Unbounded", sans-serif; font-size: 20px;font-weight: 400 ;text-align: center;'>Отправь заявку, мы свяжемся с тобой в ближайшее время</p> 
-    <button type="button" data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px;">ЗАПОЛНИТЬ ЗАЯВКУ</button>
+    <button type="button" data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px; box-shadow: inset 0 0 0 0 transparent; transition: all 0.3s ease;">ЗАПОЛНИТЬ ЗАЯВКУ</button>
   </div>
 </div>
 

@@ -11,21 +11,21 @@ input::placeholder {
 {% block content %}
 {% include 'includes/modal_order.html' %}
 <div class="container-fluid" style="margin-top: 50px; max-width: 1800px;">
-  <div class="row">
-<div class="col-6">
-      <h2 style='margin-left: 30px;'>КАТАЛОГ ИГР</h2>
+  <div class="row ms-auto" style="margin-left: 30px;">
+    <div class="col-4">
+      <h2>КАТАЛОГ ИГР</h2>
     </div>
-    <div class="col-3">
+    <div class="col-4 ">
       <form method="get" class="form-inline" style="position: relative;">
         <input type="text" name="search" class="form-control" placeholder="Поиск..." value="{{ request.GET.search }}" style="padding-right: 15px; background: #3B3737; border: none; font-family: Mont; font-weight: 400; color: #a8a2a2ff;">
-        <button type="submit" class="btn" style="position: absolute; right: 0; top: 0; height: 100%; width: 35px; background: none; border: none; padding: 0; color: #a8a2a2ff;" >
+        <button type="submit" class="btn" style="position: absolute; right: 0; top: 0; height: 100%; width: 35px; background: none; border: none; padding: 0; color: #a8a2a2ff;">
           <i class="fas fa-search"></i>
-        </button> 
-      </form> 
+        </button>
+      </form>
     </div>
-    <div class="col-3">
+    <div class="col-4">
       <form method="get" class="form-inline">
-        <select name="sort" class="form-control" onchange="this.form.submit()" style='background: #3B3737; border: none; height: 42px;color: #a8a2a2ff; font-family: Mont; font-weight: 400;'>
+        <select name="sort" class="form-control" onchange="this.form.submit()" style="background: #3B3737; border: none; height: 42px; color: #a8a2a2ff; font-family: Mont; font-weight: 400;">
           <option value="">Порядок по:</option>
           <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Цена по возрастанию</option>
           <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Цена по убыванию</option>
@@ -35,6 +35,7 @@ input::placeholder {
       </form>
     </div>
   </div>
+</div>
 <div class="container-fluid" style="max-width: 1800px;">
     <div class="games-grid">
         {% for product in products %}

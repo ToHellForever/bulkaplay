@@ -206,8 +206,7 @@ body {
 
 /* Стиль для ссылок */
 .nav-link {
-    padding: 10px 15px; /* уменьшили паддинги */
-    /* остальные стили оставляем без изменений */
+    padding: 10px 15px;
     color: white;
     position: relative;
     display: inline-block;
@@ -266,20 +265,19 @@ h1 {
     font-size: 25px;
     margin-top: -5px;
     margin-bottom: 30px;
-    display: inline-block; /* Добавляем, чтобы ссылки вели себя как блочные элементы */
-    width: 100%; /* Для мобильной версии, чтобы ссылки занимали всю ширину */
+    display: inline-block; 
+    width: 100%;
     background: #1A1A1A;
     height: 200px;
     border-radius: 30px;
     display: flex;
     align-items: start;
     justify-content: start;
-    padding: 0 20px; /* Добавлен отступ по бокам для текста */
-    box-sizing: border-box; /* Чтобы padding не увеличивал ширину */
+    padding: 0 20px;
+    box-sizing: border-box; 
 }
 
 #order-button:hover {
-    /* кнопка немного опускается вниз */
     transform: translateY(5px);
     transition: transform 0.3s ease;
 }
@@ -297,23 +295,23 @@ h1 {
 .item {
     margin-top: 20px;
     margin-left: 70px;
-    text-align: left; /* Выравнивание текста по левому краю */
-    display: flex; /* Используем flexbox для выравнивания */
-    flex-direction: column; /* Элементы в колонку */
-    align-items: flex-start; /* Выравнивание по левому краю */
-    max-width: 300px; /* Ограничиваем ширину блока */
+    text-align: left; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    max-width: 300px;
     
 }
 
 .item:first-child p3 {
-    margin-top: -5px; /* Поднимаем текст на 5 пикселей вверх */
+    margin-top: -5px; 
 }
 
 /* Стили для изображений иконок */
 .item img {
-    width: 100px; /* или другой размер по вашему усмотрению */
+    width: 100px;
     height: auto;
-    margin-bottom: 10px; /* Отступ между иконкой и текстом */
+    margin-bottom: 10px; 
 }
 /* Стили для заголовков */
 .exclusive-text {
@@ -321,8 +319,8 @@ h1 {
     color: #F88005;
     font-family: 'Unbounded', sans-serif;
     font-weight: 700;
-    font-size: 20px; /* или другой размер по вашему усмотрению */
-    margin: 0; /* Убираем стандартные отступы */
+    font-size: 20px; 
+    margin: 0; 
     padding: 0;
 }
 
@@ -334,8 +332,8 @@ p3 {
     font-weight: 300;
     margin-top: 10px;
     width: auto;
-    max-width: 250px; /* Устанавливаем максимальную ширину */
-    line-height: 1.4; /* Увеличиваем межстрочный интервал для удобочитаемости */
+    max-width: 250px; 
+    line-height: 1.4;
 }
 
 /* блок с каруселью */
@@ -347,7 +345,7 @@ h2 {
     margin-bottom: 20px;
 }
 .product-card {
-    height: 700px; /* или любое другое значение, которое вам подходит */
+    height: 700px; 
     display: flex;
 }
 .card-title {
@@ -367,9 +365,6 @@ p2 {
     font-family: 'Mont', sans-serif;
     font-size: 20px;
     font-weight: 400;
-}
-.carousel-control-prev, .carousel-control-next {
-    margin-bottom: 50px;
 }
 .carousel-control-prev {
     left: -180px !important;
@@ -431,38 +426,45 @@ a {
 /* каталог игр */
 .games-grid {
     display: flex;
-    flex-wrap: wrap;;
+    flex-wrap: wrap;
+    gap: 20px; 
+    justify-content: flex-start; 
 }
 
 .game-card {
-    flex: 0 0 calc(33.333%);
+    flex: 0 0 calc(33.333% - 20px); 
     box-sizing: border-box;
     padding: 15px;
     border-radius: 10px;
+    background: black; 
+    display: flex;
+    flex-direction: column; 
+    min-height: 450px; 
 }
 
 .game-image {
-    width: 90%;
-    height: auto;
+    width: 100%;
+    height: 100%; 
+    object-fit: cover; 
     border-radius: 25px;
+    margin-bottom: 15px;
 }
 
 .game-card h3 {
     color: white;
     font-family: 'Unbounded', sans-serif;
-    font-size: 40px;
+    font-size: 24px;
     font-weight: 400;
-    margin-top: 30px;
-    margin-left: 20px;
+    margin: 10px 0;
+    flex-grow: 1; /* Растягивание заголовка для выравнивания */
 }
 
 .game-card p {
     color: white;
     font-family: 'Mont', sans-serif;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 500;
-    line-height: 1.4;
-    margin-left: 20px;
+    margin: 10px 0;
 }
 
 @media (max-width: 768px) {

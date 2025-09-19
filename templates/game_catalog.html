@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Каталог игр{% endblock title %}
+{% block stylesheets %}
+<style>
+input::placeholder {
+  color: #a8a2a2ff !important;
+}
+</style>
+{% endblock stylesheets%}
 {% block content %}
 {% include 'includes/modal_order.html' %}
-
 <div class="container-fluid" style="margin-top: 50px; max-width: 1800px;">
   <div class="row">
 <div class="col-6">
@@ -11,16 +17,16 @@
     </div>
     <div class="col-3">
       <form method="get" class="form-inline" style="position: relative;">
-        <input type="text" name="search" class="form-control" placeholder="Поиск..." value="{{ request.GET.search }}" style="padding-right: 15px; background: #3B3737;">
-        <button type="submit" class="btn" style="position: absolute; right: 0; top: 0; height: 100%; width: 35px; background: none; border: none; padding: 0;">
+        <input type="text" name="search" class="form-control" placeholder="Поиск..." value="{{ request.GET.search }}" style="padding-right: 15px; background: #3B3737; border: none; font-family: Mont; font-weight: 400; color: #a8a2a2ff;">
+        <button type="submit" class="btn" style="position: absolute; right: 0; top: 0; height: 100%; width: 35px; background: none; border: none; padding: 0; color: #a8a2a2ff;" >
           <i class="fas fa-search"></i>
         </button> 
       </form> 
     </div>
     <div class="col-3">
       <form method="get" class="form-inline">
-        <select name="sort" class="form-control" onchange="this.form.submit()">
-          <option value="">Сортировка</option>
+        <select name="sort" class="form-control" onchange="this.form.submit()" style='background: #3B3737; border: none; height: 42px;color: #a8a2a2ff; font-family: Mont; font-weight: 400;'>
+          <option value="">Порядок по:</option>
           <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Цена по возрастанию</option>
           <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Цена по убыванию</option>
           <option value="name_asc" {% if request.GET.sort == 'name_asc' %}selected{% endif %}>Название (А-Я)</option>
@@ -38,13 +44,11 @@
             <p>{{ product.price|floatformat }} руб.</p>
             {% comment %} кнопка с ссылкой на подробнее о товаре {% endcomment %}
             <a href="{% url 'product_detail' product.id %}">
-            <button style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px; margin-left: 18px;'> Подробнее</button>
+            <button style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px; margin-left: 0px;'> Подробнее</button>
             </a>  
         </div>
         {% endfor %}
     </div>
 </div>
-
-
-
-{% endblock content %}
+</div>
+{% endblock content%}

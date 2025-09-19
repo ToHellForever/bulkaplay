@@ -129,7 +129,7 @@ class ProductDetailView(TemplateView):
         context["product"] = get_object_or_404(Product, pk=kwargs["pk"])
         context["form"] = OrderForm()
         # Берём 3 случайных товара из базы данных
-        all_products = list(Product.objects.exclude(id=context["product"].id))  # Исключаем текущий продукт
+        all_products = list(Product.objects.exclude(id=context["product"].id).prefetch_related('additional_images'))  # Исключаем текущий продукт
         random_products = random.sample(all_products, min(len(all_products), 3))
         context["random_products"] = random_products
         return context

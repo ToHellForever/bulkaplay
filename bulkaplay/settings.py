@@ -107,6 +107,6 @@ UNFOLD = {
     # Последний пункт, необязателен. Будут доступны все темы для админ-панели
     "SITE_TITLE": "BUL.K.A-PLAY",  # Заголовок в браузере
     "SITE_HEADER": "Админ-панель BUL.K.A-PLAY",           # Заголовок в шапке
-    "SITE_ICON": "/media/admin_logo/admin_logo.jpg",         # Путь к логотипу (SVG/PNG)
+    "SITE_ICON": "/media/logo/admin_logo.jpg",         # Путь к логотипу (SVG/PNG)
     "THEME": "dark",  # "light", "dark" или "auto" (автоопределение)
 }

@@ -49,15 +49,14 @@
             color: white !important;
             font-family: 'Unbounded', sans-serif !important;
             font-size: 26px !important;
-            margin-bottom: 10px !important;
-            margin-top: 20px
+
         }
         p2 {
             color: white !important;
             font-family: 'Mont', sans-serif !important;
             font-size: 25px !important;
             font-weight: 500;
-            margin-left: 20px;
+            
         }
         #pd-button:hover {
             color: white !important;
@@ -69,16 +68,17 @@
 {% include 'includes/modal_order.html' %}
 <div class="container my-5 " style="max-width: 1600px;" >
     <div class="row align-items-stretch "> {# Строки выравниваются по высоте #}
-        {% if product.additional_images.all|length > 0 %}
+        {% with product_images=product.additional_images.all %}
+            {% if product_images|length > 0 %}
             <div class="col-md-2"> {# Колонка для доп. изображений #}
                 <div class="d-flex flex-column gap-3">
-                    {% for img in product.additional_images.all %}
+                    {% for img in product_images %} 
                         <img src="{{ img.image.url }}" alt="Дополнительное изображение {{ img.id }}" style='border-radius: 21px; width: 140px; height: 138px; object-fit: cover'>
                     {% endfor %}
                 </div>
             </div>
         {% endif %}
-
+    {% endwith %}
         <div class="col-md-8 col-xl-6"> {# Колонка для основного изображения #}
             <img src="{% if product.image %}{{ product.image.url }}{% else %}#{% endif %}"
                  alt="Основное изображение" style="border-radius: 31px; width: 100%; margin-left: -80px; height: 750px;">
@@ -115,12 +115,14 @@
                     <button data-bs-toggle="modal" data-bs-target="#orderModal" type="button" id='pd-button' style="background: #F88005; color: black; border-radius: 15px; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px;">Заказать</button>
                 </div>
 
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
 <a href="#gameRulesCollapse" role="button" aria-expanded="false" aria-controls="gameRulesCollapse" onclick="toggleBlock('gameRulesCollapse', event)" id='pd'>
     Правила игры
+    <p style='text-align: center;'>⇩</p>    
 </a>
 <a href="#additionalInfoCollapse" role="button" aria-expanded="false" aria-controls="additionalInfoCollapse" onclick="toggleBlock('additionalInfoCollapse', event)" id='pd'>
     Дополнительно
+    <p style='text-align: center;'>⇩</p>
 </a>
     </div>
 
@@ -146,7 +148,7 @@
             <p2>{{ random_product.price|floatformat }} руб.</p2>
             {% comment %} кнопка с ссылкой на подробнее о товаре {% endcomment %}
             <a href="{% url 'product_detail' random_product.id %}">
-            <button style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px; margin-left: 18px; margin-top:10px;'> Подробнее</button>
+            <button style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px; margin-left: 0px; margin-top:10px;'> Подробнее</button>
             </a>  
         </div>
         {% endfor %}

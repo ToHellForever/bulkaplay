@@ -432,7 +432,7 @@ a {
 
 /* каталог игр */
 
-/* список игр */
+/* список */
 .games-grid {
     display: flex;
     flex-wrap: wrap;
@@ -476,7 +476,6 @@ a {
     margin: 10px 0;
 }
 
-
 @media (max-width: 768px) {
     h1 {
         font-size: 30px !important;
@@ -516,37 +515,97 @@ a {
     p2 {
         font-size: 10px;
     }
+    .card-title {
+        font-size: 13px;
+        white-space: nowrap;
+        overflow: visible;
+
+    }
+    .price {
+        font-size: 10px;
+    }
+
+    h6 {
+        font-size: 20px;
+    }
+    .contact-block {
+        width: 90%;
+        height: 300px;
+        margin-top: 20px;
+        margin-left: 22px !important;
+    }
+    /* 2 стиль для 2 конки  */
+    .contact-block:nth-child(2) {
+        height: 340px;
+    }
+    /* Стили для блока "Оформить заказ" на мобильных устройствах */
+    .container.button {
+        margin-top: 20px !important;
+        margin-left: 22px;
+        width: 90% !important;
+        height: auto !important;
+        padding: 20px !important;
+    }
+    .container.button h2 {
+        font-size: 25px !important;
+    }
+    .container.button p {
+        font-size: 14px !important;
+    }
+    .container.button .btn {
+        font-size: 18px !important;
+        padding: 10px 20px !important;
+    }
+    .contacts {
+        flex-wrap: wrap !important;
+    }
 }
 
-.contact-block {
-    width: 90%;
-    height: 300px;
-    margin-top: 20px;
-    margin-left: 22px !important;
-}
-/* 2 стиль для 2 конки  */
-.contact-block:nth-child(2) {
-    height: 340px;
-}
-/* Стили для блока "Оформить заказ" на мобильных устройствах */
-.container.button {
-    margin-top: 20px !important;
-    margin-left: 22px;
-    width: 90% !important;
-    height: auto !important;
-    padding: 20px !important;
-}
-.container.button h2 {
-    font-size: 25px !important;
-}
-.container.button p {
-    font-size: 14px !important;
-}
-.container.button .btn {
-    font-size: 18px !important;
-    padding: 10px 20px !important;
-}
-.contacts {
-    flex-wrap: wrap !important;
-} 
 
+@media (max-width: 1040px) {
+    .burger-icon {
+        display: flex;
+    }
+
+    .menu-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 50%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9);
+        z-index: 999;
+        overflow-y: auto;
+    }
+
+    .menu-container.active {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu-container .row {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .menu-container .col {
+        margin: 10px 0;
+    }
+
+    .burger-icon.active span:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+
+    .burger-icon.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-icon.active span:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+}

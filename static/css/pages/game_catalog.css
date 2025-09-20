@@ -1,0 +1,79 @@
+/* Стили для страницы каталога игр */
+
+input::placeholder {
+    color: #a8a2a2ff;
+}
+
+#filter {
+    color: white;
+    background: #000;
+    border: none;
+    font-family: Unbounded;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+select:focus, input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+option, select option, select::-ms-value {
+    background: #3B3737;
+    color: #a8a2a2ff;
+}
+
+.games-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.game-card {
+    flex: 0 0 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 10px;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
+
+.game-card h3 {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 10px 0;
+    flex-grow: 1;
+}
+
+.game-card p {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .game-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .game-card {
+        flex: 0 0 100%;
+    }
+}

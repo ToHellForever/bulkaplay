@@ -1,31 +1,9 @@
+{% load static %}
 {% block stylesheets %}
-<style>
-    #scrollToTopBtn {
-        width: 120px;
-        height: 120px;
-
-        display: none;
-        position: fixed;
-        bottom: 100px;
-        right: 15px;
-        z-index: 99;
-        border: none;
-        outline: none;
-        background-color: #F88005;
-        color: black;
-        cursor: pointer;
-        padding: 15px;
-        font-size: 18px;
-        border-radius: 31px;
-    }
-    #scrollToTopBtn:hover {
-        background-color: #555;
-        color: white;
-    }
-</style>
-{% endblock stylesheets%}
+<link rel="stylesheet" href="{% static 'css/components/scroll_button.css' %}">
+{% endblock stylesheets %}
 {% block content %}
-<button id="scrollToTopBtn">Наверх ↑</button>
+<button id="scrollToTopBtn">↑</button>
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {

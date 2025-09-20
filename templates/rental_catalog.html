@@ -1,92 +1,12 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}Аренда{% endblock title%}
 {% block stylesheets %}
-<style>
-    p {
-        color: white !important;
-        font-family: 'Mont', sans-serif !important;
-        font-size: 20px !important;
-        font-weight: 400 !important;
-        margin-bottom: 10px !important;
-        margin-top: 10px !important;
-        text-align: center !important;
-    }
-    h2 {
-        color: white !important;
-        font-family: 'Unbounded', sans-serif !important;
-        font-size: 30px !important;
-        font-weight: 400 !important;
-        margin-bottom: 10px !
-    }
-    h3 {
-        color: #F88005 !important;
-        font-family: 'Unbounded', sans-serif !important;
-        font-size: 30px !important;
-        font-weight: 400 !important;
-        margin-bottom: 10px !important;
-        margin-top: 10px !important;
-    }
-    input {
-        border-radius: 10px;
-        background: white;
-        height: 50px;
-        text-align: center;
-        color: black;   
-        margin-top: 5px;;
-    }
-    {% comment %} стили для ползунка {% endcomment %}
-.form-range {
-    appearance: none;
-    width: 100%; 
-    height: 10px;
-    background-color: #E0E0E0;
-    border-radius: 5px;
-}
-
-.form-range::-webkit-slider-thumb {
-    appearance: none;
-    height: 20px;
-    width: 20px;
-    background-color: #F88005;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top: -7.5px;
-}
-
-.form-range::-webkit-slider-runnable-track {
-    height: 5px;
-    background-color: #E0E0E0;
-    border-radius: 5px;
-}
-.video-container {
-    position: relative;
-    width: 100%;
-    height: 0; /* Убираем фиксированную высоту */
-    padding-top: 56.25%; /* Соотношение сторон 16:9 */
-    overflow: hidden;
-    border-radius: 31px;
-    border: 2px solid #000000ff;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    object-fit: cover; /* Вместо fill */
-}
-.btn-primary:hover {
-    transform: scale(1.05);  
-    box-shadow: 0 0 10px rgba(0,0,0,0.5); 
-    outline: none;               
-}
-</style>
+<link rel="stylesheet" href="{% static 'css/pages/rental_catalog.css' %}">
 {% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
-<div class='container' style="max-width: 1600px;">
+<div class='container rental-header'>
     <h1>ОРГАНИЗАЦИЯ МЕРОПРИЯТИЙ <span class="wood-text"><br>С НАСТОЛЬНЫМИ ИГРАМИ<span></h1>
     <p>Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p>
 
@@ -103,7 +23,7 @@
 </div>
 </div>
 
-<div class="container-fluid" style="max-width: 1600px; margin-top: 150px;">
+<div class="container-fluid rental-calculator">
     <h2>Рассчитать количество игр на празднике</h2>
     <div class="row">
         <div class="col-md-4">
@@ -129,7 +49,7 @@
     </div>
 </div>
 
-<div class="container-fluid" style="max-width: 1800px; margin-top: 50px;">
+<div class="container-fluid rental-games">
     <div class="games-grid">
         {% for arend in arenda %}
         <div class="game-card">
@@ -141,7 +61,7 @@
 
 
 
-<div class='container' style="max-width: 1600px; margin-top: 150px;">
+<div class='container rental-events'>
   <h2>МЕРОПРИЯТИЯ С BUL.K.A-PLAY</h2>
   <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -159,10 +79,10 @@
 
         <div class="col-4 col-md-4 mb-4"> 
           <div class="card h-100 product-card" style="background: black;">
-            <img style="width: 100%; height: 70%; border-radius: 20px;" src="{{ n.image.url }}" class="card-img-top" alt="{{ n.name }}">
+<img src="{{ n.image.url }}" class="card-img-top" alt="{{ n.name }}">
             <div class="card-body">
               <h5 class="card-title" >{{ n.name }}</h5>
-                <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px;'>Подробнее</button>
+<button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" class="btn btn-primary">Подробнее</button>
             </div>
           </div>
         </div>  
@@ -188,11 +108,11 @@
     </div>
 
     <!-- Элементы управления каруселью -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev" style="margin-top: 120px;">
+<button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Предыдущий</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next " style="margin-top: 120px;">
+<button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Следующий</span>
     </button>
@@ -201,10 +121,10 @@
 
 
 <div>
-   <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;">
-    <h2 style='color: black !important; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600 !important;'>ХОЧЕШЬ ТАКЖЕ?</h2>
-    <p2 style='color: black !important; font-family: "Unbounded", sans-serif; font-size: 20px; font-weight: 400 !important;text-align: center;'>Отправь заявку, мы свяжемся с тобой в ближайшее время</p2> 
-    <button type="button" data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px; box-shadow: inset 0 0 0 0 transparent; transition: all 0.3s ease; margin-top: 20px" >ЗАПОЛНИТЬ ЗАЯВКУ</button>
+<div class='container rental-order'>
+<h2>ХОЧЕШЬ ТАКЖЕ?</h2>
+<p>Отправь заявку, мы свяжемся с тобой в ближайшее время</p>
+<button type="button" data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary">ЗАПОЛНИТЬ ЗАЯВКУ</button>
   </div>
 </div>
 {% endblock content%}

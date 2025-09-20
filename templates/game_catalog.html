@@ -4,56 +4,24 @@
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 {% block stylesheets %}
-<style>
-input::placeholder {
-  color: #a8a2a2ff !important;
-}
-#filter {
-  color: white;
-  background: #000;
-  border: none;
-  font-family: Unbounded;
-  font-weight: 400;
-  font-size: 16px;
-}
-select:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
-input:focus {
-  outline: none !important;
-  box-shadow: none !important;
-}
-option{
-    background: #3B3737 !important;
-    color: #a8a2a2ff !important;
-}
-select option {
-    background: #3B3737 !important;
-    color: #a8a2a2ff !important;
-}
-select::-ms-value {
-    background: #3B3737 !important;
-    color: #a8a2a2ff !important;
-}
-</style>
-{% endblock stylesheets%}
+<link rel="stylesheet" href="{% static 'css/pages/game_catalog.css' %}">
+{% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
 <form method="get" class="form-inline">
-  <div class="container-fluid" style="margin-top: 50px; max-width: 1800px;">
-    <div class="row ms-auto" style="margin-left: 30px;">
+  <div class="container-fluid game-catalog-header">
+    <div class="row ms-auto">
       <div class="col-4">
         <h2>КАТАЛОГ ИГР</h2>
       </div>
-<div class="col-4" style="position: relative;">
-  <input type="text" name="search" class="form-control" placeholder="Поиск..." value="{{ request.GET.search }}" style="padding-right: 15px; background: #3B3737; border: none; font-family: Mont; font-weight: 400; color: #a8a2a2ff;">
-  <button type="submit" class="btn" style="position: absolute; right: 0; top: 0; height: 100%; width: 35px; background: none; border: none; padding: 0; color: #a8a2a2ff;">
-    <i class="fas fa-search" style='margin-right: 20px; margin-bottom: 15px'></i>
+<div class="col-4 search-container">
+  <input type="text" name="search" class="form-control search-input" placeholder="Поиск..." value="{{ request.GET.search }}">
+  <button type="submit" class="btn search-button">
+    <i class="fas fa-search"></i>
   </button>
 </div>
       <div class="col-4">
-        <select name="sort" class="form-control" onchange="this.form.submit()" style="background: #3B3737; border: none; height: 42px; color: #a8a2a2ff; font-family: Mont; font-weight: 400;">
+        <select name="sort" class="form-control filter-select" onchange="this.form.submit()">
           <option value="">Порядок по:</option>
           <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Цена по возрастанию</option>
           <option value="price_desc" {% if request.GET.sort == 'price_desc' %}selected{% endif %}>Цена по убыванию</option>
@@ -64,10 +32,10 @@ select::-ms-value {
     </div>
   </div>
 
-  <div class="container-fluid" style="margin-top: 50px; max-width: 1800px;">
-    <div class="row ms-auto" style="margin-left: 30px;">
+  <div class="container-fluid game-catalog-filters">
+    <div class="row ms-auto">
       <div class="col-3">
-        <select name="size" class="form-control" onchange="this.form.submit()" id='filter'>
+        <select name="size" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
           <option value="">Размер</option>
           {% for size in sizes %}
             <option value="{{ size.id }}" {% if request.GET.size == size.id|stringformat:"s" %}selected{% endif %}>{{ size.name }}</option>
@@ -75,7 +43,7 @@ select::-ms-value {
         </select>
       </div>
       <div class="col-3">
-        <select name="player_count" class="form-control" onchange="this.form.submit()" id='filter'>
+        <select name="player_count" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
           <option value="">Количество игроков</option>
           {% for player_count in player_counts %}
             <option value="{{ player_count.id }}" {% if request.GET.player_count == player_count.id|stringformat:"s" %}selected{% endif %}>{{ player_count.count }}</option>
@@ -83,7 +51,7 @@ select::-ms-value {
         </select>
       </div>
       <div class="col-3">
-        <select name="player_age" class="form-control" onchange="this.form.submit()" id='filter'>
+        <select name="player_age" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
           <option value="">Возраст игроков</option>
           {% for player_age in player_ages %}
             <option value="{{ player_age.id }}" {% if request.GET.player_age == player_age.id|stringformat:"s" %}selected{% endif %}>{{ player_age.age }}</option>
@@ -91,7 +59,7 @@ select::-ms-value {
         </select>
       </div>
       <div class="col-3">
-        <select name="game_type" class="form-control" onchange="this.form.submit()" id='filter'>
+        <select name="game_type" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
           <option value="">Вид игры</option>
           {% for game_type in game_types %}
             <option value="{{ game_type.id }}" {% if request.GET.game_type == game_type.id|stringformat:"s" %}selected{% endif %}>{{ game_type.name }}</option>
@@ -102,17 +70,16 @@ select::-ms-value {
   </div>
 </form>
 </div>
-<div class="container-fluid" style="max-width: 1800px;">
+<div class="container-fluid game-catalog-grid">
     <div class="games-grid">
         {% for product in products %}
         <div class="game-card">
             <img src="{{ product.image.url }}" alt="{{ product.name }}" class="game-image">
             <h3>{{ product.name }}</h3>
-            <p>{{ product.price|floatformat }} руб.</p>
-            {% comment %} кнопка с ссылкой на подробнее о товаре {% endcomment %}
+            <p class="product-price">{{ product.price|floatformat }} руб.</p>
             <a href="{% url 'product_detail' product.id %}">
-            <button style='background: #F88005; font-family: "Unbounded", sans-serif; font-weight: 500; font-size: 16px; margin-left: 0px;'> Подробнее</button>
-            </a>  
+                <button class="btn btn-primary">Подробнее</button>
+            </a>
         </div>
         {% endfor %}
     </div>

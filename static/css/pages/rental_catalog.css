@@ -1,0 +1,151 @@
+/* Стили для страницы аренды */
+
+p {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.order-text {
+    color: black;
+    font-family: "Unbounded", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+h3 {
+    color: #F88005;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+input {
+    border-radius: 10px;
+    background: white;
+    height: 50px;
+    text-align: center;
+    color: black;
+    margin-top: 5px;
+}
+
+/* стили для ползунка */
+.form-range {
+    appearance: none;
+    width: 100%;
+    height: 10px;
+    background-color: #E0E0E0;
+    border-radius: 5px;
+}
+
+.form-range::-webkit-slider-thumb {
+    appearance: none;
+    height: 20px;
+    width: 20px;
+    background-color: #F88005;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -7.5px;
+}
+
+.form-range::-webkit-slider-runnable-track {
+    height: 5px;
+    background-color: #E0E0E0;
+    border-radius: 5px;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+    overflow: hidden;
+    border-radius: 31px;
+    border: 2px solid #000000ff;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    outline: none;
+}
+
+.games-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.game-card {
+    flex: 0 0 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 10px;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+}
+
+.game-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
+
+.game-card h3 {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 10px 0;
+    flex-grow: 1;
+}
+
+.game-card p {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .game-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+}
+
+@media (max-width: 480px) {
+    .game-card {
+        flex: 0 0 100%;
+    }
+}

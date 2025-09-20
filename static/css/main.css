@@ -1,3 +1,97 @@
+/* Общие стили для всего проекта */
+
+body {
+    background: black;
+    overflow-x: hidden;
+    height: auto;
+}
+
+/* Бургер-меню */
+.burger-menu {
+    position: relative;
+}
+
+.burger-icon {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.burger-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+.menu-container {
+    display: block;
+}
+
+/* навигационное меню */
+.nav-item {
+  display: flex;
+  align-items: center;
+  margin: 0 10px;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+/* Стиль для ссылок */
+.nav-link {
+    padding: 10px 15px;
+    color: white;
+    position: relative;
+    display: inline-block;
+    font-family: 'Mont', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Псевдоэлемент для подчёркивания */
+.nav-link:not(:has(img))::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background-color: #F88005;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-link:first-child::after {
+    text-decoration: none;
+}
+
+/* Эффект при наведении */
+.nav-link:hover {
+    color: #F88005;
+}
+
+.nav-link:hover::after {
+    left: 20%;
+    width: 60%;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* текст главной страницы (заголовок) */
+.wood-text {
+  color: #F88005;
+}
+
 /* Регистрация шрифтов */
 /* Mont Font */
 @font-face {
@@ -92,62 +186,7 @@
     font-style: normal;
     font-display: swap;
 }
-
-
-body {
-    background: black;
-    overflow-x: hidden;
-}
-
-/* .hidden {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    overflow: hidden !important;
-}
-
-.visible {
-    display: block !important;
-    visibility: visible !important;
-    height: auto !important;
-}
-
-Стили для модального окна */
-
-
-/* Бургер-меню */
-.burger-menu {
-    position: relative;
-}
-
-
-.burger-icon {
-        display: none;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 30px;
-        height: 21px;
-        cursor: pointer;
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        z-index: 1000;
-    }
-
-.burger-icon span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: white;
-    transition: all 0.3s ease;
-}
-
-.menu-container {
-    display: block;
-    
-}
-
-/* мобильная версия бургер меню */
+/* Медиа-запросы */
 @media (max-width: 1040px) {
     .burger-icon {
         display: flex;
@@ -194,418 +233,16 @@ body {
     .burger-icon.active span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
     }
-}
-
-
-/* навигационное меню */
-.nav-item {
-  display: flex;
-  align-items: center;
-  margin: 0 10px;
-  font-size: 15px;
-  font-weight: 300;
-}
-
-/* Стиль для ссылок */
-.nav-link {
-    padding: 10px 15px;
-    color: white;
-    position: relative;
-    display: inline-block;
-    font-family: 'Mont', sans-serif;
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* Псевдоэлемент для подчёркивания */
-.nav-link:not(:has(img))::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background-color: #F88005;
-    transition: width 0.3s ease, left 0.3s ease;
-}
-.nav-link:first-child::after {
-    text-decoration: none;
-}
-
-
-/* Эффект при наведении */
-.nav-link:hover {
-    color: #F88005;
-}
-
-.nav-link:hover::after {
-    left: 20%;
-    width: 60%;
-}   
-
-/* текст главной страницы (заголовок) */
-h1 {
-    text-align: center;
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 700;
-    font-size: 70px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-}
-
-.wood-text {
-  color: #F88005; 
-}
-
-/* 3 кнопки под фото */
-#order-button {
-    text-decoration: none;
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 400;
-    font-size: 25px;
-    margin-top: -5px;
-    margin-bottom: 30px;
-    display: inline-block; 
-    width: 100%;
-    background: #1A1A1A;
-    height: 200px;
-    border-radius: 30px;
-    display: flex;
-    align-items: start;
-    justify-content: start;
-    padding: 0 20px;
-    box-sizing: border-box; 
-}
-
-#order-button:hover {
-    transform: translateY(5px);
-    transition: transform 0.3s ease;
-}
-
-.col-4:nth-child(2) a#order-button {
-    background: #F88005;
-    color: #1A1A1A;
-}
-
-#order-button-2 {
-    background: #F88005;
-    color: #1A1A1A;
-}
-
-/* 4 плашки с иконками */
-.item {
-    margin-top: 20px;
-    margin-left: 70px;
-    text-align: left; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    max-width: 300px;
-    
-}
-
-.item:first-child p3 {
-    margin-top: -5px; 
-}
-
-/* Стили для изображений иконок */
-.item img {
-    width: 100px;
-    height: auto;
-    margin-bottom: 10px; 
-}
-
-/* Стили для заголовков */
-.exclusive-text {
-    display: block;
-    color: #F88005;
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 700;
-    font-size: 20px; 
-    margin: 0; 
-    padding: 0;
-}
-
-/* Стили для описания */
-p3 {
-    color: white;
-    font-family: 'Mont', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    margin-top: 10px;
-    width: auto;
-    max-width: 250px; 
-    line-height: 1.4;
-}
-
-/* блок с каруселью */
-h2 {
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 30px;
-    font-weight: 400;
-    margin-bottom: 20px;
-}
-.product-card {
-    height: 700px; 
-    display: flex;
-}
-.card-title {
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-}
-.price {
-    color: white;
-    font-family: 'Mont', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-}
-
-p2 {
-    color: white;
-    font-family: 'Mont', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-}
-.carousel-control-prev {
-    left: -180px !important;
-}
-.carousel-control-next {
-    right: -180px !important;
-}
-
-/* блок с 3 секциями контакты*/
-.contact-block {
-    background: #1A1A1A;
-    border-radius: 31px;
-    height: 300px;
-    padding: 50px;
-}
-
-h6{
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 40px;
-    font-weight: 400;
-}
-
-p4 {
-    color: white;
-    font-family: 'Mont', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-}
-
-p5 {
-    color: white;
-    font-family: 'Mont', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    /* в колонку */
-    display: flex;
-    flex-direction: column;
-    margin-top: 20px;
-}
-a {
-    text-decoration: none;
-}
-/* иконки контактов */
-#icons {
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    /* в колонку */
-    display: flex;
-}
-
-.contacts {
-    flex-wrap: nowrap
-}
-
-
-
-/* каталог игр */
-
-/* список */
-.games-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px; 
-    justify-content: flex-start; 
-}
-
-.game-card {
-    flex: 0 0 calc(33.333% - 20px); 
-    box-sizing: border-box;
-    padding: 15px;
-    border-radius: 10px;
-    background: black; 
-    display: flex;
-    flex-direction: column; 
-    min-height: 450px; 
-}
-
-.game-image {
-    width: 100%;
-    height: 100%; 
-    object-fit: cover; 
-    border-radius: 25px;
-    margin-bottom: 15px;
-}
-
-.game-card h3 {
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 24px;
-    font-weight: 400;
-    margin: 10px 0;
-    flex-grow: 1; /* Растягивание заголовка для выравнивания */
-}
-
-.game-card p {
-    color: white;
-    font-family: 'Mont', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    margin: 10px 0;
 }
 
 @media (max-width: 768px) {
-    h1 {
-        font-size: 30px !important;
-    }
-    #order-button {
-        width: auto;
-        height: 120px;
-        font-size: 15px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        text-align: center;
-    }
-    .item {
-        margin-left: 0px;
-        margin-top: 30px;
-        align-items: center;
-        text-align: center;
-    }
-    .exclusive-text {
-    display: block;
-    color: #F88005;
-    font-family: 'Unbounded', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
-    }
-    .carousel-control-prev, .carousel-control-next {
-    margin-bottom: 60px;
-    }
-    .carousel-control-prev {
-        left: -20px !important;
-    }
-    .carousel-control-next {
-        right: -20px !important;
-    }
-    p2 {
-        font-size: 10px;
-    }
-    .card-title {
-        font-size: 13px;
-        white-space: nowrap;
-        overflow: visible;
-
-    }
-    .price {
-        font-size: 10px;
-    }
-
-    h6 {
-        font-size: 20px;
-    }
-    .contact-block {
-        width: 90%;
-        height: 300px;
-        margin-top: 20px;
-        margin-left: 22px !important;
-    }
-    /* 2 стиль для 2 конки  */
-    .contact-block:nth-child(2) {
-        height: 340px;
-    }
-    /* Стили для блока "Оформить заказ" на мобильных устройствах */
-    .container.button {
-        margin-top: 20px !important;
-        margin-left: 22px;
-        width: 90% !important;
-        height: auto !important;
-        padding: 20px !important;
-    }
-    .container.button h2 {
-        font-size: 25px !important;
-    }
-    .container.button p {
-        font-size: 14px !important;
-    }
-    .container.button .btn {
-        font-size: 18px !important;
-        padding: 10px 20px !important;
-    }
-    .contacts {
-        flex-wrap: wrap !important;
+    .game-card {
+        flex: 0 0 calc(50% - 20px);
     }
 }
 
-
-@media (max-width: 1040px) {
-    .burger-icon {
-        display: flex;
-    }
-
-    .menu-container {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 50%;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.9);
-        z-index: 999;
-        overflow-y: auto;
-    }
-
-    .menu-container.active {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .menu-container .row {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .menu-container .col {
-        margin: 10px 0;
-    }
-
-    .burger-icon.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-
-    .burger-icon.active span:nth-child(2) {
-        opacity: 0;
-    }
-
-    .burger-icon.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
+@media (max-width: 480px) {
+    .game-card {
+        flex: 0 0 100%;
     }
 }

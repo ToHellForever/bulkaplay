@@ -2,91 +2,81 @@
 {% load static %}
 {% block title %}Главная{% endblock title %}
 {% block stylesheets %}
-<style>
-.hover-effect:hover {
-    transform: scale(1.05); /* Увеличение на 5% */
-    opacity: 0.9;           /* Немного уменьшаем непрозрачность */
-}
-
-/* Переходы плавно меняют свойства */
-.hover-effect {
-    transition: all 0.3s ease; /* Время перехода и тип кривой */
-}
-</style>
+<link rel="stylesheet" href="{% static 'css/pages/landing.css' %}">
 {% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
-<h1 >НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА<span></h1>
-<div class='container' style="max-width: 1600px; margin-top: 50px;">
+<h1 class="landing-title text-center">НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА</span></h1>
+<div class='container-fluid landing-photos'>
     <div class="row">
-    <div class="col-12 col-md-4 order-3 order-md-1 d-none d-md-block">
-      <img src="media/photo/photo1.jpg" class="img-fluid w-100 object-fit-cover" alt="Left Photo" style="border-radius: 31px;  max-height: 900px; height: 800px;">
-    </div>
+        <div class="col-12 col-md-4 order-3 order-md-1 d-none d-md-block">
+<img src="media/photo/photo1.jpg" class="img-fluid w-100 h-auto object-fit-cover left-photo" alt="Left Photo">
+        </div>
 
-    <div class="col-12 col-md-8 order-1 order-md-2 d-flex flex-column">
-      <div class="mb-3">
-        <img src="media/photo/photo2.svg" class="img-fluid w-100" alt="Right Top Photo">
-      </div>
+<div class="col-12 col-md-8 order-1 order-md-2 landing-main-content">
+            <div class="mb-3">
+                <img src="media/photo/photo2.svg" class="img-fluid w-100" alt="Right Top Photo">
+            </div>
 
-      <div class="row g-2 d-md-none">
-        <div class="col-6">
-          <img src="media/photo/photo1.jpg" class="img-fluid w-100 h-100 object-fit-cover d-md-none" alt="Left Photo Mobile" style="border-radius: 31px;">
+<div class="row g-2 landing-mobile-buttons d-md-none">
+                <div class="col-6">
+<img src="media/photo/photo1.jpg" class="img-fluid w-100 h-100 object-fit-cover left-photo d-md-none" alt="Left Photo Mobile">
+                </div>
+                <div class="col-6 d-flex flex-column gap-2">
+                    <a data-bs-toggle="modal" data-bs-target="#orderModal" class="order-button">ОФОРМИТЬ ЗАКАЗ</a>
+                    <a href="{% url 'about' %}" class="order-button" id="order-button-2">О НАС</a>
+                    <a href="{% url 'landing' %}" class="order-button">ДОСТАВКА</a>
+                </div>
+            </div>
+<div class="row g-2 landing-desktop-buttons d-none d-md-flex">
+                <div class="col-4">
+                    <a data-bs-toggle="modal" data-bs-target="#orderModal" class="order-button">ОФОРМИТЬ ЗАКАЗ</a>
+                </div>
+                <div class="col-4">
+                    <a href="{% url 'about' %}" class="order-button">О НАС</a>
+                </div>
+                <div class="col-4">
+                    <a href="{% url 'landing' %}" class="order-button">ДОСТАВКА</a>
+                </div>
+            </div>
         </div>
-        <div class="col-6 d-flex flex-column gap-2">
-          <a data-bs-toggle="modal" data-bs-target="#orderModal" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
-          <a href="{% url 'about' %}" id="order-button-2">О НАС</a>
-          <a href="{% url 'landing' %}" id="order-button">ДОСТАВКА</a>
-        </div>
-      </div>
-      <div class="row g-2 d-none d-md-flex mt-auto ">
-        <div class="col-4">
-          <a data-bs-toggle="modal" data-bs-target="#orderModal" id="order-button">ОФОРМИТЬ ЗАКАЗ</a>
-        </div>
-        <div class="col-4">
-          <a href="{% url 'about' %}" id="order-button">О НАС</a>
-        </div>
-        <div class="col-4">
-          <a href="{% url 'landing' %}" id="order-button">ДОСТАВКА</a>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 
-<div class='container' style="max-width: 1600px; margin-top: 50px;">
+<div class='container-fluid mt-5 landing-features'>
     <div class="row">
       <div class="col-md-3 col-6">
-        <div class="item">
+        <div class="item ">
                   <img src="media/svg_files/bones.svg" alt="фон" class='background-image-3'>
       <p><span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ ИГРЫ</span></p>
-      <p3>в нашей коолекции есть игры,<br>анлогов которых нет на рынке</p3>
+      <p class="item-description">в нашей коллекции есть игры,<br>аналогов которых нет на рынке</p>
         </div>
       </div>
       <div class="col-md-3 col-6">
         <div class="item">
                   <img src="media/svg_files/star.svg" alt="фон" class='background-image-4'>
       <p><span class="exclusive-text">БРЕНДИРОВАНИЕ</span></p>
-      <p3>возможно нанесение индивидуальной<br>гравировки</p3>
+      <p class="item-description">возможно нанесение индивидуальной<br>гравировки</p>
         </div>
       </div>
       <div class="col-md-3 col-6">
         <div class="item">
                   <img src="media/svg_files/hammer.svg" alt="фон" class='background-image-5'>
       <p><span class="exclusive-text">РУЧНАЯ РАБОТА</span></p>
-      <p3>Собственное производтсво в<br>г. Красноярске</p3>
+      <p class="item-description">Собственное производство в<br>г. Красноярске</p>
         </div>
       </div>
       <div class="col-md-3 col-6">
         <div class="item">
                   <img src="media/svg_files/truck.svg" alt="фон" class='background-image-6'>
       <p><span class="exclusive-text">ДОСТАВКА</span></p>
-      <p3>Отправляем по всей<br>России</p3>
+      <p class="item-description">Отправляем по всей<br>России</p>
         </div>
       </div>
     </div>
   </div>
 
-<div class="container" style="max-width: 1500px; margin-top: 100px;">
+<div class="container-fluid landing-catalog mt-5">
   <h2>КАТАЛОГ ИГР</h2>
   <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -101,33 +91,32 @@
               <div class="row">
           {% endif %}
         {% endif %}
-        
+
         <div class="col-4 col-md-4 mb-4">
-          <div class="card h-100 product-card" style="background: #000; height: 100%;">
-            <img style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;"
-                 src="{{ product.image.url }}"
-                 class="card-img-top"
-                 alt="{{ product.name }}">
+          <div class="card h-100 product-card">
+            <img src="{{ product.image.url }}"
+                class="card-img-top"
+                alt="{{ product.name }}">
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">{{ product.name }}</h5>
               <p class="price mt-auto">{{ product.price|floatformat }} руб.</p>
             </div>
           </div>
         </div>
-      
+
         {% if forloop.last %}
             </div>
             </div>
         {% endif %}
       {% endfor %}
     </div>
-    
+
     <!-- Элементы управления каруселью -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev" style='margin-top: 200px'>
+    <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Предыдущий</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next" style='margin-top: 200px'>
+    <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Следующий</span>
     </button>
@@ -135,16 +124,16 @@
 </div>
 
 
-<div class='container' style="max-width: 1600px; margin-top: 50px;">
+<div class='container-fluid landing-rental'>
   <h2>ВЫЕЗДНАЯ АРЕНДА</h2>
-    <p2>
-     Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p2>
-  <div id="arendaCarousel" class="carousel slide" data-bs-ride="carousel" style="margin-top: 30px;">
+    <p class="rental-description">
+     Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p>
+  <div id="arendaCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
     <div class="carousel-inner">
       {% for arend in arenda %}
         {% if forloop.first %}
           <div class="carousel-item active">
-            <div class="row">
+            <div class="row ">
         {% else %}
           {% if forloop.counter0|divisibleby:3 %}
             </div></div>
@@ -155,7 +144,7 @@
 
         <div class="col-md-4 col-4 mb-4 px-4">
           <div class="card h-100 product-card" style="background: #000;">
-            <img style="width: 100%; height: auto;" src="{{ arend.image.url }}" class="card-img-top" alt="{{ product.name }}">
+<img src="{{ arend.image.url }}" class="card-img-top" alt="{{ product.name }}">
           </div>
         </div>
 
@@ -166,11 +155,11 @@
     </div>
 
     <!-- Элементы управления каруселью -->
-    <button class="carousel-control-prev" type="button" data-bs-target="#arendaCarousel" data-bs-slide="prev" style="margin-top: 200px;">
+<button class="carousel-control-prev" type="button" data-bs-target="#arendaCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Предыдущий</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#arendaCarousel" data-bs-slide="next" style="margin-top: 200px;">
+<button class="carousel-control-next" type="button" data-bs-target="#arendaCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Следующий</span>
     </button>
@@ -178,30 +167,28 @@
 </div>  
 
 
-<div class="container" style="max-width: 1550px; margin-top: 40px;">
-  <div class="row contacts" >
-    <div class="col-12 col-md-6 contact-block" style="margin-left: -25px;">
+<div class="container-fluid landing-contacts">
+  <div class="row contacts gap-5 mt-5">
+<div class="col-12 col-md-6 contact-block">
           <h6>Связаться с нами</h6>
-         <p4>Мы всегда рады ответить на любые вопросы</p4>
-          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/whatsapp.svg" alt="" style="margin-right: 20px;">89960521646</a></p5>
-          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/email.svg" alt="" style="margin-right: 20px;">bul.k.a.play@mail.ru</a></p5>
-          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">@BULKAPLAY_124</a></p5>
+         <p class="contact-description">Мы всегда рады ответить на любые вопросы</p>
+<p class="contact-link"><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/whatsapp.svg" alt="" class="contact-icon">89960521646</a></p>
+<p class="contact-link"><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/email.svg" alt="" class="contact-icon">bul.k.a.play@mail.ru</a></p>
+<p class="contact-link"><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/tg.svg" alt="" class="contact-icon">@BULKAPLAY_124</a></p>
     </div>
-    <div class="col-12 col-md-6 contact-block" style="margin-left: 50px;">
+<div class="col-12 col-md-6 contact-block">
           <h6>Присоединяйтесь к нам</h6>
-         <p4>Подписывайся, чтобы быть в курсе новостей и акций</p4>
-          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/vk.svg" alt="" style="margin-right: 20px;">bul.k.a.play</a></p5>
-          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/inst.svg" alt="" style="margin-right: 20px;">bul.k.a_play</a></p5>
-          <p5><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/tg.svg" alt="" style="margin-right: 20px;">BULKAPLAY124</a></p5>
+         <p class="contact-description">Подписывайся, чтобы быть в курсе новостей и акций</p>
+<p class="contact-link"><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/vk.svg" alt="" class="contact-icon">bul.k.a.play</a></p>
+<p class="contact-link"><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/inst.svg" alt="" class="contact-icon">bul.k.a_play</a></p>
+<p class="contact-link"><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/tg.svg" alt="" class="contact-icon">BULKAPLAY124</a></p>
     </div>
   </div>
 </div>
 {% comment %} и плашка с кнопкой оформить заказ по центру внизу {% endcomment %}
-<div>
-   <div class='container button' style="text-align: center; background: #F88005; width: 50%; margin-top: 50px; border-radius: 31px; height: 250px; padding: 30px; margin-bottom: 50px;">
-    <h2  style='color: black; font-family: "Unbounded", sans-serif; font-size: 35px; font-weight: 600; transition: all .3s ease;' >ОФОРМИТЬ ЗАКАЗ</h2>
-    <p style='color: black; font-family: "Unbounded", sans-serif; font-size: 15px; font-weight: 400; text-align: center;'>Заказать игру на нашем сайте можно в любой момент. Вы можете оформить заказ в любое удобное для вас время, и мы с радостью выполним его в кратчайшие сроки.</p> 
-    <a data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary hover-effect" style="background: white; border: none; color: black; font-family: 'Unbounded', sans-serif; font-weight: 500; font-size: 25px; border-radius: 15px; transition: all .3s ease;">ЗАПОЛНИТЬ ЗАЯВКУ</a>
-  </div>
+<div class='container-fluid landing-order mt-5'>
+    <h7>ОФОРМИТЬ ЗАКАЗ</h7>
+    <p class="order-description text-center">Заказать игру на нашем сайте можно в любой момент. Вы можете оформить заказ в любое удобное для вас время, и мы с радостью выполним его в кратчайшие сроки.</p>
+    <a data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary">ЗАПОЛНИТЬ ЗАЯВКУ</a>
 </div>
 {% endblock %}

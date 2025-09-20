@@ -1,0 +1,133 @@
+/* Стили для главной страницы */
+
+/* контейнеры */
+.container-fluid {
+    max-width: 1600px;
+}
+
+/* левое фото */
+.left-photo {
+    border-radius: 31px;
+}
+
+/* фото в карусели */
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 31px;
+}
+/* карточка в карусели */
+.product-card {
+    background: #000;
+}
+
+/* иконки контактов */
+.contact-icon {
+    margin-right: 15px;
+}
+
+/* ссылки */
+a {
+    text-decoration: none;
+    color: white;
+}
+
+/* блок с контактами */
+.contact-block {
+    background: #1A1A1A;
+    border-radius: 31px;
+    height: 300px;
+    width: 45%;
+    margin-left: 35px;
+    padding: 50px;
+}
+/* кнопка оформления заказа */
+.btn-primary {
+    display: flex;
+    background: white;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 15px;
+    color: black;
+    border: none;
+    width: 50%;
+    height: 50px;
+    transition: all 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Центрируем кнопку по горизонтали */
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    outline: none;
+    background: white;
+    color: black;
+}
+
+/* блок с кнопкой оформления заказа */
+.landing-order {
+    text-align: center;
+    background: #F88005;
+    border-radius: 31px;
+    width: 50%;
+    padding: 20px;
+    margin: 0 auto; /* Центрируем блок по горизонтали */
+    margin-bottom: 30px;
+}
+
+h7 {
+    color: black;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 1
+}
+.order-description {
+    color: #000;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin-top: 10px;
+}
+/* кнопки под фото */
+.order-button {
+    text-decoration: none;
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 25px;
+    display: inline-block;
+    width: 100%;
+    background: #1A1A1A;
+    height: 170px;
+    min-height: 100px;
+    border-radius: 30px;
+    padding: 0 20px;
+}
+
+.order-button:hover {
+    transform: translateY(5px);
+    transition: transform 0.3s ease;
+}
+
+.col-4:nth-child(2) a.order-button {
+    background: #F88005;
+    color: #1A1A1A;
+}
+
+/* медиа */
+@media (max-width: 768px) {
+    #order-button {
+        width: auto;
+        height: 120px;
+        font-size: 15px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        text-align: center;
+    }
+}
+

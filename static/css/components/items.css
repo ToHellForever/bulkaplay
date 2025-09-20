@@ -1,0 +1,47 @@
+/* Элементы */
+
+.item {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+/* Стили для изображений иконок */
+.item img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Стили для описания */
+
+@media (max-width: 768px) {
+    .item {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 10px;
+    width: auto;
+    max-width: 250px;
+    line-height: 1.4;
+}
+}
+
+/* Адаптивность для блоков с иконками */
+@media (max-width: 768px) {
+    .item {
+        margin-left: 0px;
+        margin-top: 30px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .exclusive-text {
+        font-size: 14px;
+    }
+}

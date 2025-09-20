@@ -1,0 +1,18 @@
+#scrollToTopBtn {
+    position: fixed;
+    width: 100px;
+    height: 100px;
+    bottom: 100px;
+    right: 20px;
+    z-index: 999;
+    display: none;
+    background-color: #F88005;
+    color: #fff;
+    text-align: center;
+}
+#scrollToTopBtn:hover {
+    cursor: pointer;
+    background-color: #a79e96;
+    color: #000000;
+    text-align: center;
+}

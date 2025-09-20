@@ -1,0 +1,51 @@
+/* Стили для страницы "О нас" */
+
+h4 {
+    font-family: "Unbounded", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.p6 {
+    font-family: "Unbounded", sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#icon_about {
+    background: #1A1A1A;
+    border-radius: 10px;
+    height: 150px;
+    padding: 40px 40px;
+}
+
+#icon_about:nth-child(2) {
+    background: #F88005;
+    color: #1A1A1A;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    outline: none;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%;
+    overflow: hidden;
+    border-radius: 31px;
+    border: 2px solid #000000ff;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    object-fit: cover;
+}

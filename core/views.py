@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import TemplateView, View
-from .models import Product, Arenda, News, Order, PlayerRange
+from .models import Product, Arenda, News, Order, PlayerRange, Size, PlayerCount, PlayerAge, GameType
 from .forms import OrderForm
 # ИМПОРТ РАНДОМА 
 import random
@@ -88,10 +88,29 @@ class GameCatalogView(TemplateView):
         context = super().get_context_data(**kwargs)
         products = Product.objects.filter(is_active=True)
 
+        # Получаем все возможные значения для фильтров
+        sizes = Size.objects.all()
+        player_counts = PlayerCount.objects.all()
+        player_ages = PlayerAge.objects.all()
+        game_types = GameType.objects.all()
+
         # Обработка поискового запроса
         search_query = self.request.GET.get('search', '')
         if search_query:
             products = products.filter(name__iregex=r'{}'.format(search_query))
+
+        # Обработка фильтров
+        if 'size' in self.request.GET and self.request.GET['size']:
+            products = products.filter(sizes__id=self.request.GET['size'])
+
+        if 'player_count' in self.request.GET and self.request.GET['player_count']:
+            products = products.filter(player_counts__id=self.request.GET['player_count'])
+
+        if 'player_age' in self.request.GET and self.request.GET['player_age']:
+            products = products.filter(player_ages__id=self.request.GET['player_age'])
+
+        if 'game_type' in self.request.GET and self.request.GET['game_type']:
+            products = products.filter(game_types__id=self.request.GET['game_type'])
 
         # Обработка сортировки
         sort = self.request.GET.get('sort', '')
@@ -107,18 +126,23 @@ class GameCatalogView(TemplateView):
             products = products.order_by('-created_at')
 
         context["products"] = products
-        context["arenda"] = Arenda.objects.filter(is_active=True).order_by(
-            "-created_at"
-        )
+        context["arenda"] = Arenda.objects.filter(is_active=True).order_by("-created_at")
         context["form"] = OrderForm()
+
+        # Добавляем значения для фильтров в контекст
+        context["sizes"] = sizes
+        context["player_counts"] = player_counts
+        context["player_ages"] = player_ages
+        context["game_types"] = game_types
+
         return context
 
-    def post(self, request, *args, **kwargs):
-        form = OrderForm(request.POST)
-        if process_order_form(request, form):
-            return redirect("landing")
-        else:
-            return redirect("landing")
+        # def post(self, request, *args, **kwargs):
+        #     form = OrderForm(request.POST)
+        #     if process_order_form(request, form):
+        #         return redirect("landing")
+        #     else:
+        #         return redirect("landing")
 
 
 class ProductDetailView(TemplateView):
@@ -127,6 +151,8 @@ class ProductDetailView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["product"] = get_object_or_404(Product, pk=kwargs["pk"])
+        context["products"] = Product.objects.filter(is_active=True).order_by("-created_at")
+        context["arenda"] = Arenda.objects.filter(is_active=True).order_by("-created_at")
         context["form"] = OrderForm()
         # Берём 3 случайных товара из базы данных
         all_products = list(Product.objects.exclude(id=context["product"].id).prefetch_related('additional_images'))  # Исключаем текущий продукт
@@ -146,6 +172,7 @@ class RentalCatalogView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["products"] = Product.objects.filter(is_active=True).order_by("-created_at")
         context["arenda"] = Arenda.objects.filter(is_active=True).order_by("-created_at")
         context["news"] = News.objects.filter(is_active=True).order_by("-created_at")
         context["form"] = OrderForm()

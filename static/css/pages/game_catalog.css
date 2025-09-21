@@ -1,28 +1,50 @@
 /* Стили для страницы каталога игр */
 
-input::placeholder {
-    color: #a8a2a2ff;
+.filter-select, .search-input {
+    height: 42px;
+    background: #8d8787 !important;
+    border: none !important;
 }
 
 #filter {
     color: white;
-    background: #000;
+    background: #000 !important;
     border: none;
     font-family: Unbounded;
     font-weight: 400;
     font-size: 16px;
 }
+.catalog-btn {
+    color: black;
+    background: #F88005;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 15px;
+    border: none;
+    width: 50%;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+.catalog-btn:hover {
+    color: white;
+    background: #F88005;
+}
+.catalog-btn:focus {
+    color: white;
+    background: #F88005;
+}
 
-select:focus, input:focus {
+/* Удаление синей рамки при фокусе */
+#filter:focus {
     outline: none;
     box-shadow: none;
+    border: none;
 }
 
-option, select option, select::-ms-value {
-    background: #3B3737;
-    color: #a8a2a2ff;
+.game-catalog-filters {
+    background: #000 !important;
 }
-
 .games-grid {
     display: flex;
     flex-wrap: wrap;

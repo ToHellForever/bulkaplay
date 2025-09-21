@@ -27,12 +27,6 @@ h3 {
     margin-top: 10px;
 }
 
-h4 {
-    font-family: "Unbounded", sans-serif;
-    font-size: 25px;
-    font-weight: 400;
-}
-
 h5 {
     color: white;
     font-family: 'Unbounded', sans-serif;
@@ -78,6 +72,8 @@ p {
 .wood-text {
     color: #F88005;
 }
+
+
 
 @media (max-width: 768px) {
     h1 {

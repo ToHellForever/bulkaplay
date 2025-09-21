@@ -56,6 +56,9 @@
     font-weight: 500;
     margin: 10px 0;
 }
+.card-img-top {
+    border-radius: 35px;
+}
 
 @media (max-width: 768px) {
     .game-card {

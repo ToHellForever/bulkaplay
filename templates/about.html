@@ -9,7 +9,7 @@
 <div class="container-fluid about-container mt-5">
   <div class="row flex-wrap:nowrap">
     <div class="col-5">
-      <h1>О <span class="wood-text">НАС</span></h1>
+      <h1 class="about-title">О <span class="wood-text-about">НАС</span></h1>
       <div class="video-container">
         <iframe
             src="https://vkvideo.ru/video_ext.php?oid=-226618368&id=456239026&hd=2&"
@@ -17,7 +17,7 @@
             frameborder="0"
             allowfullscreen>
         </iframe>
-      </div>
+      </div>  
     </div>
     <div class="col-4">
       <p class="about-description">
@@ -43,7 +43,7 @@
       </iframe>
     </div>
   </div>
-  <div class="row gap-4 about-icons">
+  <div class="row about-icons mt-5 ">
     <div class="col-3" id='icon_about'>
         <h4>500 +</h4>
 <p class="about-stat">проведённых мероприятий</p>
@@ -63,9 +63,9 @@
   </div>
 </div>
 
-<div class='container about-why-choose'>
+<div class='container-fluid about-why-choose mt-5'>
   <h2>ПОЧЕМУ НАС ВЫБИРАЮТ?</h2>
-    <div class="row">
+    <div class="row mt-5">
       <div class="col-md-3 col-6">
         <div class="item">
                   <img src="/media/svg_files/bones.svg" alt="фон" class='background-image-3'>
@@ -97,7 +97,7 @@
     </div>
   </div>
 
-<div class='container about-events'>
+<div class='container-fluid about-events mt-5'>
   <h2>МЕРОПРИЯТИЯ С BUL.K.A-PLAY</h2>
   <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -118,23 +118,39 @@
             <img class="card-img-top" src="{{ n.image.url }}" alt="{{ n.name }}">
             <div class="card-body">
               <h5 class="card-title">{{ n.name }}</h5>
-                <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" class="btn btn-primary">Подробнее</button>
+                <p class="mt-3">{{ n.date_event | date:"d.m.Y" }} в {{ n.date_event | date:"H:i" }}</p>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" class="btn news-btn">Подробнее</button>
             </div>
           </div>
         </div>
-
-        <div class="modal fade" id="eventModal{{ n.id }}" tabindex="-1" aria-labelledby="eventModalLabel{{ n.id }}" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-                <h5 class="modal-title" id="eventModalLabel{{ n.id }}">{{ n.name }}</h5>
-              <div class="modal-body">
-                <img src="{{ n.image.url }}" class="img-fluid" alt="{{ n.name }}">
-                <p class="mt-3">{{ n.description }}</p>
-                <p class="mt-3">{{ n.date_event | date:"d.m.Y" }}</p>
+<div class="modal fade" id="eventModal{{ n.id }}" tabindex="-1" aria-labelledby="eventModalLabel{{ n.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content-about">
+      <div class="modal-body">
+        <h5 class="modal-title-about" id="eventModalLabel{{ n.id }}">{{ n.name }}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body-about">
+        <!-- Основное изображение новости -->
+        <img src="{{ n.image.url }}" class="img-fluid modal-main-image mb-3" alt="{{ n.name }}">
+        <!-- Дополнительные изображения новости -->
+        <div class="row mt-3">
+          {% for additional_image in n.additional_images.all %}
+            <div class="col-md-4 mb-3">
+              <div class="additional-image-wrapper">
+                <img src="{{ additional_image.image.url }}" class="img-fluid additional-image" alt="Дополнительное изображение">
               </div>
             </div>
-          </div>
+          {% endfor %}
         </div>
+        <!-- Описание и дата -->
+        <p class="mt-3">{{ n.description }}</p>
+        <p class="mt-3">{{ n.date_event | date:"d.m.Y" }} в {{ n.date_event | date:"H:i" }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
         {% if forloop.last %}
             </div>
             </div>
@@ -154,13 +170,10 @@
   </div>
 </div>
 
-<div>
-   <div class='container button order-button'>
-    <h2>ХОЧЕШЬ ТАКЖЕ?</h2>
-    <p>Отправь заявку, мы свяжемся с тобой в ближайшее время</p>
-    <button type="button" data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary">ЗАПОЛНИТЬ ЗАЯВКУ</button>
-  </div>
-</div>
+<div class='container-fluid about-order mt-5'>
+    <h7>ОФОРМИТЬ ЗАКАЗ</h7>
+    <p class="order-description text-center">Заказать игру на нашем сайте можно в любой момент. Вы можете оформить заказ в любое удобное для вас время, и мы с радостью выполним его в кратчайшие сроки.</p>
+    <a data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary">ЗАПОЛНИТЬ ЗАЯВКУ</a>
 </div>
 
 {% endblock content%}

@@ -1,39 +1,45 @@
 /* Стили для страницы "О нас" */
 
-h4 {
+/* контейнеры */
+.container-fluid {
+    max-width: 1800px;
+}
+/* стили для заголовка */
+.about-title {
+    color: white;
     font-family: "Unbounded", sans-serif;
-    font-size: 25px;
-    font-weight: 400;
+    font-weight: 600;
+    font-size: 80px;
+    text-align: start;
+    margin-top: 0px;
 }
-
-.p6 {
+.wood-text-about {
+    color: #F88005;
     font-family: "Unbounded", sans-serif;
-    font-size: 20px;
+    font-weight: 600;
+    font-size: 80px;
+    text-align: start;
+}
+/* стили для описания */
+.about-description {
+    color: white;
+    font-family: "Unbounded", sans-serif;
     font-weight: 400;
+    font-size: 21px;
+    margin-top: 20px;
 }
-
-#icon_about {
-    background: #1A1A1A;
-    border-radius: 10px;
-    height: 150px;
-    padding: 40px 40px;
+.about-list {
+    color: white;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    margin-top: 20px;
 }
-
-#icon_about:nth-child(2) {
-    background: #F88005;
-    color: #1A1A1A;
-}
-
-.btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    outline: none;
-}
-
+/* стили для видео */
 .video-container {
     position: relative;
     width: 100%;
-    height: 0;
+    height: 80%;
     padding-top: 56.25%;
     overflow: hidden;
     border-radius: 31px;
@@ -48,4 +54,236 @@ h4 {
     height: 100%;
     border: none;
     object-fit: cover;
+}
+/* второе видео */
+.about-iframe {
+    height: 100%;
+    border-radius: 31px;
+    border: 2px solid rgb(80, 77, 77);
+}
+
+/* 4 иконки ПОЧЕМУ ВЫБИРАЮТ НАС */
+.item {
+    margin-top: 20px;
+    margin-left: 100px;
+    margin-right: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+/* Стили для изображений иконок */
+.item img {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* стили для 4 кнопок под видео */
+#icon_about {
+    background: #1A1A1A;
+    border-radius: 10px;
+    height: 150px;
+    padding: 40px 40px;
+    margin-left: 30px;
+}
+
+/* для 2 и 4 элемента */
+#icon_about:nth-child(2)  {
+    background: #F88005;
+}
+#icon_about:nth-child(4)  {
+    background: #F88005;
+}
+/* заголовки 4 кнопок под видео */
+h4 {
+    font-family: "Unbounded", sans-serif;
+    font-size: 25px;
+    font-weight: 400;
+    color: white;
+}
+.about-stat {
+    color: white;
+    font-family: "Unbounded", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+/* кнопка подробнее в новостях */
+.news-btn {
+    color: black;
+    background: #F88005;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 15px;
+    border: none;
+    width: 50%;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+.news-btn:hover {
+    color: white;
+    background: #F88005;
+}
+.news-btn:focus {
+    color: white;
+    background: #F88005;
+}
+/* кнопка оформления */
+.btn-primary {
+    display: flex;
+    background: white;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 15px;
+    color: black;
+    border: none;
+    width: 50%;
+    height: 50px;
+    transition: all 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; 
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    outline: none;
+    background: white;
+    color: black;
+}
+
+/* блок с кнопкой оформления заказа */
+.about-order {
+    text-align: center;
+    background: #F88005;
+    border-radius: 31px;
+    width: 50%;
+    padding: 20px;
+    margin: 0 auto; /* Центрируем блок по горизонтали */
+    margin-bottom: 30px;
+}
+/* текст в блоке оформления */
+h7 {
+    color: black;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 1
+}
+/* текст в кнопке оформления */
+.order-description {
+    color: #000;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .item {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    margin-top: 10px;
+    width: auto;
+    max-width: 250px;
+    line-height: 1.4;
+}
+}
+
+/* Адаптивность для блоков с иконками */
+@media (max-width: 768px) {
+    .item {
+        margin-left: 0px;
+        margin-top: 30px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .exclusive-text {
+        font-size: 14px;
+    }
+}
+
+/* модальное окно с новостями */
+/* Модальные окна */
+
+.modal-content-about {
+    background-color: transparent;
+    color: white;
+}
+
+.modal-title-about {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.modal-body-about {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+.modal-main-image {
+  max-height: 450px; 
+  width: 100%; 
+  border-radius: 31px;
+}
+/* Стили для изображений */
+.additional-image-wrapper {
+  height: 200px; 
+  overflow: hidden; 
+border: none !important;
+  border-radius: 10px; 
+}
+
+/* Стили для изображений */
+.additional-image {
+  height: 100%; 
+  width: 100%; 
+  object-fit: cover; 
+}
+/* остальное  */
+.custom-shadow {
+    box-shadow: 0 10px 10px black;
+}
+p {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: start !important;
+}
+h5 {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+}
+.hidden {
+    display: none;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s cubic-bezier(.4,0,.2,1), visibility 0.5s linear;
+}
+h3 {
+    color: #F88005;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+}
+.visible {
+    display: block;
+    visibility: visible;
+    height: auto;
+    overflow: visible;
 }

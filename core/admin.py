@@ -104,9 +104,6 @@ class NewsAdmin(admin.ModelAdmin):
         ("Основные поля", {
             'fields': ('name', 'description', 'image', 'date_event'),
         }),
-        ("Атрибуты", {
-            'fields': ('player_counts_arenda',),
-        })
     )
     # Указываем созданный inline-класс
     inlines = [

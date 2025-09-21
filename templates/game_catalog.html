@@ -1,26 +1,21 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}Каталог игр{% endblock title %}
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'css/pages/game_catalog.css' %}">
 {% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
 <form method="get" class="form-inline">
-  <div class="container-fluid game-catalog-header">
+  <div class="container-fluid game-catalog-header mt-5">
     <div class="row ms-auto">
-      <div class="col-4">
+      <div class="col-6">
         <h2>КАТАЛОГ ИГР</h2>
       </div>
-<div class="col-4 search-container">
+<div class="col-3 search-container">
   <input type="text" name="search" class="form-control search-input" placeholder="Поиск..." value="{{ request.GET.search }}">
-  <button type="submit" class="btn search-button">
-    <i class="fas fa-search"></i>
-  </button>
 </div>
-      <div class="col-4">
+      <div class="col-3">
         <select name="sort" class="form-control filter-select" onchange="this.form.submit()">
           <option value="">Порядок по:</option>
           <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Цена по возрастанию</option>
@@ -32,7 +27,7 @@
     </div>
   </div>
 
-  <div class="container-fluid game-catalog-filters">
+  <div class="container-fluid game-catalog-filters mt-4">
     <div class="row ms-auto">
       <div class="col-3">
         <select name="size" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
@@ -78,7 +73,7 @@
             <h3>{{ product.name }}</h3>
             <p class="product-price">{{ product.price|floatformat }} руб.</p>
             <a href="{% url 'product_detail' product.id %}">
-                <button class="btn btn-primary">Подробнее</button>
+                <button class="btn catalog-btn">Подробнее</button>
             </a>
         </div>
         {% endfor %}

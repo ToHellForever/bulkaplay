@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 class Size(models.Model):
     name = models.CharField(max_length=100, verbose_name="Размер")
@@ -137,6 +138,8 @@ class Order(models.Model):
     products = models.ManyToManyField(Product, blank=True, verbose_name="Выбранные товары", related_name="order_products")
     arenda = models.ManyToManyField(Arenda, blank=True, verbose_name="Выбранные аренды", related_name="order_arenda")
     games_for_rent = models.ManyToManyField(Product, blank=True, verbose_name="Игры для аренды", related_name="order_games_for_rent")
+    date = models.DateField(verbose_name="Дата заказа", default=datetime.now)
+    time = models.TimeField(verbose_name="Время заказа", default=datetime.now)
     comment = models.TextField(blank=True, verbose_name="Комментарий")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 

@@ -36,6 +36,17 @@ class OrderForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
         label='Предметы аренды:'
     )
+    date = forms.DateField(
+        widget=forms.DateInput(attrs={'type': 'date'}),
+        label='Дата заказа:',
+        initial=datetime.now().date()
+    )
+    time = forms.TimeField(
+        widget=forms.TimeInput(attrs={'type': 'time'}),
+        label='Время заказа:',
+        initial=timezone.now().time()
+    )
+
     comment = forms.CharField(
         widget=forms.Textarea(attrs={
             'rows': 1,

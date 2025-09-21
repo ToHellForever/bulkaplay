@@ -84,8 +84,21 @@
                         {% endfor %}
                     </div>
                 </div>
+            <div id="rental-dates" class="hidden">
+                <label for="rental-date" style='color: #F88005'>Выберите дату и время аренды:</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <input type="date" id="rental-date" name="rental_date" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="time" id="rental-time" name="rental_time" class="form-control" required>
+                    </div>
+                </div>
             </div>
+            </div>
+            <div class='mt-4'>
             {{ form.comment }}<br><br>
+            </div>
             <button type="submit">Отправить заказ</button>
         </form>
       </div>
@@ -125,8 +138,10 @@
             var maxGames = parseInt(selectedRental.data('game-count'));
             $('#max-games-count').text(maxGames);
             $('#rental-games').addClass('visible');
+            $('#rental-dates').addClass('visible');
         } else {
             $('#rental-games').removeClass('visible');
+            $('#rental-dates').removeClass('visible');
         }
     });
 
@@ -170,9 +185,21 @@ $('#orderForm').on('submit', function(event) {
             case 'rent':
                 const selectedGamesCount = $('input[name="selected_games"]:checked').length;
                 const maxGames = parseInt($('#max-games-count').text());
+                const rentalDate = $('#rental-date').val();
+                const rentalTime = $('#rental-time').val();
                 if (selectedGamesCount !== maxGames) {
                     event.preventDefault();
                     showNotification(`Выберите ровно ${maxGames} игр для аренды.`);
+                    return;
+                }
+                if (!rentalDate) {
+                    event.preventDefault();
+                    showNotification('Выберите дату аренды.');
+                    return;
+                }
+                if (!rentalTime) {
+                    event.preventDefault();
+                    showNotification('Выберите время аренды.');
                     return;
                 }
                 hasSelectedItems = selectedGamesCount > 0;

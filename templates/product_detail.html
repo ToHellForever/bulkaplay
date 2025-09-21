@@ -101,13 +101,13 @@
     <h2 >C ЭТИМ ТОВАРОМ ПОКУПАЮТ</h2>
     <hr class="my-3">
     <div class="games-grid">
-        {% for random_product in random_products %}
+        {% for additional_product in additional_products %}
         <div class="game-card">
-            <img src="{{  random_product.image.url }}" alt="{{ random_product.name }}" class="game-image">
-            <h3>{{ random_product.name }}</h3>
-<p class="product-price">{{ random_product.price|floatformat }} руб.</p>
+            <img src="{{  additional_product.image.url }}" alt="{{ additional_product.name }}" class="game-image">
+            <h3>{{ additional_product.name }}</h3>
+<p class="product-price">{{ additional_product.price|floatformat }} руб.</p>
             {% comment %} кнопка с ссылкой на подробнее о товаре {% endcomment %}
-            <a href="{% url 'product_detail' random_product.id %}">
+<a href="{% url 'additional_product_detail' additional_product.id %}">
 <button class="btn detail-btn">Подробнее</button>
             </a>  
         </div>

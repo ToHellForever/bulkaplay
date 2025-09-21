@@ -9,14 +9,24 @@
 <h1 class="landing-title text-center">НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА</span></h1>
 <div class='container-fluid landing-photos'>
     <div class="row">
-        <div class="col-12 col-md-4 order-3 order-md-1 d-none d-md-block">
-<img src="media/photo/photo1.jpg" class="img-fluid w-100 h-auto object-fit-cover left-photo" alt="Left Photo">
+        <div class="col-12 col-md-4 order-3 order-md-1 d-none d-md-block ">
+<img src="media/photo/photo1.jpg" class="img-fluid w-100 h-auto object-fit-cover position-relative left-photo" alt="Left Photo">
         </div>
 
 <div class="col-12 col-md-8 order-1 order-md-2 landing-main-content">
-            <div class="mb-3">
-                <img src="media/photo/photo2.svg" class="img-fluid w-100" alt="Right Top Photo">
-            </div>
+    <div class="mb-3 position-relative">
+        <img src="media/photo/photo2.svg" class="img-fluid w-100" alt="Right Top Photo">
+        <!-- SVG в правом верхнем углу -->
+      <a href="{% url 'game_catalog' %}" class="position-absolute top-0 end-0 m-2" style="display: inline-block;">
+        <img
+            src="media/svg_files/каталог_игр.svg"
+            class="position-absolute top-0 end-0 m-2"
+            alt="Overlay SVG"
+            style="width: 400px; height: 100px;transform: translateY(-25px);                     transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-20px)'"
+                onmouseout="this.style.transform='translateY(-25px)'"
+        >
+      </a>
+    </div>
 
 <div class="row g-2 landing-mobile-buttons d-md-none">
                 <div class="col-6">
@@ -169,7 +179,7 @@
 
 <div class="container-fluid landing-contacts">
   <div class="row contacts gap-5 mt-5">
-<div class="col-12 col-md-6 contact-block">
+<div class="col-12 col-md-6 contact-block" id="contact">
           <h6>Связаться с нами</h6>
          <p class="contact-description">Мы всегда рады ответить на любые вопросы</p>
 <p class="contact-link"><a href="{% url 'landing' %}" id="icons"><img src="media/svg_files/whatsapp.svg" alt="" class="contact-icon">89960521646</a></p>

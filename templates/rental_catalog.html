@@ -6,12 +6,12 @@
 {% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
-<div class='container rental-header'>
+<div class='container-fluid rental-header'>
     <h1>ОРГАНИЗАЦИЯ МЕРОПРИЯТИЙ <span class="wood-text"><br>С НАСТОЛЬНЫМИ ИГРАМИ<span></h1>
-    <p>Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p>
+    <p class='title-about text-center'>Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p>
 
 
-<div class='container' style="max-width: 1600px;">
+<div class='container-fluid' style="max-width: 1600px;">
     <!-- Измененный контейнер для видео -->
     <div class="video-container">
         <iframe
@@ -23,15 +23,15 @@
 </div>
 </div>
 
-<div class="container-fluid rental-calculator">
+<div class="container-fluid rental-calculator mt-5">
     <h2>Рассчитать количество игр на празднике</h2>
     <div class="row">
         <div class="col-md-4">
             <h3>Количество гостей</h3>
         </div>
         <div class="col-md-6">
-            <form id="myForm" onsubmit="return false;">
-                <input type="number" name="guests" id="guestInput">
+            <form id="myForm" onsubmit="return false;" >
+                <input class='input-guest' type="number" name="guests" id="guestInput">
             </form>
         </div>
     </div>
@@ -61,7 +61,7 @@
 
 
 
-<div class='container rental-events'>
+<div class='container-fluid about-events mt-5'>
   <h2>МЕРОПРИЯТИЯ С BUL.K.A-PLAY</h2>
   <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
@@ -77,29 +77,43 @@
           {% endif %}
         {% endif %}
 
-        <div class="col-4 col-md-4 mb-4"> 
-          <div class="card h-100 product-card" style="background: black;">
-<img src="{{ n.image.url }}" class="card-img-top" alt="{{ n.name }}">
+        <div class="col-4 col-md-4 mb-4">
+          <div class="card h-100 product-card">
+            <img class="card-img-top" src="{{ n.image.url }}" alt="{{ n.name }}">
             <div class="card-body">
-              <h5 class="card-title" >{{ n.name }}</h5>
-<button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" class="btn btn-primary">Подробнее</button>
-            </div>
-          </div>
-        </div>  
-      
-        <div class="modal fade" id="eventModal{{ n.id }}" tabindex="-1" aria-labelledby="eventModalLabel{{ n.id }}" aria-hidden="true">
-          <div class="modal-dialog">
-            {% comment %} делаю окно по центру страницы {% endcomment %}
-            <div class="modal-content" style="background: #1A1A1A; color: white;">
-                <h5 class="modal-title" id="eventModalLabel{{ n.id }}">{{ n.name }}</h5>
-              <div class="modal-body">
-                <img src="{{ n.image.url }}" class="img-fluid" alt="{{ n.name }}"> 
-                <p class="mt-3">{{ n.description }}</p>
-                <p class="mt-3">{{ n.date_event | date:"d.m.Y" }}</p>
-              </div>
+              <h5 class="card-title">{{ n.name }}</h5>
+                <p class="mt-3">{{ n.date_event | date:"d.m.Y" }} в {{ n.date_event | date:"H:i" }}</p>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" class="btn news-btn">Подробнее</button>
             </div>
           </div>
         </div>
+<div class="modal fade" id="eventModal{{ n.id }}" tabindex="-1" aria-labelledby="eventModalLabel{{ n.id }}" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content-about">
+      <div class="modal-body">
+        <h5 class="modal-title-about" id="eventModalLabel{{ n.id }}">{{ n.name }}</h5>
+      </div>
+      <div class="modal-body-about">
+        <!-- Основное изображение новости -->
+        <img src="{{ n.image.url }}" class="img-fluid modal-main-image mb-3" alt="{{ n.name }}">
+        <!-- Дополнительные изображения новости -->
+        <div class="row mt-3">
+          {% for additional_image in n.additional_images.all %}
+            <div class="col-md-4 mb-3">
+              <div class="additional-image-wrapper">
+                <img src="{{ additional_image.image.url }}" class="img-fluid additional-image" alt="Дополнительное изображение">
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <!-- Описание и дата -->
+        <p class="mt-3">{{ n.description }}</p>
+        <p class="mt-3">{{ n.date_event | date:"d.m.Y" }} в {{ n.date_event | date:"H:i" }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
         {% if forloop.last %}
             </div>
             </div>
@@ -108,25 +122,24 @@
     </div>
 
     <!-- Элементы управления каруселью -->
-<button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#newsCarousel" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Предыдущий</span>
     </button>
-<button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#newsCarousel" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Следующий</span>
     </button>
   </div>
 </div>
 
-
-<div>
-<div class='container rental-order'>
-<h2>ХОЧЕШЬ ТАКЖЕ?</h2>
-<p>Отправь заявку, мы свяжемся с тобой в ближайшее время</p>
-<button type="button" data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary">ЗАПОЛНИТЬ ЗАЯВКУ</button>
-  </div>
+<div class='container-fluid about-order mt-5'>
+    <h7>ХОЧЕШЬ ТАКЖЕ?</h7>
+    <p class="order-description text-center">Отправь заявку, мы свяжемся с тобой в ближайшее время</p>
+    <a data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary">ЗАПОЛНИТЬ ЗАЯВКУ</a>
 </div>
+
+
 {% endblock content%}
 
 {% block scripts %}

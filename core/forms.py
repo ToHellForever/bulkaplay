@@ -17,7 +17,7 @@ class OrderForm(forms.Form):
     )
     phone = forms.CharField(
         max_length=15,
-        widget=forms.TextInput(attrs={'placeholder': 'Номр телефона'})
+        widget=forms.TextInput(attrs={'placeholder': 'Номер телефона'})
     )
     order_type = forms.ChoiceField(
         label='Что вас интересует?',

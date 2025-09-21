@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     Product, Arenda, Order, News, ProductImage,
-    Size, PlayerCount, GameType, PlayerAge, NewsImage, PlayerRange
+    Size, PlayerCount, GameType, PlayerAge, NewsImage, PlayerRange, AdditionalProducts, AdditionalProductsImage
 )
 admin.site.register(ProductImage)
 class ProductImageInline(admin.TabularInline):
@@ -11,6 +11,11 @@ class ProductImageInline(admin.TabularInline):
 admin.site.register(NewsImage)
 class NewsImageInline(admin.TabularInline):
     model = NewsImage
+    extra = 1 
+
+admin.site.register(AdditionalProductsImage)
+class AdditionalProductsImageInline(admin.TabularInline):
+    model = AdditionalProductsImage
     extra = 1 
     
 # Основной класс для регистрации модели Product
@@ -108,4 +113,22 @@ class NewsAdmin(admin.ModelAdmin):
     # Указываем созданный inline-класс
     inlines = [
         NewsImageInline,
+    ]
+
+@admin.register(AdditionalProducts)
+class AdditionalProducts(admin.ModelAdmin):
+    list_display = ('name', 'price', 'is_active', 'created_at')
+    list_editable = ('is_active',)
+    list_filter = ('is_active', 'created_at')
+    search_fields = ('name', 'description')
+    fieldsets = (
+        ("Основные поля", {
+            'fields': ('name', 'description', 'price', 'image'),
+        }),
+        ("Дополнительно", {
+            'fields': ('is_active',),
+        })
+    )
+    inlines = [
+        AdditionalProductsImageInline,
     ]

@@ -45,6 +45,7 @@
 .game-catalog-filters {
     background: #000 !important;
 }
+/* карточки товара */
 .games-grid {
     display: flex;
     flex-wrap: wrap;
@@ -87,6 +88,52 @@
     font-weight: 500;
     margin: 10px 0;
 }
+
+/* карточки допов */
+.additional_product_grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+    margin-bottom: 20px; /* Уменьшаем расстояние до футера */
+}
+
+.additional_product_card {
+    flex: 0 0 calc(33.333% - 20px);
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 10px;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    min-height: 450px;
+}
+
+.additional_product_image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 25px;
+    margin-bottom: 15px;
+}
+
+.additional_product_card h3 {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    margin: 10px 0;
+    flex-grow: 0;
+}
+
+.additional_product_card p {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin: 10px 0;
+}
+
 
 @media (max-width: 768px) {
     .game-card {

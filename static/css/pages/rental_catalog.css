@@ -1,15 +1,16 @@
 /* Стили для страницы аренды */
+.container-fluid {
+    max-width: 1800px;
+}
 
-p {
+.title-about {
     color: white;
-    font-family: 'Mont', sans-serif;
-    font-size: 20px;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
     font-weight: 400;
     margin-bottom: 10px;
     margin-top: 10px;
-    text-align: center;
 }
-
 .order-text {
     color: black;
     font-family: "Unbounded", sans-serif;
@@ -35,7 +36,7 @@ h3 {
     margin-top: 10px;
 }
 
-input {
+.input-guest {
     border-radius: 10px;
     background: white;
     height: 50px;
@@ -89,11 +90,6 @@ input {
     object-fit: cover;
 }
 
-.btn-primary:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    outline: none;
-}
 
 .games-grid {
     display: flex;
@@ -148,4 +144,154 @@ input {
     .game-card {
         flex: 0 0 100%;
     }
+}
+
+
+/* Модальные окна */
+
+.modal-content-about {
+    background-color: transparent;
+    color: white;
+}
+
+.modal-title-about {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.modal-body-about {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+.modal-main-image {
+  max-height: 450px; 
+  width: 100%; 
+  border-radius: 31px;
+}
+/* Стили для изображений */
+.additional-image-wrapper {
+  height: 200px; 
+  overflow: hidden; 
+border: none !important;
+  border-radius: 10px; 
+}
+
+/* Стили для изображений */
+.additional-image {
+  height: 100%; 
+  width: 100%; 
+  object-fit: cover; 
+}
+/* остальное  */
+.custom-shadow {
+    box-shadow: 0 10px 10px black;
+}
+p {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    text-align: start !important;
+}
+h5 {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+}
+.hidden {
+    display: none;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    transition: height 0.5s cubic-bezier(.4,0,.2,1), visibility 0.5s linear;
+}
+h3 {
+    color: #F88005;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+}
+.visible {
+    display: block;
+    visibility: visible;
+    height: auto;
+    overflow: visible;
+}
+
+
+/* кнопка подробнее в новостях */
+.news-btn {
+    color: black;
+    background: #F88005;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 15px;
+    border: none;
+    width: 50%;
+    height: 50px;
+    transition: all 0.3s ease;
+}
+.news-btn:hover {
+    color: white;
+    background: #F88005;
+}
+.news-btn:focus {
+    color: white;
+    background: #F88005;
+}
+/* кнопка оформления */
+.btn-primary {
+    display: flex;
+    background: white;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    border-radius: 15px;
+    color: black;
+    border: none;
+    width: 50%;
+    height: 50px;
+    transition: all 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; 
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    outline: none;
+    background: white;
+    color: black;
+}
+
+/* блок с кнопкой оформления заказа */
+.about-order {
+    text-align: center;
+    background: #F88005;
+    border-radius: 31px;
+    width: 50%;
+    padding: 20px;
+    margin: 0 auto; /* Центрируем блок по горизонтали */
+    margin-bottom: 30px;
+}
+h7 {
+    color: black;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 1
+}
+.order-description {
+    color: #000;
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    margin-top: 10px;
 }

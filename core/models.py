@@ -181,3 +181,35 @@ class NewsImage(models.Model):
 
     def __str__(self):
         return f'Фото {self.news}'
+
+class AdditionalProducts(models.Model):
+    """Модель подставки и сумок"""
+    name = models.CharField(max_length=200, verbose_name="Название")
+    description = models.TextField(verbose_name="Описание")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена")
+    image = models.ImageField(upload_to='products/', verbose_name="Изображение")
+    is_active = models.BooleanField(default=True, verbose_name="Отображать на сайте")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
+    
+    class Meta:
+        verbose_name = "Дополнительное к товарам"
+        verbose_name_plural = "Дополнительные к товарам"
+        
+        
+class AdditionalProductsImage(models.Model):
+    additional_product = models.ForeignKey(
+        AdditionalProducts,
+        on_delete=models.CASCADE,
+        related_name='additional_images',
+        verbose_name="Допы к товару",
+    )
+    image = models.ImageField(upload_to='additional_product_images/additional/', verbose_name="Дополнительное изображение")
+    is_main = models.BooleanField(default=False, verbose_name="Основное изображение")
+
+    class Meta:
+        verbose_name = "Дополнительное изображение допов товара"
+        verbose_name_plural = "Дополнительные изображения допов товара"
+
+    def __str__(self):
+        return f'Фото {self.additional_product}'

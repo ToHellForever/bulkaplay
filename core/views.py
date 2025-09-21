@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import TemplateView, View
-from .models import Product, Arenda, News, Order, PlayerRange, Size, PlayerCount, PlayerAge, GameType
+from .models import Product, Arenda, News, Order, PlayerRange, Size, PlayerCount, PlayerAge, GameType, AdditionalProducts
 from .forms import OrderForm
 # ИМПОРТ РАНДОМА 
 import random
@@ -47,6 +47,9 @@ class LandingView(TemplateView):
         context["arenda"] = Arenda.objects.filter(is_active=True).order_by(
             "-created_at"
         )
+        context["additional_products"] = AdditionalProducts.objects.filter(is_active=True).order_by(
+            "-created_at"
+        )
         context["form"] = OrderForm()
         return context
 
@@ -68,6 +71,9 @@ class AboutView(TemplateView):
         )
         context["arenda"] = Arenda.objects.filter(is_active=True).order_by(
             "-created_at"
+        )
+        context["additional_products"] = AdditionalProducts.objects.filter(is_active=True).order_by(
+        "-created_at"
         )
         context["news"] = News.objects.filter(is_active=True).order_by("-created_at")
         context["form"] = OrderForm()
@@ -126,6 +132,7 @@ class GameCatalogView(TemplateView):
             products = products.order_by('-created_at')
 
         context["products"] = products
+        context["additional_products"] = AdditionalProducts.objects.filter(is_active=True).order_by("-created_at")
         context["arenda"] = Arenda.objects.filter(is_active=True).order_by("-created_at")
         context["form"] = OrderForm()
 
@@ -137,12 +144,12 @@ class GameCatalogView(TemplateView):
 
         return context
 
-        # def post(self, request, *args, **kwargs):
-        #     form = OrderForm(request.POST)
-        #     if process_order_form(request, form):
-        #         return redirect("landing")
-        #     else:
-        #         return redirect("landing")
+        def post(self, request, *args, **kwargs):
+            form = OrderForm(request.POST)
+            if process_order_form(request, form):
+                return redirect("landing")
+            else:
+                return redirect("landing")
 
 
 class ProductDetailView(TemplateView):
@@ -152,6 +159,7 @@ class ProductDetailView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["product"] = get_object_or_404(Product, pk=kwargs["pk"])
         context["products"] = Product.objects.filter(is_active=True).order_by("-created_at")
+        context["additional_products"] = AdditionalProducts.objects.filter(is_active=True).order_by("-created_at")
         context["arenda"] = Arenda.objects.filter(is_active=True).order_by("-created_at")
         context["form"] = OrderForm()
         # Берём 3 случайных товара из базы данных
@@ -174,6 +182,7 @@ class RentalCatalogView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["products"] = Product.objects.filter(is_active=True).order_by("-created_at")
         context["arenda"] = Arenda.objects.filter(is_active=True).order_by("-created_at")
+        context["additional_products"] = AdditionalProducts.objects.filter(is_active=True).order_by("-created_at")  
         context["news"] = News.objects.filter(is_active=True).order_by("-created_at")
         context["form"] = OrderForm()
         return context
@@ -184,4 +193,23 @@ class RentalCatalogView(TemplateView):
             return redirect("landing")
         else:
             return redirect("landing")
-        
+
+
+class AdditionalProductDetailView(TemplateView):
+    template_name = "additional_product.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["additional_product"] = get_object_or_404(AdditionalProducts, pk=kwargs["pk"])
+        context["products"] = Product.objects.filter(is_active=True).order_by("-created_at")
+        context["additional_products"] = AdditionalProducts.objects.filter(is_active=True).order_by("-created_at")
+        context["arenda"] = Arenda.objects.filter(is_active=True).order_by("-created_at")
+        context["form"] = OrderForm()
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        form = OrderForm(request.POST)
+        if process_order_form(request, form):
+            return redirect("landing")
+        else:
+            return redirect("landing")

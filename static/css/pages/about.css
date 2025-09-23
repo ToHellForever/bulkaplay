@@ -4,6 +4,7 @@
 .container-fluid {
     max-width: 1800px;
 }
+
 /* стили для заголовка */
 .about-title {
     color: white;
@@ -27,6 +28,10 @@
     font-weight: 400;
     font-size: 21px;
     margin-top: 20px;
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    display: block;
+    width: 100%;
 }
 .about-list {
     color: white;
@@ -34,6 +39,8 @@
     font-weight: 400;
     font-size: 21px;
     margin-top: 20px;
+    text-align: justify;
+    text-justify: inter-word;
 }
 /* стили для видео */
 .video-container {
@@ -83,8 +90,8 @@
 /* стили для 4 кнопок под видео */
 #icon_about {
     background: #1A1A1A;
-    border-radius: 10px;
-    height: 150px;
+    border-radius: 31px;
+    height: 250px;
     padding: 40px 40px;
     margin-left: 30px;
 }
@@ -93,22 +100,24 @@
 #icon_about:nth-child(2)  {
     background: #F88005;
 }
-#icon_about:nth-child(4)  {
-    background: #F88005;
+#icon_about:nth-child(2) h4,
+#icon_about:nth-child(2) p {
+    color: black !important;
 }
 /* заголовки 4 кнопок под видео */
 h4 {
     font-family: "Unbounded", sans-serif;
-    font-size: 25px;
+    font-size: 50px;
     font-weight: 400;
     color: white;
 }
 .about-stat {
     color: white;
     font-family: "Unbounded", sans-serif;
-    font-size: 16px;
-    font-weight: 400;
+    font-size: 25px;
+    font-weight: 300;
 }
+
 /* кнопка подробнее в новостях */
 .news-btn {
     color: black;
@@ -233,7 +242,6 @@ h7 {
     font-weight: 400;
 }
 .modal-main-image {
-  max-height: 450px; 
   width: 100%; 
   border-radius: 31px;
 }

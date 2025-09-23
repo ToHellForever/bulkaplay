@@ -4,16 +4,40 @@
     height: 42px;
     background: #3B3737 !important;
     border: none !important;    
+    color: rgb(185, 178, 178) !important;
 }
 
+/* Стили для поля поиска */
+.search-input::placeholder {
+    color: rgb(185, 178, 178) !important;
+    opacity: 1;
+}
 #filter {
-    color: white;
+    color: white !important;
     background: #000 !important;
     border: none;
-    font-family: Unbounded;
+    font-family: 'Mont', sens-serif;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 20px;
+    appearance: none;
 }
+#filter:hover {
+    background: #3B3737 !important;
+    border: none;
+}
+#filter:active {
+    background: #3B3737 !important;
+    border: none;
+}
+#filter:disabled {
+    background: #3B3737 !important;
+    border: none;
+}
+#filter:focus {
+    background: #3B3737 !important;
+    border: none;
+}
+
 .catalog-btn {
     color: black;
     background: #F88005;
@@ -134,6 +158,10 @@
 }
 
 
+hr {
+    color: #F88005;
+    height: 2px;
+}
 @media (max-width: 768px) {
     .additional_product-card {
         flex: 0 0 100%;

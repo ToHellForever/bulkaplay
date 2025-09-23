@@ -5,6 +5,8 @@ from .models import Product, Arenda, News, Order, PlayerRange, Size, PlayerCount
 from .forms import OrderForm
 # ИМПОРТ РАНДОМА 
 import random
+# JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 
 def process_order_form(request, form):
@@ -34,6 +36,7 @@ def process_order_form(request, form):
             request, "Ошибка при отправке формы. Проверьте введённые данные."
         )
         return False
+
 
 
 class LandingView(TemplateView):
@@ -194,7 +197,23 @@ class RentalCatalogView(TemplateView):
         else:
             return redirect("landing")
 
-
+def calculate_games(request):
+    guests = int(request.GET.get('guests'))
+    try:
+        player_range = PlayerRange.objects.filter(min_players__lte=guests, max_players__gte=guests).first()
+        
+        if player_range is not None:
+            data = {'min': player_range.min_game_count, 'max': player_range.max_game_count}
+        else:
+            data = {'min': None, 'max': None}
+            
+        return JsonResponse(data)
+    
+    except Exception as e:
+        print(f"Ошибка: {e}")
+        return JsonResponse({'error': str(e)}, status=500)
+    
+    
 class AdditionalProductDetailView(TemplateView):
     template_name = "additional_product.html"
 

@@ -114,9 +114,36 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-    $(document).ready(function () {
-        console.log("DOM загружен, скрипт выполняется.");
-    // Ваш существующий JS код без изменений
+$(document).ready(function () {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedToday = `${year}-${month}-${day}`;
+    $('#rental-date').attr('min', formattedToday);
+
+    // Основная проверка формы
+    $('#orderForm').on('submit', function(event) {
+        // Получаем выбранную дату и время
+        const selectedDateStr = $('#rental-date').val(); // Дата в формате YYYY-MM-DD
+        const selectedTimeStr = $('#rental-time').val(); // Время в формате hh:mm
+
+        // Текущие дата и время
+        const now = new Date();
+
+        // Конвертируем выбранную дату и время в единую дату с временными компонентами
+        const parts = selectedDateStr.split('-');
+        const selectedDateObj = new Date(parts[0], parts[1]-1, parts[2]);
+        const timeParts = selectedTimeStr.split(':');
+        selectedDateObj.setHours(timeParts[0], timeParts[1], 0, 0); // устанавливаем часы и минуты
+
+        // Сравниваем времена
+        if (selectedDateObj < now) {
+            event.preventDefault();
+            showNotification('Выбранная дата и время уже прошли. Выберите будущее время.');
+            return;
+        }
+    });
     $('#id_order_type').on('change', function () {
         console.log("Событие change сработало, выбранное значение: " + $(this).val());
         var selectedValue = $(this).val();

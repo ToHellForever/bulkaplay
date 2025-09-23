@@ -69,7 +69,14 @@ h3 {
     background-color: #E0E0E0;
     border-radius: 5px;
 }
+#guestCounts {
+    color: white;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 35px;
+    font-weight: 600;
+}
 
+/* стили для видео */
 .video-container {
     position: relative;
     width: 100%;
@@ -90,7 +97,7 @@ h3 {
     object-fit: cover;
 }
 
-
+/* стили для карточек аренды */
 .games-grid {
     display: flex;
     flex-wrap: wrap;

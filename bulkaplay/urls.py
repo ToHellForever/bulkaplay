@@ -10,6 +10,7 @@ from core.views import (
     ProductDetailView,
     RentalCatalogView,
     AdditionalProductDetailView,
+    calculate_games,
 )
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     path('game_catalog/<int:pk>/', ProductDetailView.as_view(), name='product_detail'),
     path('rental_catalog/', RentalCatalogView.as_view(), name='rental_catalog'),
     path('additional_product_detail/<int:pk>/', AdditionalProductDetailView.as_view(), name='additional_product_detail'),
+    path('calculate_games/', calculate_games, name='calculate_games'),
 ] + debug_toolbar_urls()
 
 if settings.DEBUG:

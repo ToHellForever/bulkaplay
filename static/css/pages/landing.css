@@ -9,7 +9,13 @@
 .left-photo {
     border-radius: 31px;
 }
-
+/* текст поверх фото */
+.text-photo {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-weight: 200;
+    font-size: 50px;
+}
 /* фото в карусели */
 .card-img-top {
     width: 100%;

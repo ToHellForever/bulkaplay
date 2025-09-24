@@ -6,7 +6,10 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Ключи 
 SECRET_KEY = os.getenv('SECRET_KEY')
+TELEGRAM_BOT_API_KEY = os.getenv("TELEGRAM_BOT_API_KEY")
+TELEGRAM_USER_ID = os.getenv("TELEGRAM_USER_ID")
 
 DEBUG = True
 
@@ -108,5 +111,5 @@ UNFOLD = {
     "SITE_TITLE": "BUL.K.A-PLAY",  # Заголовок в браузере
     "SITE_HEADER": "Админ-панель BUL.K.A-PLAY",           # Заголовок в шапке
     "SITE_ICON": "/media/logo/admin_logo.jpg",         # Путь к логотипу (SVG/PNG)
-    "THEME": "dark",  # "light", "dark" или "auto" (автоопределение)
+    "THEME": "light",  # "light", "dark" или "auto" (автоопределение)
 }

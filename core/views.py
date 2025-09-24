@@ -16,19 +16,31 @@ def process_order_form(request, form):
             name=data["name"],
             phone=data["phone"],
             order_type=data["order_type"],
+            date=data["date"],
+            time=data["time"],
             comment=data.get("comment", ""),
         )
 
         # Сохраняем выбранные товары или аренды
         if data["order_type"] == "buy":
             selected_products = request.POST.getlist("selected_products")
-            order.products.set(selected_products)
+            selected_additional_products = request.POST.getlist("selected_additional_products")
+            if selected_products:
+                products = Product.objects.filter(id__in=selected_products)
+                order.products.set(products)
+            if selected_additional_products:
+                additional_products = AdditionalProducts.objects.filter(id__in=selected_additional_products)
+                order.additional_products.set(additional_products)
         elif data["order_type"] == "rent":
             selected_arenda_id = request.POST.get("rental-type")
             selected_games = request.POST.getlist("selected_games")
             if selected_arenda_id:
-                order.arenda.set([selected_arenda_id])
-            order.games_for_rent.set(selected_games)
+                arenda = Arenda.objects.filter(id=selected_arenda_id).first()
+                if arenda:
+                    order.arenda.set([arenda])
+            if selected_games:
+                games = Product.objects.filter(id__in=selected_games)
+                order.games_for_rent.set(games)
         messages.success(request, "Заказ успешно сохранён!")
         return True
     else:

@@ -11,7 +11,7 @@
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
-        <form method="post" id="orderForm">
+        <form method="post" id="orderForm" action="{% url 'landing' %}">
             {% csrf_token %}
             <div class="order-form-group">
                 {{ form.name }}
@@ -88,10 +88,10 @@
                 <label for="rental-date" style='color: #F88005'>Выберите дату и время аренды:</label>
                 <div class="row">
                     <div class="col-md-6">
-                        <input type="date" id="rental-date" name="rental_date" class="form-control" required>
+                        <input type="date" id="rental-date" name="rental_date" class="form-control">
                     </div>
                     <div class="col-md-6">
-                        <input type="time" id="rental-time" name="rental_time" class="form-control" required>
+                        <input type="time" id="rental-time" name="rental_time" class="form-control">
                     </div>
                 </div>
             </div>
@@ -124,24 +124,65 @@ $(document).ready(function () {
 
     // Основная проверка формы
     $('#orderForm').on('submit', function(event) {
-        // Получаем выбранную дату и время
-        const selectedDateStr = $('#rental-date').val(); // Дата в формате YYYY-MM-DD
-        const selectedTimeStr = $('#rental-time').val(); // Время в формате hh:mm
-
-        // Текущие дата и время
-        const now = new Date();
-
-        // Конвертируем выбранную дату и время в единую дату с временными компонентами
-        const parts = selectedDateStr.split('-');
-        const selectedDateObj = new Date(parts[0], parts[1]-1, parts[2]);
-        const timeParts = selectedTimeStr.split(':');
-        selectedDateObj.setHours(timeParts[0], timeParts[1], 0, 0); // устанавливаем часы и минуты
-
-        // Сравниваем времена
-        if (selectedDateObj < now) {
+        console.log("Форма отправляется, данные:", $(this).serialize());
+        const orderType = $('#id_order_type').val();
+        if (!orderType || orderType === 'choice') {
             event.preventDefault();
-            showNotification('Выбранная дата и время уже прошли. Выберите будущее время.');
+            showNotification('Выберите тип заказа.');
             return;
+        }
+
+        // Проверяем выбранные элементы в зависимости от типа заказа
+        if (orderType === 'buy') {
+            const hasProducts = $('input[name="selected_products"]:checked').length > 0;
+            const hasAdditionalProducts = $('input[name="selected_additional_products"]:checked').length > 0;
+
+            if (!hasProducts && !hasAdditionalProducts) {
+                event.preventDefault();
+                showNotification('Пожалуйста, выберите хотя бы один продукт.');
+                return;
+            }
+        } else if (orderType === 'rent') {
+            const selectedGamesCount = $('input[name="selected_games"]:checked').length;
+            const maxGames = parseInt($('#max-games-count').text());
+            const rentalDate = $('#rental-date').val();
+            const rentalTime = $('#rental-time').val();
+
+            if (selectedGamesCount !== maxGames) {
+                event.preventDefault();
+                showNotification(`Выберите ровно ${maxGames} игр для аренды.`);
+                return;
+            }
+            if (!rentalDate) {
+                event.preventDefault();
+                showNotification('Выберите дату аренды.');
+                return;
+            }
+            if (!rentalTime) {
+                event.preventDefault();
+                showNotification('Выберите время аренды.');
+                return;
+            }
+
+            // Получаем выбранную дату и время
+            const selectedDateStr = $('#rental-date').val(); // Дата в формате YYYY-MM-DD
+            const selectedTimeStr = $('#rental-time').val(); // Время в формате hh:mm
+
+            // Текущие дата и время
+            const now = new Date();
+
+            // Конвертируем выбранную дату и время в единую дату с временными компонентами
+            const parts = selectedDateStr.split('-');
+            const selectedDateObj = new Date(parts[0], parts[1]-1, parts[2]);
+            const timeParts = selectedTimeStr.split(':');
+            selectedDateObj.setHours(timeParts[0], timeParts[1], 0, 0); // устанавливаем часы и минуты
+
+            // Сравниваем времена
+            if (selectedDateObj < now) {
+                event.preventDefault();
+                showNotification('Выбранная дата и время уже прошли. Выберите будущее время.');
+                return;
+            }
         }
     });
     $('#id_order_type').on('change', function () {
@@ -197,48 +238,6 @@ $(document).ready(function () {
         }, 3000);
     }
 
-$('#orderForm').on('submit', function(event) {
-        let hasSelectedItems = false;
-        const orderType = $('#id_order_type').val();
-        if (!orderType || orderType === 'choice') {
-            event.preventDefault();
-            showNotification('Выберите тип заказа.');
-            return;
-        }
-        switch(orderType) {
-            case 'buy':
-                hasSelectedItems = $('input[name="selected_products"]:checked').length > 0 || $('input[name="selected_additional_products"]:checked').length > 0;
-                break;
-            case 'rent':
-                const selectedGamesCount = $('input[name="selected_games"]:checked').length;
-                const maxGames = parseInt($('#max-games-count').text());
-                const rentalDate = $('#rental-date').val();
-                const rentalTime = $('#rental-time').val();
-                if (selectedGamesCount !== maxGames) {
-                    event.preventDefault();
-                    showNotification(`Выберите ровно ${maxGames} игр для аренды.`);
-                    return;
-                }
-                if (!rentalDate) {
-                    event.preventDefault();
-                    showNotification('Выберите дату аренды.');
-                    return;
-                }
-                if (!rentalTime) {
-                    event.preventDefault();
-                    showNotification('Выберите время аренды.');
-                    return;
-                }
-                hasSelectedItems = selectedGamesCount > 0;
-                break;
-        }
-        if (!hasSelectedItems) {
-            event.preventDefault();
-            showNotification('Пожалуйста, выберите хотя бы один продукт или услугу.');
-        }
-        
-    });
-
     $('.product-item img, .game-item img').click(function() {
         const parentItem = $(this).closest('.product-item, .game-item');
         const checkbox = parentItem.find('input[type="checkbox"]');
@@ -253,6 +252,7 @@ $('#orderForm').on('submit', function(event) {
         checkbox.prop('checked', isChecked);
         if (parentItem.hasClass('game-item')) {
             const newCheckedCount = $('.game-checkbox:checked').length;
+            const maxGames = parseInt($('#max-games-count').text());
             $('#selected-games-count').text(newCheckedCount);
             if (maxGames > 0 && newCheckedCount >= maxGames) {
                 $('.game-checkbox:not(:checked)').prop('disabled', true);

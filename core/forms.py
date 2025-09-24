@@ -39,7 +39,7 @@ class OrderForm(forms.Form):
     date = forms.DateField(
         widget=forms.DateInput(attrs={'type': 'date'}),
         label='Дата заказа:',
-        initial=datetime.now().date()
+        initial=datetime.now().strftime('%Y-%m-%d')
     )
     time = forms.TimeField(
         widget=forms.TimeInput(attrs={'type': 'time'}),

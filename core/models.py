@@ -91,8 +91,6 @@ class ProductImage(models.Model):
     def __str__(self):
         return f'Фото {self.product}'
 
-
-
 class PlayerRange(models.Model):
     """
     Диапазоны количества игроков и соответствующее количество игр.
@@ -108,7 +106,6 @@ class PlayerRange(models.Model):
 
     def __str__(self):
         return f'{self.min_players}-{self.max_players}: {self.min_game_count}-{self.max_game_count} игр'
-
 
 class Arenda(models.Model):
     """Модель аренды"""
@@ -128,27 +125,7 @@ class Arenda(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return self.name 
-
-class Order(models.Model):
-    """Модель заказа"""
-    name = models.CharField(max_length=100, verbose_name="Имя")
-    phone = models.CharField(max_length=15, verbose_name="Телефон")
-    order_type = models.CharField(max_length=10, choices=[('buy', 'Купить'), ('rent', 'Аренда')], verbose_name="Тип заказа")
-    products = models.ManyToManyField(Product, blank=True, verbose_name="Выбранные товары", related_name="order_products")
-    arenda = models.ManyToManyField(Arenda, blank=True, verbose_name="Выбранные аренды", related_name="order_arenda")
-    games_for_rent = models.ManyToManyField(Product, blank=True, verbose_name="Игры для аренды", related_name="order_games_for_rent")
-    date = models.DateField(verbose_name="Дата заказа", default=datetime.now)
-    time = models.TimeField(verbose_name="Время заказа", default=datetime.now)
-    comment = models.TextField(blank=True, verbose_name="Комментарий")
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
-
-    class Meta:
-        verbose_name = "Заказ"
-        verbose_name_plural = "Заказы"
-
-    def __str__(self):
-        return f"Заказ от {self.name} ({self.created_at})"
+        return self.name
 
 class News(models.Model):
     """Модель новости"""
@@ -166,7 +143,6 @@ class News(models.Model):
 
     def __str__(self):
         return self.name
-
 
 class NewsImage(models.Model):
     news = models.ForeignKey(
@@ -194,12 +170,11 @@ class AdditionalProducts(models.Model):
     is_active = models.BooleanField(default=True, verbose_name="Отображать на сайте")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
-    
+
     class Meta:
         verbose_name = "Дополнительное к товарам"
         verbose_name_plural = "Дополнительные к товарам"
-        
-        
+
 class AdditionalProductsImage(models.Model):
     additional_product = models.ForeignKey(
         AdditionalProducts,
@@ -216,3 +191,24 @@ class AdditionalProductsImage(models.Model):
 
     def __str__(self):
         return f'Фото {self.additional_product}'
+
+class Order(models.Model):
+    """Модель заказа"""
+    name = models.CharField(max_length=100, verbose_name="Имя")
+    phone = models.CharField(max_length=15, verbose_name="Телефон")
+    order_type = models.CharField(max_length=10, choices=[('buy', 'Купить'), ('rent', 'Аренда')], verbose_name="Тип заказа")
+    products = models.ManyToManyField(Product, blank=True, verbose_name="Выбранные товары", related_name="order_products")
+    additional_products = models.ManyToManyField(AdditionalProducts, blank=True, verbose_name="Дополнительные товары", related_name="order_additional_products")
+    arenda = models.ManyToManyField(Arenda, blank=True, verbose_name="Выбранные аренды", related_name="order_arenda")
+    games_for_rent = models.ManyToManyField(Product, blank=True, verbose_name="Игры для аренды", related_name="order_games_for_rent")
+    date = models.DateField(verbose_name="Дата заказа", default=datetime.now)
+    time = models.TimeField(verbose_name="Время заказа", default=datetime.now)
+    comment = models.TextField(blank=True, verbose_name="Комментарий")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+
+    class Meta:
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
+
+    def __str__(self):
+        return f"Заказ от {self.name} ({self.created_at})"

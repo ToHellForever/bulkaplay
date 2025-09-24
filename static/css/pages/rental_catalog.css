@@ -1,13 +1,20 @@
 /* Стили для страницы аренды */
 .container-fluid {
-    max-width: 1800px;
+    max-width: 1600px;
 }
-
-.title-about {
+h4 {
     color: white;
     font-family: 'Unbounded', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
+    font-size: 78px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+.title-about {
+    color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
     margin-bottom: 10px;
     margin-top: 10px;
 }

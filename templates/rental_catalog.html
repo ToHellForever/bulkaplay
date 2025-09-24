@@ -6,9 +6,9 @@
 {% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
-<div class='container-fluid rental-header'>
-    <h1>ОРГАНИЗАЦИЯ МЕРОПРИЯТИЙ <span class="wood-text"><br>С НАСТОЛЬНЫМИ ИГРАМИ<span></h1>
-    <p class='title-about text-center'>Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p>
+<div class='container-fluid rental-header mt-5'>
+    <h4>ОРГАНИЗАЦИЯ МЕРОПРИЯТИЙ <span class="wood-text"><br>С НАСТОЛЬНЫМИ ИГРАМИ<span></h1>
+    <p class='title-about'>Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p>
 
 
 <div class='container-fluid' style="max-width: 1600px;">
@@ -86,7 +86,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ n.name }}</h5>
                 <p class="mt-3">{{ n.date_event | date:"d.m.Y" }} в {{ n.date_event | date:"H:i" }}</p>
-                <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" class="btn news-btn">Подробнее</button>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" class="btn news-btn">ПОДБРОБНЕЕ</button>
             </div>
           </div>
         </div>

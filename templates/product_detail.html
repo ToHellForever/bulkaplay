@@ -21,7 +21,7 @@
             </div>
         {% endif %}
     {% endwith %}
-        <div class="col-md-8 col-xl-6"> {# Колонка для основного изображения #}
+        <div class="col-md-8 col-xl-6 no-growth"> {# Колонка для основного изображения #}
 <img src="{% if product.image %}{{ product.image.url }}{% else %}#{% endif %}"
      alt="Основное изображение" class="main-image">
         </div>
@@ -53,18 +53,17 @@
                 <hr class="my-3">
 
                 <div class="d-flex justify-content-between align-items-center">
-                    <h6>ЦЕНА: {{ product.price| floatformat }} руб.</h6>
-<button data-bs-toggle="modal" data-bs-target="#orderModal" type="button" class="btn order-btn">Заказать</button>
+                    <h6>{{ product.price| floatformat }} руб.</h6>
+<button data-bs-toggle="modal" data-bs-target="#orderModal" type="button" class="btn order-btn">ЗАКАЗАТЬ</button>
                 </div>
-
                 <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
 <a href="#gameRulesCollapse" role="button" aria-expanded="false" aria-controls="gameRulesCollapse" onclick="toggleBlock('gameRulesCollapse', event)" class="collapse-link">
     Правила игры
-    <p>⇩</p>
+    <p class='text-center'>⇩</p>
 </a>
 <a href="#additionalInfoCollapse" role="button" aria-expanded="false" aria-controls="additionalInfoCollapse" onclick="toggleBlock('additionalInfoCollapse', event)" class="collapse-link">
     Дополнительно
-    <p>⇩</p>
+    <p class='text-center'>⇩</p>
 </a>
     </div>
 

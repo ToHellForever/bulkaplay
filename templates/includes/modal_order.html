@@ -3,7 +3,7 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'css/components/modal.css' %}">
 {% endblock stylesheets %}
-<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel">
+<div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" data-bs-backdrop="static">
   <div class="modal-dialog modal-lg modal-dialog-scrollable">
     <div class="modal-content" style="background: #1A1A1A; color: white; border-radius: 15px;">
       <div class="modal-header">
@@ -84,22 +84,22 @@
                         {% endfor %}
                     </div>
                 </div>
-<div id="rental-dates" class="hidden">
-    <label for="id_date" style='color: #F88005'>Выберите дату и время аренды:</label>
-    <div class="row">
-        <div class="col-md-6" >
-            {{ form.date }}
-        </div>
-        <div class="col-md-6">
-            {{ form.time }}
-        </div>
-    </div>
-</div>
+                <div id="rental-dates" class="hidden">
+                    <label for="id_date" style='color: #F88005'>Выберите дату и время аренды:</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.date }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.time }}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class='mt-4'>
             {{ form.comment }}<br><br>
             </div>
-            <button type="submit">Отправить заказ</button>
+            <button type="submit" id="submitButton">Отправить заказ</button>
         </form>
       </div>
     </div>
@@ -124,30 +124,44 @@ $(document).ready(function () {
 
     // Основная проверка формы перед отправкой
     $('#orderForm').on('submit', function(event) {
-    event.preventDefault();
+        event.preventDefault();
 
-    $.ajax({
-        type: 'POST',
-        url: '{% url 'landing' %}',
-        data: $(this).serialize(),
-        success: function(response) {
-            showNotification('Ваш заказ успешно отправлен! Мы свяжемся с вами в ближайшее время.');
-            
-            // Правильно закрываем модальное окно
-            $('#orderModal').modal('hide');
-            
-            // Подчищаем фоневые слои Bootstrap
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
-            
-            // Дополнительные действия после успешной отправки
-            $('#orderForm')[0].reset();
-        },
-        error: function(error) {
-            showNotification('Ошибка при отправке заказа. Попробуйте позже.');
-        }
+        
+        // Отключаем кнопку отправки
+        const submitButton = $('#submitButton');
+        submitButton.prop('disabled', true).text('Отправка...');
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'landing' %}',
+            data: $(this).serialize(),
+            success: function(response) {
+                showNotification('Ваш заказ успешно отправлен! Мы свяжемся с вами в ближайшее время.');
+
+                // Исправленное закрытие модального окна
+                const modal = bootstrap.Modal.getInstance(document.getElementById('orderModal'));
+                if (modal) {
+                    modal.hide();
+                }
+
+                // Сброс всех модификаций body
+                setTimeout(function() {
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                    $('body').css({
+                        'overflow': '',
+                        'padding-right': ''
+                    });
+
+                    // Дополнительные действия после успешной отправки
+                    $('#orderForm')[0].reset();
+                }, 300);
+            },
+            error: function(error) {
+                showNotification('Ошибка при отправке заказа. Попробуйте позже.');
+            }
+        });
     });
-});
 
     // Переключение видимости блоков в зависимости от выбранного типа заказа
     $('#id_order_type').on('change', function () {
@@ -170,11 +184,12 @@ $(document).ready(function () {
             var selectedRental = $(this).find('option:selected');
             var maxGames = parseInt(selectedRental.data('game-count'));
             $('#max-games-count').text(maxGames);
-            $('#rental-games').addClass('visible');
-            $('#rental-dates').addClass('visible');
+            $('#rental-games').addClass('visible').removeClass('hidden');
+            $('#rental-dates').addClass('visible').removeClass('hidden');
+            $('#selected-games-count').text('0');
         } else {
-            $('#rental-games').removeClass('visible');
-            $('#rental-dates').removeClass('visible');
+            $('#rental-games').removeClass('visible').addClass('hidden');
+            $('#rental-dates').removeClass('visible').addClass('hidden');
         }
     });
 
@@ -229,5 +244,15 @@ $(document).ready(function () {
             }, 300);
         }, 3000);
     }
+
+    // Исправление проблемы с прокруткой при закрытии модального окна
+    $('#orderModal').on('hidden.bs.modal', function () {
+        $('body').removeClass('modal-open');
+        $('.modal-backdrop').remove();
+        $('body').css({
+            'overflow': '',
+            'padding-right': ''
+        });
+    });
 });
 </script>

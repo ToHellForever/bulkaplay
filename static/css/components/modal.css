@@ -1,5 +1,30 @@
 /* Модальные окна */
 
+/* чтобы после закрытия окна прокрутка оставалась */
+body.modal-open {
+    overflow: visible !important;
+    padding-right: 0 !important;
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+}
+button:disabled {
+    background-color: #cccccc !important;
+    color: #666666 !important;
+    cursor: not-allowed !important;
+    transform: none !important;
+}
+/* задний фон модального окна */
+.modal-backdrop.show {
+    opacity: 0.5;
+}
+/* контент в модальном окне */
 .modal-content {
     background: #1A1A1A;
     color: white;

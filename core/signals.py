@@ -27,21 +27,21 @@ def send_telegram_notification(instance):
         # Формируем сообщение
         tg_markdown_message = f"""
         ====== *Новый заказ!* ======
-        **Имя:** {instance.name}
-        **Телефон:** {instance.phone}
-        **Тип заказа:** {instance.get_order_type_display()}
-        **Дата заказа:** {instance.date.strftime("%d.%m.%Y") if instance.date else "Не указана"}
-        **Время заказа:** {instance.time.strftime("%H:%M") if instance.time else "Не указано"}
+**Имя:** {instance.name}
+**Телефон:** {instance.phone}
+**Тип заказа:** {instance.get_order_type_display()}
+**Дата заказа:** {instance.date.strftime("%d.%m.%Y") if instance.date else "Не указана"}
+**Время заказа:** {instance.time.strftime("%H:%M") if instance.time else "Не указано"}
 
-        **Товары:** {', '.join(products_list) if products_list else "Нет"}
-        **Дополнительные товары:** {', '.join(additional_products_list) if additional_products_list else "Нет"}
-        **Аренды:** {', '.join(arenda_list) if arenda_list else "Нет"}
-        **Игры для аренды:** {', '.join(games_for_rent_list) if games_for_rent_list else "Нет"}
+**Товары:** {', '.join(products_list) if products_list else "Нет"}
+**Дополнительные товары:** {', '.join(additional_products_list) if additional_products_list else "Нет"}
+**Аренды:** {', '.join(arenda_list) if arenda_list else "Нет"}
+**Игры для аренды:** {', '.join(games_for_rent_list) if games_for_rent_list else "Нет"}
 
-        **Комментарий:** {instance.comment if instance.comment else "Нет"}
+**Комментарий:** {instance.comment if instance.comment else "Нет"}
 
-        **Подробнее:** http://127.0.0.1:8000/admin/core/order/{instance.id}/change/
-        """
+**Подробнее:** http://127.0.0.1:8000/admin/core/order/{instance.id}/change/
+"""
 
         # Отправляем сообщение в Telegram
         asyncio.run(send_telegram_message(api_key, user_id, tg_markdown_message))

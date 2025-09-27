@@ -13,7 +13,8 @@ class OrderForm(forms.ModelForm):
     order_type = forms.ChoiceField(
         label='Что вас интересует?',
         choices=ORDER_TYPES,
-        initial='choice'
+        initial='choice',
+        widget=forms.Select(attrs={'id': 'order_type_field'})
     )
 
     products = forms.ModelMultipleChoiceField(

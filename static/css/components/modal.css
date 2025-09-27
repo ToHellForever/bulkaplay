@@ -1,5 +1,14 @@
 /* Модальные окна */
-
+button:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+    color: #ccc;
+}
+button:disabled:hover {
+    transform: none;
+    color: #ccc;
+}
 .modal-content {
     background: #1A1A1A;
     color: white;
@@ -169,8 +178,8 @@ h3 {
     transition: height 1.5s cubic-bezier(.4,0,.2,1);
 }
 .visible {
-    display: block;
-    visibility: visible;
-    height: auto;
-    overflow: visible;
+    display: block !important;
+    visibility: visible !important;
+    height: auto !important;
+    overflow: visible !important;
 }

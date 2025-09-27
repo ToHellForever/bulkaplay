@@ -84,22 +84,22 @@
                         {% endfor %}
                     </div>
                 </div>
-<div id="rental-dates" class="hidden">
-    <label for="id_date" style='color: #F88005'>Выберите дату и время аренды:</label>
-    <div class="row">
-        <div class="col-md-6" >
-            {{ form.date }}
-        </div>
-        <div class="col-md-6">
-            {{ form.time }}
-        </div>
-    </div>
-</div>
+                <div id="rental-dates" class="hidden">
+                    <label for="id_date" style='color: #F88005'>Выберите дату и время аренды:</label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.date }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.time }}
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class='mt-4'>
-            {{ form.comment }}<br><br>
+                {{ form.comment }}<br><br>
             </div>
-            <button type="submit">Отправить заказ</button>
+            <button type="submit" id="submitButton">Отправить заказ</button>
         </form>
       </div>
     </div>
@@ -124,33 +124,119 @@ $(document).ready(function () {
 
     // Основная проверка формы перед отправкой
     $('#orderForm').on('submit', function(event) {
-    event.preventDefault();
+        event.preventDefault();
+        const submitButton = $('#submitButton');
+        submitButton.prop('disabled', true).text('Отправка...');
 
-    $.ajax({
-        type: 'POST',
-        url: '{% url 'landing' %}',
-        data: $(this).serialize(),
-        success: function(response) {
-            showNotification('Ваш заказ успешно отправлен! Мы свяжемся с вами в ближайшее время.');
-            
-            // Правильно закрываем модальное окно
-            $('#orderModal').modal('hide');
-            
-            // Подчищаем фоневые слои Bootstrap
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
-            
-            // Дополнительные действия после успешной отправки
-            $('#orderForm')[0].reset();
-        },
-        error: function(error) {
-            showNotification('Ошибка при отправке заказа. Попробуйте позже.');
+        // Проверка на заполненность имени и телефона
+        const name = $('input[name="name"]').val().trim();
+        const phone = $('input[name="phone"]').val().trim();
+        const orderType = $('#order_type_field').val();  // Изменено на правильный ID
+
+        // Проверка имени и телефона
+        if (!name) {
+            showNotification('Пожалуйста, введите ваше имя');
+            submitButton.prop('disabled', false).text('Отправить заказ');
+            return;
         }
-    });
-});
 
-    // Переключение видимости блоков в зависимости от выбранного типа заказа
-    $('#id_order_type').on('change', function () {
+        if (!phone) {
+            showNotification('Пожалуйста, введите ваш телефон');
+            submitButton.prop('disabled', false).text('Отправить заказ');
+            return;
+        }
+
+        // Проверка типа заказа
+        if (!orderType || orderType === "choice") {
+            showNotification('Пожалуйста, выберите тип заказа');
+            submitButton.prop('disabled', false).text('Отправить заказ');
+            return;
+        }
+
+        // Проверки для покупки
+        if (orderType === 'buy') {
+            const selectedProducts = $('input[name="selected_products"]:checked').length;
+            if (selectedProducts === 0) {
+                showNotification('Пожалуйста, выберите хотя бы один товар для покупки');
+                submitButton.prop('disabled', false).text('Отправить заказ');
+                return;
+            }
+        }
+        // Проверки для аренды
+        else if (orderType === 'rent') {
+            const rentalType = $('#rental-type').val();
+            if (!rentalType) {
+                showNotification('Пожалуйста, выберите вариант аренды');
+                submitButton.prop('disabled', false).text('Отправить заказ');
+                return;
+            }
+
+            const selectedGames = $('.game-checkbox:checked').length;
+            const maxGames = parseInt($('#max-games-count').text());
+
+            if (selectedGames === 0) {
+                showNotification('Пожалуйста, выберите игры для аренды');
+                submitButton.prop('disabled', false).text('Отправить заказ');
+                return;
+            }
+
+            if (selectedGames !== maxGames) {
+                showNotification(`Для выбранного варианта аренды нужно выбрать ровно ${maxGames} игры(ы)`);
+                submitButton.prop('disabled', false).text('Отправить заказ');
+                return;
+            }
+
+            const date = $('input[name="date"]').val();
+            const time = $('input[name="time"]').val();
+
+            if (!date || !time) {
+                showNotification('Пожалуйста, выберите дату и время аренды');
+                submitButton.prop('disabled', false).text('Отправить заказ');
+                return;
+            }
+        }
+
+        // Если все проверки пройдены, отправляем форму
+        $.ajax({
+            type: 'POST',
+            url: '{% url 'landing' %}',
+            data: $(this).serialize(),
+            success: function(response) {
+                showNotification('Ваш заказ успешно отправлен! Мы свяжемся с вами в ближайшее время.');
+
+                setTimeout(function() {
+                    $('#orderModal').modal('hide');
+                    $('body').removeClass('modal-open');
+                    $('.modal-backdrop').remove();
+                    $('body').css({
+                        'overflow': 'auto',
+                        'padding-right': ''
+                    });
+                    $('#orderForm')[0].reset();
+                    $('#order_type_field').val('choice');
+                    $('.game-checkbox').prop('checked', false).prop('disabled', false);
+                    $('#selected-games-count').text('0');
+                }, 1500);
+            },
+            error: function(error) {
+                showNotification('Ошибка при отправке заказа. Попробуйте позже.');
+            },
+            complete: function() {
+                submitButton.prop('disabled', false).text('Отправить заказ');
+            }
+        });
+    });
+    
+    // Обработчик закрытия модального окна
+    $('#orderModal').on('hidden.bs.modal', function () {
+        $('body').removeClass('modal-open');
+        $('body').css({
+            'overflow': 'auto',
+            'padding-right': ''
+        });
+    });
+    // Обработчик изменения типа заказа
+    $('#order_type_field').on('change', function () {
         var selectedValue = $(this).val();
         if (selectedValue === 'buy') {
             $('#product-selection').addClass('visible').removeClass('hidden');
@@ -160,10 +246,15 @@ $(document).ready(function () {
             $('#rental-selection').addClass('visible').removeClass('hidden');
             $('#product-selection').addClass('hidden').removeClass('visible');
             $('#additional-products-selection').addClass('hidden').removeClass('visible');
+        } else {
+            // Если выбрано "Выбрать..." или другое значение, скрываем все блоки
+            $('#product-selection, #additional-products-selection, #rental-selection')
+                .addClass('hidden')
+                .removeClass('visible');
         }
     });
 
-    // Выбор количества игр при аренде
+    // Остальной JavaScript код
     $('#rental-type').on('change', function () {
         var rentalId = $(this).val();
         if (rentalId) {
@@ -178,7 +269,6 @@ $(document).ready(function () {
         }
     });
 
-    // Ограничиваем количество выбранных игр при аренде
     $(document).on('change', '.game-checkbox', function() {
         var checkedCount = $('.game-checkbox:checked').length;
         var maxGames = parseInt($('#max-games-count').text());
@@ -190,7 +280,6 @@ $(document).ready(function () {
         }
     });
 
-    // Показ сообщения при клике на чекбокс или изображение товара
     $('.product-item img, .game-item img').click(function() {
         const parentItem = $(this).closest('.product-item, .game-item');
         const checkbox = parentItem.find('input[type="checkbox"]');
@@ -215,7 +304,6 @@ $(document).ready(function () {
         }
     });
 
-    // Всплывающее уведомление
     function showNotification(message) {
         const container = document.querySelector('.notification-container');
         const messageEl = document.querySelector('.notification-message');

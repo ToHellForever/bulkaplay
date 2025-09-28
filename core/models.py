@@ -40,7 +40,21 @@ class PlayerAge(models.Model):
 
     def __str__(self):
         return self.age
+    
 
+class GameKitItem(models.Model):
+    """Модель элемента комплектации игры чтобы разделить комплектацию на разные блоки"""
+    highlighted_text = models.CharField(max_length=50, verbose_name="Выделенный текст", help_text="Текст, который будет отображаться крупным шрифтом (например, '46x46см')")
+    normal_text = models.CharField(max_length=200, verbose_name="Обычный текст", help_text="Текст, который будет отображаться обычным шрифтом (например, 'игровое поле')")
+    
+    class Meta:
+        verbose_name = "Элемент комплектации"
+        verbose_name_plural = "Элементы комплектации"
+
+    def __str__(self):
+        return f"{self.highlighted_text} {self.normal_text}"
+    
+    
 class Product(models.Model):
     """Модель товара"""
     name = models.CharField(max_length=200, verbose_name="Название")
@@ -51,8 +65,13 @@ class Product(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
 
-    # Комплект игры как список строк
-    game_kit = models.TextField(verbose_name="Комплект игры", blank=True, null=True)
+    # Комплект игры как связь с отдельной моделью
+    game_kit_items = models.ManyToManyField(
+        GameKitItem,
+        verbose_name="Элементы комплектации",
+        blank=True,
+        related_name='products'
+    )
 
     # Правила игры
     game_rules = models.TextField(verbose_name="Правила игры", blank=True, null=True)

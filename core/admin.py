@@ -1,7 +1,7 @@
 from django.contrib import admin
 from .models import (
     Product, Arenda, Order, News, ProductImage,
-    Size, PlayerCount, GameType, PlayerAge, NewsImage, PlayerRange, AdditionalProducts, AdditionalProductsImage
+    Size, PlayerCount, GameType, PlayerAge, NewsImage, PlayerRange, AdditionalProducts, AdditionalProductsImage, GameKitItem
 )
 admin.site.register(ProductImage)
 class ProductImageInline(admin.TabularInline):
@@ -32,7 +32,7 @@ class ProductAdmin(admin.ModelAdmin):
             'fields': ('name', 'description', 'price', 'image'),
         }),
         ("Атрибуты", {
-            'fields': ('sizes', 'player_counts', 'game_types', 'player_ages', 'game_kit', 'game_rules', 'additional_info'),
+            'fields': ('sizes', 'player_counts', 'game_types', 'player_ages', 'game_rules', 'game_kit_items', 'additional_info'),
         }),
         ("Дополнительно", {
             'fields': ('is_active',),
@@ -43,7 +43,18 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [
         ProductImageInline,
     ]
-
+    
+@admin.register(GameKitItem)
+class GameKitItemAdmin(admin.ModelAdmin):
+    list_display = ('highlighted_text', 'normal_text')
+    search_fields = ('highlighted_text', 'normal_text', 'description')
+    
+    def full_item(self, obj):
+        """
+        Для более удобного просмотра полных элементов комплектации в админке
+        """
+        return f"{obj.highlighted_text} {obj.normal_text}"
+    full_item.short_description = "Полный элемент"
 @admin.register(Size)
 class SizeAdmin(admin.ModelAdmin):
     list_display = ('name',)

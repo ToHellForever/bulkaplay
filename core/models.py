@@ -74,11 +74,20 @@ class Product(models.Model):
     )
 
     # Правила игры
-    game_rules = models.TextField(verbose_name="Правила игры", blank=True, null=True)
+    game_rules = models.TextField(
+        verbose_name="Правила игры",
+        blank=True,
+        null=True,
+        help_text="Введите правила игры. Каждый новый пункт будет отображаться с новой строки."
+    )
 
     # Дополнительная информация
-    additional_info = models.TextField(verbose_name="Дополнительно", blank=True, null=True)
-
+    additional_info = models.TextField(
+        verbose_name="Дополнительно",
+        blank=True,
+        null=True,
+        help_text="Введите дополнительную информацию. Каждый новый пункт будет отображаться с новой строки."
+    )
     # Связи с атрибутами
     sizes = models.ManyToManyField(Size, verbose_name="Размеры", blank=True)
     player_counts = models.ManyToManyField(PlayerCount, verbose_name="Количество игроков", blank=True)

@@ -23,22 +23,26 @@
 </div>
 </div>
 
-<div class="container-fluid rental-calculator mt-5">
+<div class="container-fluid rental-calculator">
     <h2>Рассчитать количество игр на празднике</h2>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 mt-3">
             <h3>Количество гостей</h3>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mt-3">
             <form id="myForm" onsubmit="return false;" >
                 <input class='input-guest' type="number" name="guests" id="guestInput">
             </form>
         </div>
     </div>
     
-    <div class="row mt-5">
-        <input type="range" class="form-range" id="guestSlider" min="0" max="25" step="1" value="2"/>
+<div class="row mt-5 slider-container">
+    <input type="range" class="form-range" id="guestSlider" min="2" max="25" step="1" value="2"/>
+      <div class="slider-labels">
+        <span class="slider-label slider-label-start">2 чел</span>
+        <span class="slider-label slider-label-end">более 25 чел</span>
     </div>
+</div>
 
 <div class="row mt-5">
     <div class="col-md-5">
@@ -180,6 +184,12 @@ document.addEventListener('DOMContentLoaded', function() {
         guestInput.value = newValue;
         guestSlider.value = newValue;
         updateRecommendedGames(newValue); // Отправляем запрос и обновляем рекомендации
+    });
+
+    // Добавьте этот код для обновления --value
+    guestSlider.addEventListener("input", () => {
+        const value = (guestSlider.value - guestSlider.min) / (guestSlider.max - guestSlider.min) * 100;
+        guestSlider.style.setProperty('--value', `${value}%`);
     });
 });
 </script>

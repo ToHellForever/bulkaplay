@@ -9,19 +9,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='product',
-            name='image',
-            field=models.ImageField(upload_to='products/', verbose_name='Изображение', null=True, blank=True),
-        ),
-        migrations.RunSQL(
-            "UPDATE core_product SET image = main_image WHERE main_image IS NOT NULL;",
-            reverse_sql="UPDATE core_product SET main_image = image WHERE image IS NOT NULL;"
-        ),
-        migrations.RunSQL(
-            "ALTER TABLE core_product DROP COLUMN main_image;",
-            reverse_sql="ALTER TABLE core_product ADD COLUMN main_image varchar(100);"
-        ),
         migrations.AlterField(
             model_name='product',
             name='image',

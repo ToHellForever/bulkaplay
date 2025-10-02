@@ -5,16 +5,6 @@
 db.sqlite3
 *.sqlite
 *.sqlite3
-*.svg
-*.jpg
-*.jpeg
-*.png
-*.gif
-*.ico
-*.ttf
-*.woff
-*.woff2
-*.otf
-beru/Шрифты/Mont.zip
+
 media/video_about.mp4
 *.mp4

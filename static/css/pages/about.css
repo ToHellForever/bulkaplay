@@ -244,7 +244,40 @@ h7 {
 
 .event-modal .modal-dialog {
     max-width: 90%;
-    margin: 1rem auto;
+    margin: 5rem auto;
+}
+
+/* Кастомные кнопки управления каруселью */
+.event-modal .carousel-control-prev,
+.event-modal .carousel-control-next {
+    width: 40px;
+    height: 80px;
+    background: none;
+    border: none;
+    opacity: 1;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.event-modal .carousel-control-prev {
+    left: 150px;
+    background-image: url('/media/svg_files/arrow_down.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translateY(-50%);
+}
+
+.event-modal .carousel-control-next {
+    right: 150px;
+    background-image: url('/media/svg_files/arrow_down.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    transform: translateY(-50%) rotate(-180deg);
+}
+
+.event-modal .carousel-control-prev-icon,
+.event-modal .carousel-control-next-icon {
+    display: none;
 }
 
 .event-modal .carousel {

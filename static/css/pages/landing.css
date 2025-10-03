@@ -160,27 +160,54 @@ h7 {
 
 /* Адаптивность для блоков с иконками */
 @media (max-width: 768px) {
-    .item {
-        margin-left: 0px;
-        margin-top: 30px;
-        align-items: center;
-        text-align: center;
-    }
-
     .exclusive-text {
         font-size: 14px;
     }
 }
 
-/* медиа */
+/* Медиа-запросы */
 @media (max-width: 768px) {
-    #order-button {
-        width: auto;
-        height: 120px;
+    .order-button {
+        width: 190px;
+        height: 100px;
         font-size: 15px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        text-align: center;
+        margin-top: 5px;
+        margin-left: 5px;
+        border-radius: 15px;
+        padding: 20px;
+    }
+    #order-button-2 {
+        background: #F88005;
     }
 }
 
+/* Стили для каталога игр */
+.img-catalog {
+    width: 400px;
+    height: 100px;
+    transform: translateY(-25px);
+    transition: all 0.3s ease;
+}
+
+.img-catalog:hover {
+    transform: translateY(-20px);
+}
+
+@media (max-width: 768px) {
+    .img-catalog {
+        width: 35vw !important;
+        height: auto !important;
+        transform: translateY(0) !important;
+        position: absolute !important;
+        margin-top: -10px !important;
+        margin-right: -5px !important;
+    }
+}
+
+
+/* текст в фото */
+@media (max-width: 768px) {
+    .text-photo {
+        font-size: 30px !important;
+    }
+}

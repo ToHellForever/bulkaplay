@@ -1,5 +1,7 @@
 /* Общие стили для всего проекта */
-
+.container-fluid {
+    max-width: 1700px;
+}
 body {
     background: black;
     overflow-x: hidden;
@@ -122,6 +124,31 @@ a {
     font-style: normal;
     font-display: swap;
 }
+
+@font-face {
+    font-family: 'Mont';
+    src: url('fonts/mont/mont_lightdemo.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mont';
+    src: url('fonts/mont/mont_mediumdemo.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mont';
+    src: url('fonts/mont/mont_regulardemo.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 
 /* Unbounded Font */
 @font-face {

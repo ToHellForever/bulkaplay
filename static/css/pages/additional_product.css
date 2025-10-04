@@ -2,7 +2,6 @@
 
 /* контейнер */
 .container-fluid {
-    max-width: 1800px;
     padding: 20px;
     min-height: calc(100vh - 200px); /* Leave space for footer */
     margin-bottom: 50px; /* Push content above footer */

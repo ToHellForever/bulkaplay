@@ -1,10 +1,5 @@
 /* Стили для главной страницы */
 
-/* контейнеры */
-.container-fluid {
-    max-width: 1600px;
-}
-
 /* левое фото */
 .left-photo {
     border-radius: 31px;
@@ -128,7 +123,7 @@ h7 {
 
 .item {
     margin-top: 20px;
-    margin-left: auto;
+    margin-left: 70px;
     margin-right: auto;
     text-align: center;
     display: flex;
@@ -138,7 +133,7 @@ h7 {
 
 /* Стили для изображений иконок */
 .item img {
-    width: 100px;
+    width: 150px;
     height: auto;
     margin-bottom: 10px;
 }

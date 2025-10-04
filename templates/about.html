@@ -7,7 +7,7 @@
 {% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
-<div class="container-fluid about-container mt-5">
+<div class="container-fluid about-container mt-1">
   <div class="row flex-wrap:nowrap">
     <div class="col-5">
       <h1 class="about-title">О <span class="wood-text-about">НАС</span></h1>
@@ -22,7 +22,7 @@
     </div>
     <div class="col-4">
       <p class="about-description text-justify">
-        BUL.K.A-PLAY <br> производитель эксклюзивных настольных игр из твёрдых пород дерева. Мы объединяем ручную работу, надёжные материалы и оригинальные идеи, создавая игры, которые становятся украшением любого мероприятия или интерьера. Наши изделия востребованы как для семейного отдыха, так и для корпоративных событий. Мы предлагаем:
+        BUL.K.A-PLAY - производитель эксклюзивных настольных игр из твёрдых пород дерева. Мы объединяем ручную работу, надёжные материалы и оригинальные идеи, создавая игры, которые становятся украшением любого мероприятия или интерьера. Наши изделия востребованы как для семейного отдыха, так и для корпоративных событий. Мы предлагаем:
       </p>
       <ul class="about-list  text-justify" >
         <li>продажу настольных игр с доставкой по всей России;</li>
@@ -113,7 +113,7 @@
             <img class="card-img-top" src="{{ n.image.url }}" alt="{{ n.name }}">
             <div class="card-body">
               <h5 class="card-title">{{ n.name }}</h5>
-              <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" class="btn news-btn mt-3">Подробнее</button>
+              <button type="button" data-bs-toggle="modal" data-bs-target="#eventModal{{ n.id }}" class="btn news-btn mt-3">ПОДРОБНЕЕ</button>
             </div>
           </div>
         </div>

@@ -18,10 +18,6 @@
     object-fit: cover;
     border-radius: 31px;
 }
-/* карточка в карусели */
-.product-card {
-    background: #000;
-}
 
 /* иконки контактов */
 .contact-icon {
@@ -176,7 +172,7 @@ h7 {
     }
 }
 
-/* Стили для каталога игр */
+/* Стили для кнопки каталога игр */
 .img-catalog {
     width: 400px;
     height: 100px;

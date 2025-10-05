@@ -94,6 +94,7 @@
     }
 }
 
+
 /* Кастомные кнопки в новостях для перелистывания */
 .event-modal .carousel-control-prev,
 .event-modal .carousel-control-next {
@@ -134,3 +135,29 @@
 }
 
 
+/* Стили для стрелок в карусели новостей */
+#newsCarousel .carousel-control-prev,
+#newsCarousel .carousel-control-next {
+    background-image: url('/media/svg_files/arrow_down.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    top: 35%;
+    transform: translateY(-50%);
+}
+
+#newsCarousel .carousel-control-prev {
+    left: -70px;
+}
+
+#newsCarousel .carousel-control-next {
+    right: -70px;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+#newsCarousel .carousel-control-prev:hover {
+    transform: translateY(-50%) scale(1.2) rotate(0deg);
+}
+
+#newsCarousel .carousel-control-next:hover {
+    transform: translateY(-50%) scale(1.2) rotate(180deg);
+}

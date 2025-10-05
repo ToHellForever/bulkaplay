@@ -4,6 +4,7 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'css/pages/about.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/modal.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/carousel.css' %}">
 {% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
@@ -103,9 +104,15 @@
   <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       {% for n in news %}
-        {% if forloop.first or forloop.counter0|divisibleby:3 %}
-          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        {% if forloop.first %}
+          <div class="carousel-item active">
             <div class="row">
+        {% else %}
+          {% if forloop.counter0|divisibleby:3 %}
+            </div></div>
+            <div class="carousel-item">
+              <div class="row">
+          {% endif %}
         {% endif %}
 
         <div class="col-4 col-md-4 mb-4">
@@ -118,9 +125,9 @@
           </div>
         </div>
 
-        {% if forloop.last or forloop.counter|add:1|divisibleby:3 %}
-          </div>
-          </div>
+        {% if forloop.last %}
+            </div>
+            </div>
         {% endif %}
       {% endfor %}
     </div>

@@ -2,6 +2,8 @@
 .product-card {
     background: #000;
 }
+
+/* Основные стили для стрелок */
 .carousel-control-prev,
 .carousel-control-next {
     width: 40px;
@@ -9,35 +11,90 @@
     background: none;
     border: none;
     opacity: 1;
+    top: 30%;
+    transition: all 0.3s ease;
+}
+
+/* Стили для стрелок в карусели продуктов */
+#productCarousel .carousel-control-prev,
+#productCarousel .carousel-control-next {
+    background-image: url('/media/svg_files/arrow_down.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#productCarousel .carousel-control-prev {
+    margin-left: -70px;
+}
+
+#productCarousel .carousel-control-next {
+    margin-right: -70px;
+    transform: rotate(-180deg) !important;
+}
+
+#productCarousel .carousel-control-prev:hover {
+    transform: scale(1.2) !important;
+}
+
+#productCarousel .carousel-control-next:hover {
+    transform: scale(1.2) rotate(-180deg) !important;
+}
+
+/* Стили для стрелок в карусели аренды */
+#arendaCarousel .carousel-control-prev,
+#arendaCarousel .carousel-control-next {
+    background-image: url('/media/svg_files/arrow_down.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
     top: 50%;
     transform: translateY(-50%);
 }
 
-.carousel-control-prev {
-    background-image: url('/media/svg_files/arrow_down.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    transform: translateY(-50%);
-}
-.carousel-control-next {
-    background-image: url('/media/svg_files/arrow_down.svg');
-    background-repeat: no-repeat;
-    background-size: contain;
-    transform: rotate(-180deg);
-    transform: translateY(-50%);
+#arendaCarousel .carousel-control-prev {
+    left: -50px;
 }
 
+#arendaCarousel .carousel-control-next {
+    right: -50px;
+    transform: translateY(-50%) rotate(180deg);
+}
+
+#arendaCarousel .carousel-control-prev:hover {
+    transform: translateY(-50%) scale(1.2) rotate(0deg);
+}
+#arendaCarousel .carousel-control-next:hover {
+    transform: translateY(-50%) scale(1.2) rotate(180deg);
+}
 
 
+/* Скрываем стандартные иконки Bootstrap */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    display: none;
+}
+
+/* Адаптивные стили */
 @media (max-width: 768px) {
     .carousel-control-prev,
     .carousel-control-next {
         width: 40px;
         height: 40px;
     }
+
+    #productCarousel .carousel-control-prev,
+    #productCarousel .carousel-control-next {
+        margin-left: -50px;
+        margin-right: -50px;
+    }
+
+    #arendaCarousel .carousel-control-prev,
+    #arendaCarousel .carousel-control-next {
+        left: -30px;
+        right: -30px;
+    }
 }
 
-/* кастомные кнопки в новостях для перелистывания */
+/* Кастомные кнопки в новостях для перелистывания */
 .event-modal .carousel-control-prev,
 .event-modal .carousel-control-next {
     width: 40px;
@@ -45,8 +102,7 @@
     background: none;
     border: none;
     opacity: 1;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 40%;
 }
 
 .event-modal .carousel-control-prev {
@@ -54,7 +110,6 @@
     background-image: url('/media/svg_files/arrow_down.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    transform: translateY(-50%);
 }
 
 .event-modal .carousel-control-next {
@@ -62,12 +117,20 @@
     background-image: url('/media/svg_files/arrow_down.svg');
     background-repeat: no-repeat;
     background-size: contain;
-    transform: translateY(-50%) rotate(-180deg);
+    transform: rotate(180deg);
 }
+
+.event-modal .carousel-control-prev:hover {
+    transform: scale(1.2);
+}
+.event-modal .carousel-control-next:hover {
+    transform: scale(1.2) rotate(180deg);
+}
+
+
 .event-modal .carousel-control-prev-icon,
 .event-modal .carousel-control-next-icon {
     display: none;
 }
-.carousel-control-prev-icon, .carousel-control-next-icon {
-    display: none;
-}
+
+

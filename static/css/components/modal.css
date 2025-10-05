@@ -1,4 +1,4 @@
-/* Модальные окна */
+/* Модальное окно с оформлением заказа */
 button:disabled {
     background: #666;
     cursor: not-allowed;
@@ -183,3 +183,63 @@ h3 {
     height: auto !important;
     overflow: visible !important;
 }
+
+
+
+
+
+
+/* модальное окно с новостями */
+.event-modal .modal-content {
+    background-color: transparent;
+    border: none;
+}
+
+.event-modal .modal-header {
+    border-bottom: none;
+    padding: 0;
+}
+
+.event-modal .modal-body {
+    padding: 0;
+    background-color: transparent;
+}
+
+.event-modal .modal-footer {
+    border-top: none;
+    padding: 0;
+    justify-content: center;
+}
+
+.event-modal .modal-dialog {
+    max-width: 90%;
+    margin: 5rem auto;
+}
+
+
+.event-modal .carousel {
+    width: 100%;
+    max-height: 85vh;
+}
+
+.event-modal .carousel-inner {
+    height: 100%;
+}
+
+.event-modal .carousel-item {
+    height: 100%;
+}
+
+.event-modal .carousel-item img {
+    object-fit: contain;
+    max-height: 80vh;
+    width: 100%;
+}
+.event-modal .btn-close {
+    display: none !important;
+}
+
+.event-modal .modal-footer .btn-secondary {
+    display: none;
+}
+

@@ -243,3 +243,7 @@ h3 {
     display: none;
 }
 
+.modal-backdrop {
+    background-color: rgba(0, 0, 0, 1) !important;
+    opacity: 0.7 !important;
+}

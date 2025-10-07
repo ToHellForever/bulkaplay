@@ -33,8 +33,13 @@
 a {
     text-decoration: none;
     color: white;
+    font-family: 'Mont', sans-serif;
+    font-size: 20px;
+    font-weight: 800px !important;
 }
-
+.contact-link {
+    padding-top: 8px;
+}
 /* блок с контактами */
 .contact-block {
     background: #1A1A1A;
@@ -42,7 +47,8 @@ a {
     height: 300px;
     width: 45%;
     margin-left: 35px;
-    padding: 50px;
+    padding-left: 100px;
+    padding-top: 20px;
 }
 /* кнопка оформления заказа */
 .btn-primary {

@@ -94,15 +94,6 @@ a {
   color: #F88005;
 }
 
-/* Регистрация шрифтов */
-/* Mont Font */
-@font-face {
-    font-family: 'Mont';
-    src: url('fonts/mont/mont_extralightdemo.ttf') format('truetype');
-    font-weight: 200;
-    font-style: normal;
-    font-display: swap;
-}
 
 
 @media (max-width: 768px) {
@@ -117,11 +108,20 @@ a {
     }
 }
 
+/* Регистрация шрифтов */
+/* Mont Font */
+@font-face {
+    font-family: 'Mont';
+    src: url('fonts/mont/mont_extralightdemo.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
 @font-face {
     font-family: 'Mont';
     src: url('fonts/mont/mont_heavydemo.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
+    font-weight: 800;
+    font-style: bold;
     font-display: swap;
 }
 

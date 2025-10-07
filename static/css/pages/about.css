@@ -1,28 +1,29 @@
 /* Стили для страницы "О нас" */
-
-
+.about-text {
+    margin-left: 3%;
+    margin-right: 3%;
+}
 /* стили для заголовка */
 .about-title {
     color: white;
     font-family: "Unbounded", sans-serif;
     font-weight: 600;
-    font-size: 150px;
+    font-size: 170px;       
     text-align: center;
 }
 .wood-text-about {
     color: #F88005;
     font-family: "Unbounded", sans-serif;
     font-weight: 600;
-    font-size: 150px;
+    font-size: 170px;
     text-align: center;
 }
 /* стили для описания */
 .about-description {
     color: white;
     font-family: "Mont", sans-serif;
-    font-weight: 500;
-    font-size: 25px;
-    margin-top: 20px;
+    font-weight: 300;
+    font-size: 24px;
     text-align: justify !important;
     text-justify: inter-word !important;
     display: block;
@@ -31,9 +32,8 @@
 .about-list {
     color: white;
     font-family: "Mont", sans-serif;
-    font-weight: 500;
-    font-size: 25px;
-    margin-top: 20px;
+    font-weight: 300;
+    font-size: 24px;
     text-align: justify;
     text-justify: inter-word;
 }
@@ -59,17 +59,14 @@
 }
 /* второе видео */
 .about-iframe {
-    width: 90%;
-    height: 90%;
-    border-radius: 31px;
-    border: 2px solid rgb(80, 77, 77);
+    width: 100%;
+    height: 100%;
 }
 .about-iframe iframe {
     width: 100%;
     height: 100%;
     border-radius: 31px;
     object-fit: cover;
-    border: 2px solid rgb(80, 77, 77);
 }
 
 /* 4 иконки ПОЧЕМУ ВЫБИРАЮТ НАС */

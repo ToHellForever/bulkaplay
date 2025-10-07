@@ -1,21 +1,21 @@
 /* Стили для страницы "О нас" */
-.about-text {
-    margin-left: 3%;
-    margin-right: 3%;
+/* Use Bootstrap's gap utilities for spacing between columns */
+.about-container .row {
+    --bs-gutter-x: 2%;
 }
 /* стили для заголовка */
 .about-title {
     color: white;
     font-family: "Unbounded", sans-serif;
     font-weight: 600;
-    font-size: 170px;       
+    font-size: 160px;       
     text-align: center;
 }
 .wood-text-about {
     color: #F88005;
     font-family: "Unbounded", sans-serif;
     font-weight: 600;
-    font-size: 170px;
+    font-size: 160px;
     text-align: center;
 }
 /* стили для описания */
@@ -218,5 +218,3 @@ h7 {
         font-size: 14px;
     }
 }
-
-

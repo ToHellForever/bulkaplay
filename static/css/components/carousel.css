@@ -5,9 +5,7 @@
 
 /* Основные стили для стрелок */
 .carousel-control-prev,
-.carousel-control-next,
-.swiper-button-prev,
-.swiper-button-next {
+.carousel-control-next {
     width: 40px;
     height: 80px;
     background: none;
@@ -18,37 +16,39 @@
     position: absolute;
     z-index: 10;
 }
-
-/* Стили для стрелок в карусели продуктов */
-#productCarousel .carousel-control-prev,
-#productCarousel .carousel-control-next,
-#productCarousel .swiper-button-prev,
-#productCarousel .swiper-button-next {
-    background-image: url('/media/svg_files/arrow_down.svg') !important;
-    background-repeat: no-repeat;
-    background-size: contain;
+/* Родительский контейнер */
+.container-fluid.landing-catalog {
+    position: relative !important; /* Относительное позиционирование для стрелок */
+    padding-left: 80px !important; /* Место для левой стрелки */
+    padding-right: 80px !important; /* Место для правой стрелки */
 }
 
-#productCarousel .carousel-control-prev,
-#productCarousel .swiper-button-prev {
-    margin-left: -70px;
+/* Контейнер Swiper */
+.swiper {
+    position: static !important; /* Убираем relative, чтобы стрелки не обрезались */
+    overflow: hidden !important; /* Слайды обрезаются */
+    pointer-events: none !important; /* Клики проходят насквозь */
 }
 
-#productCarousel .carousel-control-next,
-#productCarousel .swiper-button-next {
-    margin-right: -70px;
-    transform: rotate(-180deg) !important;
+/* Стрелки */
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute !important;
+    z-index: 10 !important;
+    width: 50px !important;
+    height: 50px !important;
+    top: 45% !important;
+    color: white !important;
+    pointer-events: auto !important; /* Клики по стрелкам работают */
+    transform: translateY(-50%) !important;
 }
 
-#productCarousel .carousel-control-prev:hover,
-#productCarousel .swiper-button-prev:hover {
-    transform: scale(1.2) !important;
-    color: red !important;
+.swiper-button-prev {
+    left: 0 !important; /* Положение относительно родительского контейнера */
 }
 
-#productCarousel .carousel-control-next:hover,
-#productCarousel .swiper-button-next:hover {
-    transform: scale(1.2) rotate(-180deg) !important;
+.swiper-button-next {
+    right: 0 !important; /* Положение относительно родительского контейнера */
 }
 
 /* Стили для стрелок в карусели аренды */

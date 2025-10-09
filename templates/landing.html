@@ -211,8 +211,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const swiper = new Swiper('.mySwiper', {
-      loop: true,                   // Бесконечная прокрутка
-      spaceBetween: 20,             // Расстояние между слайдами
+      loop: true,                   // Бесконечная прокрутка      
       autoplay: {                   // Автоматическое прокручивание
         delay: 5000,                // Интервал смены слайда (5 секунды)
         disableOnInteraction: false,// Продолжать прокрутку даже при взаимодействии пользователя
@@ -228,9 +227,11 @@
       breakpoints: {
         768: {
           slidesPerView: 3,
+          spaceBetween: 20,
         },
         0: {
           slidesPerView: 2,
+          spaceBetween: 10,
         },
       },
     });

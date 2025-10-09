@@ -43,12 +43,40 @@
     transform: translateY(-50%) !important;
 }
 
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    transform: translateY(-50%) scale(1.2) !important;
+}
+
+/* в мобильной версии */
+@media (max-width: 768px) {
+.container-fluid.landing-catalog {
+    position: relative !important; /* Относительное позиционирование для стрелок */
+    padding-left: 10px !important; /* Место для левой стрелки */
+    padding-right: 10px !important; /* Место для правой стрелки */
+    overflow: hidden; /* Скрываем переполнение */
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    left: auto !important;
+    right: auto !important;
+    margin: 0 10px !important; /* Отступы от краёв */
+}
+
 .swiper-button-prev {
-    left: 0 !important; /* Положение относительно родительского контейнера */
+    left: 0 !important;
 }
 
 .swiper-button-next {
-    right: 0 !important; /* Положение относительно родительского контейнера */
+    right: 0 !important;
+}
+
+}
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    /* убираю эффекты при наведении */
+    transform: translateY(-50%) scale(1) !important;
 }
 
 /* Стили для стрелок в карусели аренды */

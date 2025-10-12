@@ -255,13 +255,6 @@ h7 {
 .rental-description {
     font-size: 10px !important;
 }
-/* блок с каруселью */
-.card-img-top {
-    width: 90%;
-    height: 90%;
-    object-fit: cover;
-    border-radius: 11px;
-}
 }
 
 

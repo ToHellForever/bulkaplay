@@ -1,18 +1,39 @@
 /* Карточки */
-
+/* фото в карусели аренды */
+.card-img-top-2 {
+    width: 80%;
+    height: 80%;
+}
+/* фото в карусели каталога товаров*/
+.card-img-top {
+    width: 450px ;
+    height: 450px ;
+    border-radius: 31px;
+}
 .card-title {
     color: white;
     font-family: 'Unbounded', sans-serif;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 400;
+    margin-left: -10px;
 }
 
 .price {
     color: white;
     font-family: 'Mont', sans-serif;
-    font-size: 20px;
+    font-size: 30px;
     font-weight: 400;
+    margin-left: -10px;
 }
+@media (max-width: 768px) {
+    .card-title {
+        font-size: 15px;
+    }
+    .price {
+        font-size: 15px;
+    }
+}
+
 
 .games-grid {
     display: flex;

@@ -11,18 +11,6 @@
     font-weight: 200;
     font-size: 50px;
 }
-/* фото в карусели */
-.card-img-top {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 31px;
-}
-/* фото в карусели аренды */
-.card-img-top-2 {
-    width: 100%;
-    height: 80%;
-}
 
 /* иконки контактов */
 .contact-icon {

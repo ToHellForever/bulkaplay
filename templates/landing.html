@@ -136,47 +136,32 @@
 </div>
 
 
-<div class='container-fluid landing-rental'>
+<div class="container-fluid landing-rental mt-5">
   <h2>ВЫЕЗДНАЯ АРЕНДА</h2>
-    <p class="rental-description">
-     Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.</p>
-  <div id="arendaCarousel" class="carousel slide mt-5" data-bs-ride="carousel">
-    <div class="carousel-inner">
+  <p class="rental-description">
+    Мы предлагаем уникальный подход к проведению праздников! Выбирай количество игр в зависимости от количества гостей. В стоимость входит выезд игровых мастеров, которые создадут атмосферу веселья и вовлекут каждого участника. Количество мастеров определяется количеством игр и обговаривается при оформлении заказа.
+  </p>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
       {% for arend in arenda %}
-        {% if forloop.first %}
-          <div class="carousel-item active">
-            <div class="row ">
-        {% else %}
-          {% if forloop.counter0|divisibleby:3 %}
-            </div></div>
-            <div class="carousel-item">
-              <div class="row">
-          {% endif %}
-        {% endif %}
-
-        <div class="col-md-4 col-4 mb-4 px-4">
-          <div class="product-card" style="background: #000;">
-<img src="{{ arend.image.url }}" class="card-img-top-2" alt="{{ product.name }}">
+        <div class="swiper-slide">
+          <div class="product-card card">
+            <img src="{{ arend.image.url }}" class="card-img-top" alt="{{ arend.name }}">
           </div>
         </div>
-
-        {% if forloop.last %}
-          </div></div>
-        {% endif %}
       {% endfor %}
     </div>
-
-    <!-- Элементы управления каруселью -->
-<button class="carousel-control-prev" type="button" data-bs-target="#arendaCarousel" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Предыдущий</span>
-    </button>
-<button class="carousel-control-next" type="button" data-bs-target="#arendaCarousel" data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Следующий</span>
-    </button>
+<!-- Стрелки навигации -->
+<button class="carousel-control-prev swiper-button-prev" type="button">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Предыдущий</span>
+</button>
+<button class="carousel-control-next swiper-button-next" type="button">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Следующий</span>
+</button>
   </div>
-</div>  
+</div>
 
 
 <div class="container-fluid landing-contacts">
@@ -227,11 +212,10 @@
       breakpoints: {
         768: {
           slidesPerView: 3,
-          spaceBetween: 20,
+          spaceBetween: 0,
         },
         0: {
           slidesPerView: 2,
-          spaceBetween: 10,
         },
       },
     });

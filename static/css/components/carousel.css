@@ -3,21 +3,15 @@
     background: #000;
 }
 
-/* Основные стили для стрелок */
-.carousel-control-prev,
-.carousel-control-next {
-    width: 40px;
-    height: 80px;
-    background: none;
-    border: none;
-    opacity: 1;
-    top: 30%;
-    transition: all 0.3s ease;
-    position: absolute;
-    z-index: 10;
+/* Центрирование карточек в слайдах */
+.swiper-slide {
+    display: flex;
+    justify-content: center;    
 }
+
 /* Родительский контейнер */
-.container-fluid.landing-catalog {
+.container-fluid.landing-catalog,
+.container-fluid.rent-catalog {
     position: relative !important; /* Относительное позиционирование для стрелок */
     padding-left: 80px !important; /* Место для левой стрелки */
     padding-right: 80px !important; /* Место для правой стрелки */
@@ -59,9 +53,10 @@
 
 .swiper-button-prev,
 .swiper-button-next {
+    top: 40% !important;
     left: auto !important;
     right: auto !important;
-    margin: 0 10px !important; /* Отступы от краёв */
+    margin-right: 20px !important; /* Отступы от краёв */
 }
 
 .swiper-button-prev {
@@ -71,7 +66,11 @@
 .swiper-button-next {
     right: 0 !important;
 }
-
+.card-img-top {
+    width: 150px !important;
+    height: 150px  !important;
+    border-radius: 31px;
+}
 }
 .swiper-button-prev:hover,
 .swiper-button-next:hover {

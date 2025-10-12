@@ -1,28 +1,29 @@
 /* Стили для страницы "О нас" */
-
-
+/* Use Bootstrap's gap utilities for spacing between columns */
+.about-container .row {
+    --bs-gutter-x: 2%;
+}
 /* стили для заголовка */
 .about-title {
     color: white;
     font-family: "Unbounded", sans-serif;
     font-weight: 600;
-    font-size: 150px;
+    font-size: 160px;       
     text-align: center;
 }
 .wood-text-about {
     color: #F88005;
     font-family: "Unbounded", sans-serif;
     font-weight: 600;
-    font-size: 150px;
+    font-size: 160px;
     text-align: center;
 }
 /* стили для описания */
 .about-description {
     color: white;
     font-family: "Mont", sans-serif;
-    font-weight: 500;
-    font-size: 25px;
-    margin-top: 20px;
+    font-weight: 300;
+    font-size: 24px;
     text-align: justify !important;
     text-justify: inter-word !important;
     display: block;
@@ -31,9 +32,8 @@
 .about-list {
     color: white;
     font-family: "Mont", sans-serif;
-    font-weight: 500;
-    font-size: 25px;
-    margin-top: 20px;
+    font-weight: 300;
+    font-size: 24px;
     text-align: justify;
     text-justify: inter-word;
 }
@@ -59,17 +59,14 @@
 }
 /* второе видео */
 .about-iframe {
-    width: 90%;
-    height: 90%;
-    border-radius: 31px;
-    border: 2px solid rgb(80, 77, 77);
+    width: 100%;
+    height: 100%;
 }
 .about-iframe iframe {
     width: 100%;
     height: 100%;
     border-radius: 31px;
     object-fit: cover;
-    border: 2px solid rgb(80, 77, 77);
 }
 
 /* 4 иконки ПОЧЕМУ ВЫБИРАЮТ НАС */
@@ -220,92 +217,4 @@ h7 {
     .exclusive-text {
         font-size: 14px;
     }
-}
-
-/* модальное окно с новостями */
-.event-modal .modal-content {
-    background-color: transparent;
-    border: none;
-}
-
-.event-modal .modal-header {
-    border-bottom: none;
-    padding: 0;
-}
-
-.event-modal .modal-body {
-    padding: 0;
-    background-color: transparent;
-}
-
-.event-modal .modal-footer {
-    border-top: none;
-    padding: 0;
-    justify-content: center;
-}
-
-.event-modal .modal-dialog {
-    max-width: 90%;
-    margin: 5rem auto;
-}
-
-
-.event-modal .carousel {
-    width: 100%;
-    max-height: 85vh;
-}
-
-.event-modal .carousel-inner {
-    height: 100%;
-}
-
-.event-modal .carousel-item {
-    height: 100%;
-}
-
-.event-modal .carousel-item img {
-    object-fit: contain;
-    max-height: 80vh;
-    width: 100%;
-}
-.event-modal .btn-close {
-    display: none !important;
-}
-
-.event-modal .modal-footer .btn-secondary {
-    display: none;
-}
-
-
-p {
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    text-align: start !important;
-}
-h5 {
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 30px;
-    font-weight: 400;
-}
-.hidden {
-    display: none;
-    visibility: hidden;
-    height: 0;
-    overflow: hidden;
-    transition: height 0.5s cubic-bezier(.4,0,.2,1), visibility 0.5s linear;
-}
-h3 {
-    color: #F88005;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 30px;
-    font-weight: 400;
-}
-.visible {
-    display: block;
-    visibility: visible;
-    height: auto;
-    overflow: visible;
 }

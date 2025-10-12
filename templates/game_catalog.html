@@ -9,13 +9,13 @@
 <form method="get" class="form-inline">
   <div class="container-fluid game-catalog-header mt-5">
     <div class="row ms-auto">
-      <div class="col-7">
+      <div class="col-6">
         <h2>КАТАЛОГ ИГР</h2>
       </div>
 <div class="col-3 search-container">
   <input type="text" name="search" class="form-control search-input" placeholder="Поиск..." value="{{ request.GET.search }}" style='color: white'>
 </div>
-      <div class="col-2">
+      <div class="col-3">
         <select name="sort" class="form-control filter-select" onchange="this.form.submit()">
           <option value="">Порядок по:</option>
           <option value="price_asc" {% if request.GET.sort == 'price_asc' %}selected{% endif %}>Цена по возрастанию</option>
@@ -29,9 +29,9 @@
 
   <div class="container-fluid game-catalog-filters mt-4">
     <div class="row ms-auto">
-      <div class="col-1">
+      <div class="col-2">
         <select name="size" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
-          <option value="">Размер </option>
+          <option value="">Размер <img src="/media/svg_files/arrow_down.svg" alt="arrow"></option>
           {% for size in sizes %}
             <option value="{{ size.id }}" {% if request.GET.size == size.id|stringformat:"s" %}selected{% endif %}>{{ size.name }}</option>
           {% endfor %}
@@ -39,7 +39,7 @@
       </div>
       <div class="col-2">
         <select name="player_count" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
-          <option value="">Количество игроков</option>
+          <option value="">Количество игроков <img src="/media/svg_files/arrow_down.svg" alt="arrow"></option>
           {% for player_count in player_counts %}
             <option value="{{ player_count.id }}" {% if request.GET.player_count == player_count.id|stringformat:"s" %}selected{% endif %}>{{ player_count.count }}</option>
           {% endfor %}
@@ -47,7 +47,7 @@
       </div>
       <div class="col-2">
         <select name="player_age" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
-          <option value="">Возраст игроков</option>
+          <option value="">Возраст игроков <img src="/media/svg_files/arrow_down.svg" alt="arrow"></option>
           {% for player_age in player_ages %}
             <option value="{{ player_age.id }}" {% if request.GET.player_age == player_age.id|stringformat:"s" %}selected{% endif %}>{{ player_age.age }}</option>
           {% endfor %}
@@ -55,7 +55,7 @@
       </div>
       <div class="col-2">
         <select name="game_type" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
-          <option value="">Вид игры</option>
+          <option value="">Вид игры <img src="/media/svg_files/arrow_down.svg" alt="arrow"></option>
           {% for game_type in game_types %}
             <option value="{{ game_type.id }}" {% if request.GET.game_type == game_type.id|stringformat:"s" %}selected{% endif %}>{{ game_type.name }}</option>
           {% endfor %}

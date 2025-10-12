@@ -4,6 +4,8 @@
 {% block title %}{% if product %}{{ product.name }}{% else %}Игра{% endif %}{% endblock title %}
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'css/pages/product_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/modal.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/carousel.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -14,8 +16,9 @@
             {% if product_images|length > 0 %}
             <div class="col-md-1 col-xl-1"> {# Колонка для доп. изображений #}
                 <div class="d-flex flex-column gap-3">
-                    {% for img in product_images %} 
-<img src="{{ img.image.url }}" alt="Дополнительное изображение {{ img.id }}" class="additional-image">
+                    {% for img in product_images %}
+<img src="{{ img.image.url }}" alt="Дополнительное изображение {{ img.id }}" class="additional-image"
+     data-bs-toggle="modal" data-bs-target="#productModal" data-image-index="{{ forloop.counter }}" data-product-id="{{ product.id }}">
                     {% endfor %}
                 </div>
             </div>
@@ -23,7 +26,8 @@
     {% endwith %}
         <div class="col-md-6 col-xl-6 no-growth"> {# Колонка для основного изображения #}
 <img src="{% if product.image %}{{ product.image.url }}{% else %}#{% endif %}"
-     alt="Основное изображение" class="main-image">
+     alt="Основное изображение" class="main-image"
+     data-bs-toggle="modal" data-bs-target="#productModal" data-image-index="0" data-product-id="{{ product.id }}">
         </div>
 
         <div class="col-md-5 col-xl-5">
@@ -92,11 +96,11 @@
             {% comment %} кнопка с ссылкой на подробнее о товаре {% endcomment %}
             <a href="{% url 'product_detail' random_product.id %}">
 <button class="btn detail-btn">ПОДРОБНЕЕ</button>
-            </a>  
+            </a>
         </div>
         {% endfor %}
     </div>
-</div>  
+</div>
 
 <div class="container-fluid game-catalog-grid mt-5 ">
 <h2>В КОМПЛЕКТ</h2>
@@ -114,6 +118,32 @@
         {% endfor %}
     </div>
 </div>
+</div>
+
+<!-- Модальное окно для просмотра изображений продукта -->
+<div class="modal fade event-modal" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div id="productImageCarousel" class="carousel slide" data-bs-ride="false">
+          <div class="carousel-inner" id="productCarouselInner">
+            <!-- Картинки будут добавлены через JavaScript -->
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#productImageCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Предыдущий</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#productImageCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Следующий</span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 {% endblock content %}
@@ -148,7 +178,67 @@ function toggleBlock(blockId, event) {
 
     window.scrollTo(0, scrollPosition);
 }
-</script>
 
+// Функция для обработки кликов по изображениям и открытия модального окна
+document.addEventListener('DOMContentLoaded', function() {
+    // Обработчик для открытия модального окна
+    const productModal = document.getElementById('productModal');
+    if (productModal) {
+        productModal.addEventListener('show.bs.modal', function (event) {
+            // Получаем элемент, который вызвал модальное окно
+            const triggerElement = event.relatedTarget;
+
+            // Получаем индекс изображения
+            const imageIndex = parseInt(triggerElement.getAttribute('data-image-index'));
+
+            // Получаем основное изображение
+            const mainImage = document.querySelector('.main-image');
+            // Получаем дополнительные изображения
+            const additionalImages = document.querySelectorAll('.additional-image');
+
+            // Очищаем карусель
+            const carouselInner = document.getElementById('productCarouselInner');
+            carouselInner.innerHTML = '';
+
+            // Добавляем основное изображение
+            if (mainImage) {
+                const mainCarouselItem = document.createElement('div');
+                mainCarouselItem.className = 'carousel-item' + (0 === imageIndex ? ' active' : '');
+
+                const mainImgElement = document.createElement('img');
+                mainImgElement.src = mainImage.src;
+                mainImgElement.className = 'd-block w-100';
+                mainImgElement.alt = mainImage.alt;
+
+                mainCarouselItem.appendChild(mainImgElement);
+                carouselInner.appendChild(mainCarouselItem);
+            }
+
+            // Добавляем дополнительные изображения
+            additionalImages.forEach((img, index) => {
+                const carouselItem = document.createElement('div');
+                carouselItem.className = 'carousel-item' + ((index + 1) === imageIndex ? ' active' : '');
+
+                const imgElement = document.createElement('img');
+                imgElement.src = img.src;
+                imgElement.className = 'd-block w-100';
+                imgElement.alt = img.alt;
+
+                carouselItem.appendChild(imgElement);
+                carouselInner.appendChild(carouselItem);
+            });
+
+            // После добавления всех изображений, инициализируем карусель
+            setTimeout(() => {
+                const carouselElement = document.getElementById('productImageCarousel');
+                if (carouselElement) {
+                    const carousel = new bootstrap.Carousel(carouselElement);
+                    carousel.to(imageIndex);
+                }
+            }, 100);
+        });
+    }
+});
+</script>
 
 {% endblock scripts %}

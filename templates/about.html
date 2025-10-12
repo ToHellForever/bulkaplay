@@ -4,12 +4,13 @@
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'css/pages/about.css' %}">
 <link rel="stylesheet" href="{% static 'css/components/modal.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/carousel.css' %}">
 {% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
-<div class="container-fluid about-container mt-1">
-  <div class="row flex-wrap:nowrap">
-    <div class="col-5">
+<div class="container-fluid about-container mt-2">
+  <div class="row flex-nowrap">
+    <div class="col-5 mb-3">
       <h1 class="about-title">О <span class="wood-text-about">НАС</span></h1>
       <div class="video-container">
         <iframe
@@ -20,7 +21,7 @@
         </iframe>
       </div>  
     </div>
-    <div class="col-4">
+    <div class="col-4 mt-4 about-text">
       <p class="about-description text-justify">
         BUL.K.A-PLAY - производитель эксклюзивных настольных игр из твёрдых пород дерева. Мы объединяем ручную работу, надёжные материалы и оригинальные идеи, создавая игры, которые становятся украшением любого мероприятия или интерьера. Наши изделия востребованы как для семейного отдыха, так и для корпоративных событий. Мы предлагаем:
       </p>
@@ -32,10 +33,10 @@
         Выбирая BUL.K.A-PLAY, вы получаете продукт высокого качества и надёжного партнёра для организации ярких событий.
       </p>
     </div>
-    <div class="col-3">
+    <div class="col-3 mt-5">
       <iframe
           class="about-iframe "
-          src="https://vk.com/video_ext.php?oid=-226618368&id=456239221&hd=2&"
+          src="https://vk.com/video_ext.php?oid=-226618368&id=456239224&hd=2&"
           width="450"
           height="630"
           allow="encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
@@ -103,9 +104,15 @@
   <div id="newsCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       {% for n in news %}
-        {% if forloop.first or forloop.counter0|divisibleby:3 %}
-          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        {% if forloop.first %}
+          <div class="carousel-item active">
             <div class="row">
+        {% else %}
+          {% if forloop.counter0|divisibleby:3 %}
+            </div></div>
+            <div class="carousel-item">
+              <div class="row">
+          {% endif %}
         {% endif %}
 
         <div class="col-4 col-md-4 mb-4">
@@ -118,9 +125,9 @@
           </div>
         </div>
 
-        {% if forloop.last or forloop.counter|add:1|divisibleby:3 %}
-          </div>
-          </div>
+        {% if forloop.last %}
+            </div>
+            </div>
         {% endif %}
       {% endfor %}
     </div>

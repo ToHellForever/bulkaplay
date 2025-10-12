@@ -3,6 +3,7 @@
 {% block title %}Главная{% endblock title %}
 {% block stylesheets %}
 <link rel="stylesheet" href="{% static 'css/pages/landing.css' %}">
+<link rel="stylesheet" href="{% static 'css/components/carousel.css' %}">
 <link rel="stylesheet"  href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css">
 {% endblock stylesheets %}
 {% block content %}
@@ -108,7 +109,7 @@
 
 <div class="container-fluid landing-catalog mt-5">
   <h2>КАТАЛОГ ИГР</h2>
-  <div class="swiper mySwiper">
+<div class="swiper mySwiper">
     <div class="swiper-wrapper">
       {% for product in products %}
         <div class="swiper-slide">
@@ -123,15 +124,14 @@
       {% endfor %}
     </div>
 
-    <!-- Стрелки навигации -->
-    <button class="carousel-control-prev swiper-button-prev" type="button">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Предыдущий</span>
-    </button>
-    <button class="carousel-control-next swiper-button-next" type="button">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Следующий</span>
-    </button>
+<button class="carousel-control-prev swiper-button-prev" type="button">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Предыдущий</span>
+</button>
+<button class="carousel-control-next swiper-button-next" type="button">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="visually-hidden">Следующий</span>
+</button>
   </div>
 </div>
 
@@ -196,7 +196,7 @@
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const swiper = new Swiper('.mySwiper', {
-      loop: true,                   // Бесконечная прокрутка      
+      loop: true,                   // Бесконечная прокрутка
       autoplay: {                   // Автоматическое прокручивание
         delay: 5000,                // Интервал смены слайда (5 секунды)
         disableOnInteraction: false,// Продолжать прокрутку даже при взаимодействии пользователя
@@ -204,10 +204,6 @@
       navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
       },
       breakpoints: {
         768: {

@@ -53,7 +53,10 @@
 
 .swiper-button-prev,
 .swiper-button-next {
-    top: 40% !important;
+    color: white !important;
+    width: 30px !important;
+    height: 30px !important;
+    top: 45% !important;
     left: auto !important;
     right: auto !important;
     margin-right: 20px !important; /* Отступы от краёв */

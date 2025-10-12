@@ -1,14 +1,29 @@
 /* Карточки */
+.product-card {
+    background: black;
+    margin: 0; /* Swiper контролирует отступы */
+    width: 100%; /* Занимает всю ширину слайда */
+    height: 100%; /* Занимает всю высоту слайда (если хотите одинаковую высоту) */
+    display: flex;
+    flex-direction: column; /* Для корректного размещения контента внутри */
+}
 /* фото в карусели аренды */
 .card-img-top-2 {
     width: 80%;
     height: 80%;
 }
-/* фото в карусели каталога товаров*/
+/* фото в карусели каталога товаров */
 .card-img-top {
-    width: 450px ;
-    height: 450px ;
-    border-radius: 31px;
+  width: 100%; /* Картинка занимает всю ширину карточки */
+  height: 500px; /* Картинка занимает всю высоту карточки */
+  object-fit: cover; /* Сохраняем пропорции */
+  display: block; /* Убирает нижний отступ у inline-элементов */
+  /* border-radius: 0; */ /* Если нужен радиус, лучше применить к .product-card */
+}
+.card-body {
+  flex-grow: 1; /* Заполняет оставшееся пространство */
+  display: flex;
+  flex-direction: column; /* Для корректного размещения текста и цены */
 }
 .card-title {
     color: white;
@@ -17,7 +32,13 @@
     font-weight: 400;
     margin-left: -10px;
 }
-
+@media (max-width: 768px) {
+    .card-img-top {
+        width: 150px !important;
+        height: 150px !important;
+        border-radius: 31px;
+    }
+}
 .price {
     color: white;
     font-family: 'Mont', sans-serif;

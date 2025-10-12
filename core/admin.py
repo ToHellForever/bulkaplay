@@ -111,14 +111,12 @@ class OrderAdmin(admin.ModelAdmin):
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'date_event', 'is_active', 'created_at')
+    list_display = ('name', 'is_active', 'created_at')
     list_editable = ('is_active',)
-    list_filter = ('is_active', 'date_event')
-    search_fields = ('name', 'description')
     
     fieldsets = (
         ("Основные поля", {
-            'fields': ('name', 'description', 'image', 'date_event'),
+            'fields': ('name', 'image'),
         }),
     )
     # Указываем созданный inline-класс

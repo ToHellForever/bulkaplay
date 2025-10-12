@@ -158,10 +158,8 @@ class Arenda(models.Model):
 class News(models.Model):
     """Модель новости"""
     name = models.CharField(max_length=200, verbose_name="Название мероприятия")
-    description = models.TextField(verbose_name="Описание")
     image = models.ImageField(upload_to='news/', verbose_name="Изображение")
     is_active = models.BooleanField(default=True, verbose_name="Отображать на сайте")
-    date_event = models.DateTimeField(verbose_name="Дата и время мероприятия")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Дата обновления")
 

@@ -5,6 +5,6 @@
 db.sqlite3
 *.sqlite
 *.sqlite3
-
+*.jpg
 media/video_about.mp4
 *.mp4

@@ -225,7 +225,7 @@ h7 {
   /*для img 4 блоков */
   .item img {
     width: 100px;
-    height: 100px;
+    height:auto;
 }
 .item {
     margin-left: 0px;

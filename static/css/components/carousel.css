@@ -1,20 +1,13 @@
 /* Стрелки навигации по умолчанию */
 .swiper-button-prev,
 .swiper-button-next {
-    color: black !important;           /* Нормальный черный цвет */
-    top: 40% !important;               /* Положение относительно высоты */
-    transition: all 0.3s !important;   /* Плавный переход эффектов */
-}
-
-/* Наведение курсора */
-.swiper-button-prev:hover,
-.swiper-button-next:hover {
-    transform: scale(1.2) !important;       /* Немного уменьшаем размер */
+    display: none !important;
 }
 
 @media (max-width: 768px) {
     .swiper-button-prev,
     .swiper-button-next {
-        display: none !important; 
+        display: none !important;
     }
+
 }

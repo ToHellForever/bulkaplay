@@ -210,10 +210,20 @@ h7 {
 @media (max-width: 768px) {
     /* для заголовка */
     .about-title {
-        font-size: 30px;
+        font-size: 45px;
     }
     .wood-text-about {
-        font-size: 30px;
+        font-size: 45px;
     }
     /* для блока с видео и текстом */
+    .full-height-video {
+        height: calc(100vw * 0.5625 + 100px) !important; /* Assuming 16:9 aspect ratio for video */
+        min-height: 200px;
+    }
+    .about-description,
+    .about-list {
+        font-size: 10px;
+    }
+    /* блок с 4 блоками под текстом и видео */
+    
 }

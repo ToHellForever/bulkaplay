@@ -11,3 +11,9 @@
     }
 
 }
+/* для карусели class="carousel-control-prev" type="button" data-bs-target="#eventCarousel */
+
+.carousel-control-prev,
+.carousel-control-next {
+    top: 40%;
+}

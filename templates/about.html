@@ -11,7 +11,7 @@
 {% block content %}
 {% include 'includes/modal_order.html' %}
 <div class="container-fluid about-container mt-2">
-  <div class="row flex-nowrap">
+  <div class="row flex-nowrap d-none d-md-flex">
     <div class="col-5 mb-3">
       <h1 class="about-title">О <span class="wood-text-about">НАС</span></h1>
       <div class="video-container">
@@ -21,7 +21,7 @@
             frameborder="0"
             allowfullscreen>
         </iframe>
-      </div>  
+      </div>
     </div>
     <div class="col-4 mt-4 about-text">
       <p class="about-description text-justify">
@@ -47,17 +47,42 @@
       </iframe>
     </div>
   </div>
+
+  <!-- Mobile version with videos on top and text below -->
   <div class="row d-md-none">
-    <div class="col-12">
+    <div class="col-8 mt-3">
+      <h1 class="about-title">О <span class="wood-text-about">НАС</span></h1>
+      <div class="video-container">
+        <iframe
+            src="https://vkvideo.ru/video_ext.php?oid=-226618368&id=456239026&hd=2&"
+            allow="encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
+            frameborder="0"
+            allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+    <div class="col-4">
       <iframe
-          class="about-iframe"
+          class="about-iframe full-height-video"
           src="https://vk.com/video_ext.php?oid=-226618368&id=456239224&hd=2&"
           width="100%"
-          height="300"
+          height="100%"
           allow="encrypted-media; fullscreen; picture-in-picture; screen-wake-lock;"
           frameborder="0"
           allowfullscreen>
       </iframe>
+    </div>
+    <div class="col-12 about-text">
+      <p class="about-description text-justify">
+        BUL.K.A-PLAY - производитель эксклюзивных настольных игр из твёрдых пород дерева. Мы объединяем ручную работу, надёжные материалы и оригинальные идеи, создавая игры, которые становятся украшением любого мероприятия или интерьера. Наши изделия востребованы как для семейного отдыха, так и для корпоративных событий. Мы предлагаем:
+      </p>
+      <ul class="about-list  text-justify" >
+        <li>продажу настольных игр с доставкой по всей России;</li>
+        <li>аренду и сопровождение игр на мероприятиях любого масштаба от частных праздников до городских фестивалей.</li>
+      </ul>
+      <p class="about-description  text-justify">
+        Выбирая BUL.K.A-PLAY, вы получаете продукт высокого качества и надёжного партнёра для организации ярких событий.
+      </p>
     </div>
   </div>
   <div class="row about-icons mt-5 ">

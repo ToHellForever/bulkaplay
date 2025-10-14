@@ -225,5 +225,43 @@ h7 {
         font-size: 10px;
     }
     /* блок с 4 блоками под текстом и видео */
-    
+    h4 {
+        font-size: 15px;
+    }
+    .about-stat {
+        font-size: 10px;
+    }
+    #icon_about {
+        border-radius: 15px;
+        height: auto;
+        padding: 10px 10px;
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+      /*для img 4 блоков */
+  .item img {
+    width: 100px;
+    height:auto;
+}
+.item {
+    margin-left: 0px;
+}
+.item-description {
+    font-size: 12px !important;
+    margin-top: 0px ;
+}
+.exclusive-text {
+    font-size: 14px !important;
+}
+/* кнопка ПОДРОБНЕЕ В НОВОСТЯХ*/
+.news-btn {
+    font-size: 13px;
+    width: 100%;
+    height: 30px;
+    border-radius: 7px;
+}
+/* кнопка оформления */
+.btn-primary {
+    font-size: 10px;
+}
 }

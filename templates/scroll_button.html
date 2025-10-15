@@ -24,6 +24,12 @@
             document.documentElement.scrollTop = 0;
         }
     });
+    {% comment %} на мобильной версии скрываю {% endcomment %}
+    if (window.innerWidth < 768) {
+        document.getElementById('scrollToTopBtn').style.display = 'none';
+    } else {
+        document.getElementById('scrollToTopBtn').style.display = 'block';
+    }%
 </script>
 
 {% endblock content %}

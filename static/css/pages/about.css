@@ -132,6 +132,7 @@ h4 {
     font-size: 25px;
     font-weight: 300;
 }
+
 /* кнопка подробнее в новостях */
 .news-btn {
     color: black;
@@ -141,7 +142,7 @@ h4 {
     font-size: 16px;
     border-radius: 15px;
     border: none;
-    width: 50%;
+    width: 200px;
     height: 50px;
     transition: all 0.3s ease;
 }
@@ -217,7 +218,7 @@ h7 {
     }
     /* для блока с видео и текстом */
     .full-height-video {
-        height: calc(100vw * 0.5625 + 100px) !important; /* Assuming 16:9 aspect ratio for video */
+        height: calc(100vw * 0.5625 + 100px) !important; 
         min-height: 200px;
     }
     .about-description,
@@ -240,28 +241,51 @@ h7 {
     }
       /*для img 4 блоков */
   .item img {
-    width: 100px;
+    width: 90px;
     height:auto;
 }
 .item {
-    margin-left: 0px;
+    margin-left: 10px;
 }
 .item-description {
     font-size: 12px !important;
     margin-top: 0px ;
 }
 .exclusive-text {
-    font-size: 14px !important;
+    font-size: 12px !important;
 }
 /* кнопка ПОДРОБНЕЕ В НОВОСТЯХ*/
 .news-btn {
     font-size: 13px;
-    width: 100%;
+    width: 130px;
     height: 30px;
     border-radius: 7px;
+    margin-left: -12px;
 }
-/* кнопка оформления */
+.news-btn:hover {
+    transform: none;
+    color: black;
+    background:  #F88005;
+}
+/* блок оформления */
+.about-order {
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    padding: 10px;
+    background: #F88005;
+}
+h7 {
+    font-size: 20px;
+}
+.order-description {
+    font-size: 12px;
+}
 .btn-primary {
-    font-size: 10px;
+    width: 80%;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 10px;
 }
 }

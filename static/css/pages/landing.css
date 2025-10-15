@@ -224,18 +224,18 @@ h7 {
   }
   /*для img 4 блоков */
   .item img {
-    width: 100px;
+    width: 90px;
     height:auto;
 }
 .item {
-    margin-left: 0px;
+    margin-left: 10px;
 }
 .item-description {
     font-size: 12px !important;
     margin-top: 0px ;
 }
 .exclusive-text {
-    font-size: 14px !important;
+    font-size: 12px !important;
 }
 /* блок с кнопкой оформления заказа */
 .landing-order {
@@ -245,11 +245,17 @@ h7 {
 }
 /* для заголовка в блоке оформления заказа */
 h7 {
-    font-size: 19px !important;
+    font-size: 20px !important;
 }   
 /* текст в блоке оформления заказа */
 .order-description {
     font-size: 12px !important;
+}
+.btn-primary {
+    width: 80%;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 10px;
 }
 /* для блока с описанием аренды */
 .rental-description {

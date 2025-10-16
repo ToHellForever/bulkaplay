@@ -193,17 +193,18 @@ h7 {
     .contact-block {
         width: 96%;
         height: auto;
-        margin-left: 0;
         /* центрирую по центру экрана */
         margin-left: 2%;
         padding-left: 30px;
         padding-bottom: 10px;
     }
-    .contact-block:nth-child(2) {
-        margin-top: -30;
+    /* Уменьшаем расстояние между блоками контактов в мобильной версии */
+    .contacts {
+        gap: 1.5rem !important;
     }
     /* ссылки в блоке с контактами */
     .contact-link {
+        padding-top: 0px;
         font-size: 14px !important;   
     }
     /* Заголовок в блоке с контактами */
@@ -262,8 +263,3 @@ h7 {
     font-size: 10px !important;
 }
 }
-
-
-
-
-

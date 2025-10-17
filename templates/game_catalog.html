@@ -28,9 +28,9 @@
   </div>
 
   <div class="container-fluid game-catalog-filters mt-4">
-    <!-- First row with 2 filters for mobile -->
-    <div class="row mobile-filters-row-1">
-      <div class="col-md-2 col-6">
+    <!-- All filters in one row for both mobile and desktop -->
+    <div class="row all-filters-row">
+      <div class="col-6 col-md-2">
         <select name="size" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
           <option value="">Размер <img src="/media/svg_files/arrow_down.svg" alt="arrow"></option>
           {% for size in sizes %}
@@ -38,7 +38,7 @@
           {% endfor %}
         </select>
       </div>
-      <div class="col-md-2 col-6">
+      <div class="col-6 col-md-2">
         <select name="player_count" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
           <option value="">Количество игроков <img src="/media/svg_files/arrow_down.svg" alt="arrow"></option>
           {% for player_count in player_counts %}
@@ -46,11 +46,7 @@
           {% endfor %}
         </select>
       </div>
-    </div>
-
-    <!-- Second row with 2 filters for mobile -->
-    <div class="row mobile-filters-row-2 mt-2">
-      <div class="col-md-2 col-6">
+      <div class="col-6 col-md-2">
         <select name="player_age" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
           <option value="">Возраст игроков <img src="/media/svg_files/arrow_down.svg" alt="arrow"></option>
           {% for player_age in player_ages %}
@@ -58,7 +54,7 @@
           {% endfor %}
         </select>
       </div>
-      <div class="col-md-2 col-6">
+      <div class="col-6 col-md-2">
         <select name="game_type" class="form-control filter-select" onchange="this.form.submit()" id='filter'>
           <option value="">Вид игры <img src="/media/svg_files/arrow_down.svg" alt="arrow"></option>
           {% for game_type in game_types %}

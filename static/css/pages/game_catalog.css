@@ -3,8 +3,10 @@
 .filter-select, .search-input {
     height: 42px;
     background: #3B3737 !important;
-    border: none !important;    
+    border: none !important;
     color: rgb(185, 178, 178) !important;
+    border-radius: 10px;
+    font-size: 16px;
 }
 
 /* Стили для поля поиска */
@@ -18,7 +20,7 @@
     border: none;
     font-family: 'Mont', sens-serif;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 20px !important;
     appearance: none;
 }
 #filter:hover {
@@ -162,29 +164,6 @@ hr {
     color: #F88005;
     height: 2px;
 }
-
-/* для правил и дополнительно */
-.collapse-link {
-    color: white;
-    font-family: "Unbounded", sans-serif;
-    font-weight: 500;
-    font-size: 26px;
-}
-/* для стрелки при открытии скрытых блоков  */
-.collapse-link img {
-    margin-left: 20px;
-    /* Поворачиваем изображение на 270 градусов по часовой стрелке */
-    transform: rotate(270deg);
-    transform-origin: center;
-    /* Плавный переход для анимации */
-    transition: transform 0.3s ease;
-}
-
-/* Для активного состояния (когда блок открыт) */
-.collapse-link.active img {
-    transform: rotate(90deg);
-}
-
 /* All filters in one row for both mobile and desktop */
 .all-filters-row {
     display: flex;
@@ -236,14 +215,26 @@ hr {
         max-width: 50%;
         padding: 0 5px;
     }
-
+    .all-filters-row {
+        margin-left: 0px;
+    }
     .search-container {
         margin-bottom: 0;
     }
-
-    /* Reduce font size for mobile filters */
+    .search-input,
+    .filter-select{
+        margin-top: -10px;
+        margin-left: -12px;
+        height: 35px;
+        font-size: 10px !important;
+    }
+    .search-input::placeholder {
+        font-size: 10px;
+    }
+    /* Mobile filter specific styling */
     #filter {
-        font-size: 14px !important;
+        margin-top: -5px;
+        font-size: 10px !important;
     }
 
     /* Adjust game cards for mobile */

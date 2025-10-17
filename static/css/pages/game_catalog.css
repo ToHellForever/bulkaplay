@@ -162,6 +162,29 @@ hr {
     color: #F88005;
     height: 2px;
 }
+
+/* для правил и дополнительно */
+.collapse-link {
+    color: white;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 500;
+    font-size: 26px;
+}
+/* для стрелки при открытии скрытых блоков  */
+.collapse-link img {
+    margin-left: 20px;
+    /* Поворачиваем изображение на 270 градусов по часовой стрелке */
+    transform: rotate(270deg);
+    transform-origin: center;
+    /* Плавный переход для анимации */
+    transition: transform 0.3s ease;
+}
+
+/* Для активного состояния (когда блок открыт) */
+.collapse-link.active img {
+    transform: rotate(90deg);
+}
+
 @media (max-width: 768px) {
     .additional_product-card {
         flex: 0 0 100%;
@@ -198,27 +221,24 @@ hr {
         margin-bottom: 0;
     }
 
-    /* Mobile layout for game catalog filters */
-    .filter-row-1 {
+    /* Mobile layout for game catalog filters - 2 rows with 2 filters each */
+    .mobile-filters-row-1,
+    .mobile-filters-row-2 {
         display: flex;
-        margin: 0 -5px;
+        margin: 0;
+        width: 100%;
     }
 
-    .filter-row-1 > div {
-        flex: 0 0 calc(50% - 5px);
-        max-width: calc(50% - 5px);
+    .mobile-filters-row-1 > div,
+    .mobile-filters-row-2 > div {
+        flex: 0 0 50%;
+        max-width: 50%;
         padding: 0 5px;
     }
 
-    .filter-row-2 {
-        display: flex;
-        margin: 0 -5px;
-    }
-
-    .filter-row-2 > div {
-        flex: 0 0 calc(25% - 5px);
-        max-width: calc(25% - 5px);
-        padding: 0 5px;
+    /* Reduce font size for mobile filters */
+    #filter {
+        font-size: 14px !important;
     }
 
     /* Adjust game cards for mobile */
@@ -229,27 +249,4 @@ hr {
     .additional_product_card {
         flex: 0 0 100%;
     }
-}
-
-
-/* для правил и дополнительно */
-.collapse-link {
-    color: white;
-    font-family: "Unbounded", sans-serif;
-    font-weight: 500;
-    font-size: 26px;
-}
-/* для стрелки при открытии скрытых блоков  */
-.collapse-link img {
-    margin-left: 20px;
-    /* Поворачиваем изображение на 270 градусов по часовой стрелке */
-    transform: rotate(270deg);
-    transform-origin: center;
-    /* Плавный переход для анимации */
-    transition: transform 0.3s ease;
-}
-
-/* Для активного состояния (когда блок открыт) */
-.collapse-link.active img {
-    transform: rotate(90deg);
 }

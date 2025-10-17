@@ -167,6 +167,68 @@ hr {
         flex: 0 0 100%;
         width: 100%;
     }
+
+    /* Mobile layout for game catalog header */
+    .game-catalog-header .row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .game-catalog-header .col-6 {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* Top filters row - search and sort */
+    .game-catalog-header .row.ms-auto {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .game-catalog-header .col-3 {
+        flex: 0 0 50%;
+        max-width: 50%;
+        padding: 0 5px;
+    }
+
+    .search-container {
+        margin-bottom: 0;
+    }
+
+    /* Mobile layout for game catalog filters */
+    .filter-row-1 {
+        display: flex;
+        margin: 0 -5px;
+    }
+
+    .filter-row-1 > div {
+        flex: 0 0 calc(50% - 5px);
+        max-width: calc(50% - 5px);
+        padding: 0 5px;
+    }
+
+    .filter-row-2 {
+        display: flex;
+        margin: 0 -5px;
+    }
+
+    .filter-row-2 > div {
+        flex: 0 0 calc(25% - 5px);
+        max-width: calc(25% - 5px);
+        padding: 0 5px;
+    }
+
+    /* Adjust game cards for mobile */
+    .game-card {
+        flex: 0 0 calc(50% - 20px);
+    }
+
+    .additional_product_card {
+        flex: 0 0 100%;
+    }
 }
 
 

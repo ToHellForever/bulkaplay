@@ -176,6 +176,25 @@ hr {
 
 /* Make filters take up appropriate space on mobile */
 @media (max-width: 767.98px) {
+    .additional_product_card {
+        flex: 0 0 calc(50% - 10px);
+        max-width: calc(50% - 10px);
+        margin-left: -7px;
+        margin-bottom: 0;
+        min-height: auto;
+    }
+    .additional_product_image {
+        width: 160px;
+        height: 150px;
+        border-radius: 10px;
+    }
+    .additional_product_card h3 {
+        font-size: 15px !important;
+        margin-bottom: 0px;
+    }
+    .additional_product_price {
+        font-size: 15px !important;
+    }
     .all-filters-row > div {
         flex: 0 0 calc(25% - 8px);
         min-width: calc(25% - 8px);

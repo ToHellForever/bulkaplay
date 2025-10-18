@@ -5,18 +5,20 @@
 h4 {
     color: white;
     font-family: 'Unbounded', sans-serif;
-    font-size: 78px;
+    font-size: 83px;
     font-weight: 600;
     margin-bottom: 10px;
     margin-top: 10px;
 }
+.wood-text {
+    font-size: 83px;
+}
 .title-about {
     color: white;
     font-family: 'Mont', sans-serif;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 200;
-    margin-bottom: 10px;
-    margin-top: 10px;
+    margin-top: 20px;
 }
 .order-text {
     color: black;
@@ -199,95 +201,6 @@ h3 {
     margin: 10px 0;
 }
 
-@media (max-width: 768px) {
-    .game-card {
-        flex: 0 0 calc(50% - 20px);
-    }
-}
-
-@media (max-width: 480px) {
-    .game-card {
-        flex: 0 0 100%;
-    }
-}
-
-
-/* Модальные окна */
-
-.modal-content-about {
-    background-color: transparent;
-    color: white;
-}
-
-.modal-title-about {
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-}
-
-.modal-body-about {
-    color: white;
-    font-family: 'Mont', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-}
-.modal-main-image {
-  max-height: 450px; 
-  width: 100%; 
-  border-radius: 31px;
-}
-/* Стили для изображений */
-.additional-image-wrapper {
-  height: 200px; 
-  overflow: hidden; 
-border: none !important;
-  border-radius: 10px; 
-}
-
-/* Стили для изображений */
-.additional-image {
-  height: 100%; 
-  width: 100%; 
-  object-fit: cover; 
-}
-/* остальное  */
-.custom-shadow {
-    box-shadow: 0 10px 10px black;
-}
-p {
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    text-align: start !important;
-}
-h5 {
-    color: white;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 30px;
-    font-weight: 400;
-}
-.hidden {
-    display: none;
-    visibility: hidden;
-    height: 0;
-    overflow: hidden;
-    transition: height 0.5s cubic-bezier(.4,0,.2,1), visibility 0.5s linear;
-}
-h3 {
-    color: #F88005;
-    font-family: 'Unbounded', sans-serif;
-    font-size: 30px;
-    font-weight: 400;
-}
-.visible {
-    display: block;
-    visibility: visible;
-    height: auto;
-    overflow: visible;
-}
-
 
 /* кнопка подробнее в новостях */
 .news-btn {
@@ -360,3 +273,6 @@ h7 {
     font-size: 16px;
     margin-top: 10px;
 }
+
+
+/* собильная версия */

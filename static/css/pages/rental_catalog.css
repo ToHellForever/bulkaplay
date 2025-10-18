@@ -1,6 +1,6 @@
 /* Стили для страницы аренды */
 .rental-calculator {
-    margin-top: 150px;
+    margin-top: 50px;
 }
 h4 {
     color: white;
@@ -31,7 +31,7 @@ h4 {
 h2 {
     color: white;
     font-family: 'Unbounded', sans-serif;
-    font-size: 30px;
+    font-size: 33px;
     font-weight: 400;
     margin-bottom: 10px;
 }
@@ -39,7 +39,7 @@ h2 {
 h3 {
     color: #F88005;
     font-family: 'Unbounded', sans-serif;
-    font-size: 30px;
+    font-size: 33px !important;
     font-weight: 400;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -275,4 +275,26 @@ h7 {
 }
 
 
-/* собильная версия */
+/* мобильная версия */
+@media (max-width: 768px) {
+    h4,
+    .wood-text,
+    h2 {
+        font-size: 17px;
+    }
+    h3 {
+        font-size: 15px !important;
+        margin-top: 0px !important; 
+    }
+    .title-about {
+        font-size: 10px;
+    }
+    .video-container {
+        margin-top: 20px;
+        border-radius: 15px;
+    }
+    .rental-calculator {
+        margin-top: 20px;
+    }
+
+}

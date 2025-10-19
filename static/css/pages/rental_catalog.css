@@ -317,4 +317,17 @@ h7 {
     .game-image {
         border-radius: 0px !important;
     }
+    /* кнопка ПОДРОБНЕЕ В НОВОСТЯХ*/
+.news-btn {
+    font-size: 13px;
+    width: 130px;
+    height: 30px;
+    border-radius: 7px;
+    margin-left: -12px;
+}
+.news-btn:hover {
+    transform: none;
+    color: black;
+    background:  #F88005;
+}
 }

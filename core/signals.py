@@ -9,6 +9,7 @@ import asyncio
 api_key = settings.TELEGRAM_BOT_API_KEY
 user_id = settings.TELEGRAM_USER_ID
 
+
 def send_telegram_notification(instance):
     try:
         # Принудительно загружаем все связи
@@ -16,7 +17,9 @@ def send_telegram_notification(instance):
 
         # Формируем список товаров
         products_list = [product.name for product in instance.products.all()]
-        additional_products_list = [product.name for product in instance.additional_products.all()]
+        additional_products_list = [
+            product.name for product in instance.additional_products.all()
+        ]
 
         # Здесь добавляем отладочный вывод
         print(f"Order {instance.id} arenda relations: {instance.arenda.all()}")
@@ -26,21 +29,21 @@ def send_telegram_notification(instance):
 
         # Формируем сообщение
         tg_markdown_message = f"""
-        ====== *Новый заказ!* ======
-        **Имя:** {instance.name}
-        **Телефон:** {instance.phone}
-        **Тип заказа:** {instance.get_order_type_display()}
-        **Дата заказа:** {instance.date.strftime("%d.%m.%Y") if instance.date else "Не указана"}
-        **Время заказа:** {instance.time.strftime("%H:%M") if instance.time else "Не указано"}
+📦 *Новый заказ!* 📦
+👤 **Имя:** {instance.name}
+📞 **Телефон:** {instance.phone}
+📋 **Тип заказа:** {instance.get_order_type_display()}
+📅 **Дата заказа:** {instance.date.strftime("%d.%m.%Y") if instance.date else "Не указана"}
+⏰ **Время заказа:** {instance.time.strftime("%H:%M") if instance.time else "Не указано"}
 
-        **Товары:** {', '.join(products_list) if products_list else "Нет"}
-        **Дополнительные товары:** {', '.join(additional_products_list) if additional_products_list else "Нет"}
-        **Аренды:** {', '.join(arenda_list) if arenda_list else "Нет"}
-        **Игры для аренды:** {', '.join(games_for_rent_list) if games_for_rent_list else "Нет"}
+🎮 **Товары:** {', '.join(products_list) if products_list else "Нет"}
+🎮 **Дополнительные товары:** {', '.join(additional_products_list) if additional_products_list else "Нет"}
+🎮 **Аренды:** {', '.join(arenda_list) if arenda_list else "Нет"}
+🎮 **Игры для аренды:** {', '.join(games_for_rent_list) if games_for_rent_list else "Нет"}
 
-        **Комментарий:** {instance.comment if instance.comment else "Нет"}
+💬 **Комментарий:** {instance.comment if instance.comment else "Нет"}
 
-        **Подробнее:** http://127.0.0.1:8000/admin/core/order/{instance.id}/change/
+🔗 **Подробнее:** [Ссылка на заказ](http://127.0.0.1:8000/admin/core/order/{instance.id}/change/)
         """
 
         # Отправляем сообщение в Telegram
@@ -48,11 +51,13 @@ def send_telegram_notification(instance):
     except Exception as e:
         print(f"Ошибка отправки сообщения в Telegram: {e}")
 
+
 @receiver(post_save, sender=Order)
 def notify_telegram_on_order_created(sender, instance, created, **kwargs):
     if created:
         print("Order created, waiting for m2m changes...")
         # Мы не отправляем уведомление здесь, а ждем m2m_changed
+
 
 @receiver(m2m_changed, sender=Order.products.through)
 @receiver(m2m_changed, sender=Order.additional_products.through)

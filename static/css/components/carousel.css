@@ -10,6 +10,10 @@
         display: none !important;
     }
 
+    .carousel-control-prev,
+    .carousel-control-next {
+        display: none !important;
+    }
 }
 /* для карусели class="carousel-control-prev" type="button" data-bs-target="#eventCarousel */
 

@@ -71,7 +71,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-left: -10px;
+    margin-left: -11px !important;
 }
 
 .game-card {
@@ -115,12 +115,26 @@
 
 @media (max-width: 768px) {
     .game-card {
-        flex: 0 0 calc(50% - 20px);
+        flex: 0 0 calc(50% - 10px);
+        margin-bottom: 10px;
+        min-height: 250px;
+    }
+    .games-grid {
+        justify-content: space-around;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 
 @media (max-width: 480px) {
     .game-card {
-        flex: 0 0 100%;
+        flex: 0 0 calc(50% - 10px);
+        margin-bottom: 10px;
+        min-height: 200px;
+    }
+    .games-grid {
+        justify-content: space-around;
+        margin-left: 0;
+        margin-right: 0;
     }
 }

@@ -2,9 +2,8 @@
 
 /* основное изображение */
 .main-image {
-    width: 96%;
-    height: 92%;
-    object-fit: cover;
+    width: 100%;
+    height: auto;
     border-radius: 31px;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -26,9 +25,9 @@
 /* доп изображения */
 .additional-image {
     width: 100%;
-    height: 135px;
+    min-height: auto;
     object-fit: cover;
-    border-radius: 21px;
+    border-radius: 20px;
     margin-bottom: 10px;
     margin-top: 10px;
     margin-left: 10px;

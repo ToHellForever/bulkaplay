@@ -9,12 +9,12 @@
 {% endblock stylesheets %}
 {% block content %}
 {% include 'includes/modal_order.html' %}
-<h1 class="landing-title text-center">НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА</span></h1>
 <div class='container-fluid landing-photos'>
+  <h1 class="landing-title">НАСТОЛЬНЫЕ ИГРЫ <span class="wood-text">ИЗ ДЕРЕВА</span></h1>
     <div class="row">
         <div class="col-12 col-md-4 order-3 order-md-1 d-none d-md-block position-relative">
             <div class="position-relative">
-                <img src="media/photo/photo1.jpg" class="img-fluid w-100 h-auto object-fit-cover left-photo" alt="Left Photo">
+                <img src="media/photo/photo1.jpg" class="img-fluid w-100 h-auto left-photo" alt="Left Photo">
                         <a href="{% url 'rental_catalog' %}" class="position-absolute bottom-0 start-50 translate-middle-x mb-3" style="display: inline-block;">
                                   <svg width="415" height="252" viewBox="0 0 315 152" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M213 62.6094C213 73.6551 221.954 82.6094 233 82.6094H295C306.046 82.6094 315 91.5637 315 102.609V139.609C315 146.237 309.627 151.609 303 151.609H12C5.37258 151.609 4.97532e-07 146.237 0 139.609V46.6094C6.6976e-06 39.982 5.37259 34.6094 12 34.6094H193C204.046 34.6094 213 43.5637 213 54.6094V62.6094Z" fill="white"/>
@@ -43,8 +43,8 @@
 
 <div class="row g-2 landing-mobile-buttons d-md-none">
     <div class="col-7">
-                  <img src="media/photo/photo1.jpg" class="img-fluid w-100 h-100 object-fit-cover left-photo d-md-none" alt="Left Photo Mobile">
-                  <a href="{% url 'rental_catalog' %}" class="position-absolute start-0 top-2 photo-in-left-photo" style="display: inline-block;">
+                  <img src="media/photo/photo1.jpg" class="img-fluid h-100 left-photo d-md-none" alt="Left Photo Mobile">
+                  <a href="{% url 'rental_catalog' %}" class="position-absolute start-1 top-2 photo-in-left-photo" style="display: inline-block;">
                             <svg width="170" height="252" viewBox="0 0 315 152" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M213 62.6094C213 73.6551 221.954 82.6094 233 82.6094H295C306.046 82.6094 315 91.5637 315 102.609V139.609C315 146.237 309.627 151.609 303 151.609H12C5.37258 151.609 4.97532e-07 146.237 0 139.609V46.6094C6.6976e-06 39.982 5.37259 34.6094 12 34.6094H193C204.046 34.6094 213 43.5637 213 54.6094V62.6094Z" fill="white"/>
                   <path d="M27.0489 68.6569H42.7762V72.8307H27.0489V68.6569ZM48.9461 77.6094H43.4718L34.1867 57.0127H35.8804L26.5953 77.6094H21.121L31.7369 54.9258H38.3302L48.9461 77.6094ZM63.758 54.9258C65.5122 54.9258 67.0446 55.2383 68.3552 55.8634C69.686 56.4885 70.7042 57.3656 71.4099 58.4947C72.1157 59.6238 72.4685 60.9344 72.4685 62.4265C72.4685 63.9186 72.1157 65.2292 71.4099 66.3583C70.7042 67.4673 69.686 68.3444 68.3552 68.9896C67.0446 69.6147 65.5122 69.9272 63.758 69.9272H53.747V65.6929H63.4858C64.6755 65.6929 65.603 65.4006 66.2683 64.8158C66.9539 64.2311 67.2967 63.4347 67.2967 62.4265C67.2967 61.4184 66.9539 60.6219 66.2683 60.0372C65.603 59.4524 64.6755 59.1601 63.4858 59.1601H54.2007L56.5295 56.7103V77.6094H51.3879V54.9258H63.758ZM94.1523 68.2335H77.9109V64.3017H94.1523V68.2335ZM79.8466 75.8854L77.6085 73.3449H95.0899V77.6094H74.6747L76.4289 66.2676L74.6747 54.9258H94.9387V59.1903H77.6085L79.8466 56.6498L81.3588 66.2676L79.8466 75.8854ZM104.141 54.9258V77.6094H98.9998V54.9258H104.141ZM122.288 54.9258V77.6094H117.147V54.9258H122.288ZM119.415 63.8783V68.3847H101.813V63.8783H119.415ZM125.037 73.0727H129.271L131.449 73.1332H147.781L149.021 73.0727H155.13V82.2368H150.321V77.6094H129.846V82.2368H125.037V73.0727ZM151.168 54.9258V75.9762H146.057V57.1034L148.355 59.402H132.658L134.806 57.7386C134.907 58.7064 134.977 59.6742 135.017 60.6421C135.078 61.5897 135.108 62.5475 135.108 63.5153C135.108 65.9752 134.917 68.0621 134.534 69.776C134.15 71.4697 133.576 72.7601 132.81 73.6473C132.043 74.5143 131.096 74.9478 129.967 74.9478L127.849 73.1634C128.696 72.1956 129.321 70.8346 129.725 69.0804C130.148 67.3262 130.36 65.1183 130.36 62.4568C130.36 60.4404 130.209 57.9301 129.906 54.9258H151.168ZM161.939 68.6569H177.667V72.8307H161.939V68.6569ZM183.836 77.6094H178.362L169.077 57.0127H170.771L161.486 77.6094H156.011L166.627 54.9258H173.221L183.836 77.6094Z" fill="#010101"/>
@@ -79,30 +79,30 @@
     <div class="row">
       <div class="col-md-3 col-6">
         <div class="item ">
-                  <img src="media/svg_files/bones.svg" alt="фон" class='background-image-3'>
+                  <img src="media/svg_files/bones.svg" alt="фон">
       <p><span class="exclusive-text">ЭКСКЛЮЗИВНЫЕ ИГРЫ</span></p>
-      <p class="item-description">в нашей коллекции есть игры,<br>аналогов которых нет на рынке</p>
+      <p class="item-description">в нашей коллекции есть игры, аналогов которых нет на рынке</p>
         </div>
       </div>
       <div class="col-md-3 col-6">
         <div class="item">
-                  <img src="media/svg_files/star.svg" alt="фон" class='background-image-4'>
+                  <img src="media/svg_files/star.svg" alt="фон">
       <p><span class="exclusive-text">БРЕНДИРОВАНИЕ</span></p>
-      <p class="item-description">возможно нанесение индивидуальной<br>гравировки</p>
+      <p class="item-description">возможно нанесение индивидуальной гравировки</p>
         </div>
       </div>
       <div class="col-md-3 col-6">
         <div class="item">
-                  <img src="media/svg_files/hammer.svg" alt="фон" class='background-image-5'>
+                  <img src="media/svg_files/hammer.svg" alt="фон">
       <p><span class="exclusive-text">РУЧНАЯ РАБОТА</span></p>
-      <p class="item-description">Собственное производство в<br>г. Красноярске</p>
+      <p class="item-description">Собственное производство в г. Красноярске</p>
         </div>
       </div>
       <div class="col-md-3 col-6">
         <div class="item">
-                  <img src="media/svg_files/truck.svg" alt="фон" class='background-image-6'>
+                  <img src="media/svg_files/truck.svg" alt="фон">
       <p><span class="exclusive-text">ДОСТАВКА</span></p>
-      <p class="item-description">Отправляем по всей<br>России</p>
+      <p class="item-description">Отправляем по всей России</p>
         </div>
       </div>
     </div>
@@ -184,7 +184,7 @@
   </div>
 </div>
 {% comment %} и плашка с кнопкой оформить заказ по центру внизу {% endcomment %}
-<div class='container-fluid landing-order mt-5'>
+<div class='container-fluid landing-order mt-4'>
     <h7>ОФОРМИТЬ ЗАКАЗ</h7>
     <p class="order-description text-center">Оставь заявку, мы свяжемся с тобой в ближайшее время</p>
     <a data-bs-toggle="modal" data-bs-target="#orderModal" class="btn btn-primary">ЗАПОЛНИТЬ ЗАЯВКУ</a>

@@ -175,14 +175,14 @@ h7 {
     }
     /* текст в верхнем фото */
     .text-photo {
-        font-size: 20px !important;
+        font-size: 5vw;
     }
     /* для блоков с 3 кнопками справа от фото */
     .order-button {
-        font-size: 18px !important;
-        height: 130px !important;
+        font-size: 4vw !important;
+        height: 100%;
         padding: 15px !important;
-        font-size: 15px !important;
+        border-radius: 20px;
         background: #1A1A1A;
     }
     .order-button:nth-child(2) {
@@ -213,26 +213,29 @@ h7 {
     }
     /* описание в блоке с контактами */
     .contact-description {
-        font-size: 13px !important;
+        font-size: 3vw !important;
     }
     a {
-        font-size: 15px;
+        font-size: 4vw;
     }
     /*для фото в левом фото */
     .photo-in-left-photo {
-        margin-left: 30px;
-        margin-top: 220px;
-  }
+        width: 35vw !important;
+        height: auto !important;
+        transform: translateY(0) !important;
+
+        /* левее и ниже */
+    }
   /*для img 4 блоков */
   .item img {
-    width: 90px;
+    width: 20vw;
     height:auto;
 }
 .item {
     margin-left: 10px;
 }
 .item-description {
-    font-size: 12px !important;
+    font-size: 3vw !important;
     margin-top: 0px ;
 }
 .exclusive-text {
@@ -246,20 +249,20 @@ h7 {
 }
 /* для заголовка в блоке оформления заказа */
 h7 {
-    font-size: 20px !important;
+    font-size: 4vw !important;
 }   
 /* текст в блоке оформления заказа */
 .order-description {
-    font-size: 12px !important;
+    font-size: 3vw !important;
 }
 .btn-primary {
     width: 80%;
     height: 40px;
-    font-size: 15px;
+    font-size: 3vw;
     border-radius: 10px;
 }
 /* для блока с описанием аренды */
 .rental-description {
-    font-size: 10px !important;
+    font-size: 2vw !important;
 }
 }

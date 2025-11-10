@@ -15,4 +15,4 @@ async def send_telegram_message(token, chat_id, message, parse_mode="Markdown"):
     except Exception as e:
         print(f"Ошибка отправки сообщения в чат {chat_id}: {e}")
         logging.error(f"Ошибка отправки сообщения в чат {chat_id}: {e}")
-        raise 
+        raise e
